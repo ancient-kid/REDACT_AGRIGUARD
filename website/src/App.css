@@ -3129,6 +3129,15 @@ html {
   margin: 0;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: white;
+}
+
+.message-full .message-content {
+  color: white;
+}
+
+.message-full .message-content p {
+  color: white;
 }
 
 .show-more-btn {
