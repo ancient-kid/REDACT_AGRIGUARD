@@ -1,8 +1,11 @@
-// Utility functions for managing user dashboard data
+// Dashboard API client using SQLite backend
 
-interface UploadHistory {
+const API_BASE_URL = 'http://localhost:8000'
+
+export interface UploadHistory {
   id: string
   fileName: string
+  imageUrl?: string | null
   timestamp: Date
   predictionClass: string
   severity: string
@@ -10,14 +13,14 @@ interface UploadHistory {
   summary?: string
 }
 
-interface ChatHistory {
+export interface ChatHistory {
   id: string
-  timestamp: Date
-  messages: Array<{ role: 'user' | 'assistant'; content: string }>
-  relatedUpload?: string
+  sessionId: string
+  createdAt: Date
+  messages: Array<{ role: 'user' | 'assistant'; content: string; timestamp: string }>
 }
 
-interface DashboardData {
+export interface DashboardData {
   uploads: UploadHistory[]
   chats: ChatHistory[]
   stats: {
@@ -29,102 +32,120 @@ interface DashboardData {
 }
 
 export const dashboardStorage = {
+  // Ensure user exists in database
+  async ensureUser(userId: string, email: string, firstName?: string, lastName?: string): Promise<void> {
+    await fetch(`${API_BASE_URL}/api/users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: userId,
+        email,
+        first_name: firstName,
+        last_name: lastName
+      })
+    })
+  },
+
   // Get user's dashboard data
-  getUserData(userId: string): DashboardData {
-    const userDataKey = `agriguard_user_${userId}`
-    const savedData = localStorage.getItem(userDataKey)
-    
-    if (savedData) {
-      const data = JSON.parse(savedData) as DashboardData
-      // Convert timestamp strings back to Date objects
-      data.uploads = data.uploads.map((upload) => ({
-        ...upload,
-        timestamp: new Date(upload.timestamp)
-      }))
-      data.chats = data.chats.map((chat) => ({
-        ...chat,
-        timestamp: new Date(chat.timestamp)
-      }))
-      return data
-    }
-    
-    return {
-      uploads: [],
-      chats: [],
-      stats: {
-        totalUploads: 0,
-        healthyPlants: 0,
-        diseasedPlants: 0,
-        totalChats: 0
+  async getUserData(userId: string): Promise<DashboardData> {
+    try {
+      const [uploadsRes, chatsRes, statsRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/api/uploads/${userId}`),
+        fetch(`${API_BASE_URL}/api/chats/${userId}`),
+        fetch(`${API_BASE_URL}/api/dashboard-stats/${userId}`)
+      ])
+
+      const uploadsData = await uploadsRes.json()
+      const chatsData = await chatsRes.json()
+      const statsData = await statsRes.json()
+
+      return {
+        uploads: uploadsData.uploads.map((u: any) => ({
+          ...u,
+          timestamp: new Date(u.timestamp)
+        })),
+        chats: chatsData.chats.map((c: any) => ({
+          ...c,
+          createdAt: new Date(c.createdAt)
+        })),
+        stats: statsData
+      }
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error)
+      return {
+        uploads: [],
+        chats: [],
+        stats: {
+          totalUploads: 0,
+          healthyPlants: 0,
+          diseasedPlants: 0,
+          totalChats: 0
+        }
       }
     }
   },
 
-  // Save user's dashboard data
-  saveUserData(userId: string, data: DashboardData): void {
-    const userDataKey = `agriguard_user_${userId}`
-    localStorage.setItem(userDataKey, JSON.stringify(data))
-  },
-
   // Add a new upload to history
-  addUpload(userId: string, upload: Omit<UploadHistory, 'id' | 'timestamp'>): void {
-    const data = this.getUserData(userId)
-    
-    const newUpload: UploadHistory = {
-      ...upload,
-      id: `upload_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      timestamp: new Date()
+  async addUpload(userId: string, upload: Omit<UploadHistory, 'id' | 'timestamp'> & { imagePath?: string | null }): Promise<string> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/uploads`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: userId,
+          file_name: upload.fileName,
+          image_path: upload.imagePath,
+          prediction_class: upload.predictionClass,
+          severity: upload.severity,
+          confidence_healthy: upload.confidence.healthy,
+          confidence_diseased: upload.confidence.diseased,
+          summary: upload.summary
+        })
+      })
+
+      const data = await response.json()
+      return data.id
+    } catch (error) {
+      console.error('Error adding upload:', error)
+      throw error
     }
-    
-    data.uploads.unshift(newUpload)
-    data.stats.totalUploads++
-    
-    if (upload.predictionClass.toLowerCase() === 'healthy') {
-      data.stats.healthyPlants++
-    } else {
-      data.stats.diseasedPlants++
-    }
-    
-    this.saveUserData(userId, data)
   },
 
   // Add a new chat session to history
-  addChat(userId: string, chat: Omit<ChatHistory, 'id' | 'timestamp'>): void {
-    const data = this.getUserData(userId)
-    
-    const newChat: ChatHistory = {
-      ...chat,
-      id: `chat_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      timestamp: new Date()
-    }
-    
-    data.chats.unshift(newChat)
-    data.stats.totalChats++
-    
-    this.saveUserData(userId, data)
-  },
+  async addChat(userId: string, sessionId: string): Promise<string> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/chats`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: userId,
+          session_id: sessionId
+        })
+      })
 
-  // Update an existing chat session
-  updateChat(userId: string, chatId: string, messages: Array<{ role: 'user' | 'assistant'; content: string }>): void {
-    const data = this.getUserData(userId)
-    const chatIndex = data.chats.findIndex(chat => chat.id === chatId)
-    
-    if (chatIndex !== -1) {
-      data.chats[chatIndex].messages = messages
-      data.chats[chatIndex].timestamp = new Date()
-      this.saveUserData(userId, data)
+      const data = await response.json()
+      return data.id
+    } catch (error) {
+      console.error('Error adding chat:', error)
+      throw error
     }
   },
 
-  // Get latest chat session
-  getLatestChat(userId: string): ChatHistory | null {
-    const data = this.getUserData(userId)
-    return data.chats.length > 0 ? data.chats[0] : null
-  },
-
-  // Clear all user data
-  clearUserData(userId: string): void {
-    const userDataKey = `agriguard_user_${userId}`
-    localStorage.removeItem(userDataKey)
+  // Add a message to a chat
+  async addChatMessage(chatId: string, role: 'user' | 'assistant', content: string): Promise<void> {
+    try {
+      await fetch(`${API_BASE_URL}/api/chat-messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          role,
+          content
+        })
+      })
+    } catch (error) {
+      console.error('Error adding chat message:', error)
+      throw error
+    }
   }
 }

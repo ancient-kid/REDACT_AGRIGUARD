@@ -8,16 +8,24 @@ import shutil
 import uuid
 from typing import Dict
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
+from sqlalchemy.orm import Session
 from .validators import check_image_corruption
+from .database import init_db, get_db, User, Upload, Chat, ChatMessage
+from datetime import datetime
 
 # Add project root and nodes folder to path so imports work
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 NODES_PATH = PROJECT_ROOT / "agri_graph" / "nodes"
 sys.path.append(str(NODES_PATH))
+
+# Create uploads directory for storing images
+UPLOADS_DIR = PROJECT_ROOT / "data" / "uploads"
+UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
 
 load_dotenv()
 
@@ -73,6 +81,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Initialize database on startup
+@app.on_event("startup")
+async def startup_event():
+    init_db()
+
 # In-memory storage for chat sessions
 chat_sessions: Dict[str, Dict] = {}
 
@@ -95,10 +108,19 @@ async def health():
 
 @app.post("/analyze")
 async def analyze_image(file: UploadFile = File(...)):
-    # Save uploaded image temporarily
+    # Generate unique filename
+    upload_id = str(uuid.uuid4())
+    file_extension = Path(file.filename).suffix if file.filename else '.jpg'
+    stored_filename = f"{upload_id}{file_extension}"
+    stored_path = UPLOADS_DIR / stored_filename
+    
+    # Save uploaded image temporarily for processing
     tmp_path = PROJECT_ROOT / "temp_upload.jpg"
     with open(tmp_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+
+    # Also save a permanent copy
+    shutil.copy(tmp_path, stored_path)
 
     # Run graph pipeline
     initial_state = {
@@ -113,13 +135,15 @@ async def analyze_image(file: UploadFile = File(...)):
         with open(shap_path, "rb") as shp:
             shap_base64 = base64.b64encode(shp.read()).decode("utf-8")
 
-    # Cleanup
+    # Cleanup temp file
     try:
         os.remove(tmp_path)
     except Exception:
         pass
 
     payload = {
+        "upload_id": upload_id,
+        "stored_image_path": str(stored_path),
         "image_path": result_state.get("image_path"),
         "pred_class": result_state.get("pred_class"),
         "prob_healthy": result_state.get("prob_healthy"),
@@ -242,3 +266,198 @@ Conversation History:
             "session_id": session_id,
             "error": str(e)
         }
+
+
+# ========== Dashboard API Endpoints ==========
+
+class UserCreateRequest(BaseModel):
+    user_id: str
+    email: str
+    first_name: str | None = None
+    last_name: str | None = None
+
+class UploadCreateRequest(BaseModel):
+    user_id: str
+    file_name: str
+    image_path: str | None = None
+    prediction_class: str
+    severity: str
+    confidence_healthy: float
+    confidence_diseased: float
+    summary: str | None = None
+
+class ChatCreateRequest(BaseModel):
+    user_id: str
+    session_id: str
+
+class ChatMessageCreateRequest(BaseModel):
+    chat_id: str
+    role: str
+    content: str
+
+
+@app.post("/api/users")
+async def create_or_get_user(request: UserCreateRequest, db: Session = Depends(get_db)):
+    """Create user if not exists, or return existing user"""
+    user = db.query(User).filter(User.user_id == request.user_id).first()
+    if not user:
+        user = User(
+            user_id=request.user_id,
+            email=request.email,
+            first_name=request.first_name,
+            last_name=request.last_name
+        )
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+    return {"user_id": user.user_id, "email": user.email}
+
+
+@app.post("/api/uploads")
+async def create_upload(request: UploadCreateRequest, db: Session = Depends(get_db)):
+    """Save upload history"""
+    upload = Upload(
+        id=str(uuid.uuid4()),
+        user_id=request.user_id,
+        file_name=request.file_name,
+        image_path=request.image_path,
+        prediction_class=request.prediction_class,
+        severity=request.severity,
+        confidence_healthy=request.confidence_healthy,
+        confidence_diseased=request.confidence_diseased,
+        summary=request.summary
+    )
+    db.add(upload)
+    db.commit()
+    db.refresh(upload)
+    
+    return {
+        "id": upload.id,
+        "timestamp": upload.timestamp.isoformat()
+    }
+
+
+@app.get("/api/uploads/{user_id}")
+async def get_uploads(user_id: str, db: Session = Depends(get_db)):
+    """Get all uploads for a user"""
+    uploads = db.query(Upload).filter(Upload.user_id == user_id).order_by(Upload.timestamp.desc()).all()
+    
+    return {
+        "uploads": [
+            {
+                "id": u.id,
+                "fileName": u.file_name,
+                "imageUrl": f"/api/images/{u.id}" if u.image_path else None,
+                "predictionClass": u.prediction_class,
+                "severity": u.severity,
+                "confidence": {
+                    "healthy": u.confidence_healthy,
+                    "diseased": u.confidence_diseased
+                },
+                "summary": u.summary,
+                "timestamp": u.timestamp.isoformat()
+            }
+            for u in uploads
+        ]
+    }
+
+
+@app.post("/api/chats")
+async def create_chat(request: ChatCreateRequest, db: Session = Depends(get_db)):
+    """Create a new chat session"""
+    chat = Chat(
+        id=str(uuid.uuid4()),
+        user_id=request.user_id,
+        session_id=request.session_id
+    )
+    db.add(chat)
+    db.commit()
+    db.refresh(chat)
+    
+    return {
+        "id": chat.id,
+        "session_id": chat.session_id,
+        "created_at": chat.created_at.isoformat()
+    }
+
+
+@app.get("/api/chats/{user_id}")
+async def get_chats(user_id: str, db: Session = Depends(get_db)):
+    """Get all chats for a user with their messages"""
+    chats = db.query(Chat).filter(Chat.user_id == user_id).order_by(Chat.created_at.desc()).all()
+    
+    result = []
+    for chat in chats:
+        messages = db.query(ChatMessage).filter(ChatMessage.chat_id == chat.id).order_by(ChatMessage.timestamp).all()
+        
+        result.append({
+            "id": chat.id,
+            "sessionId": chat.session_id,
+            "createdAt": chat.created_at.isoformat(),
+            "messages": [
+                {
+                    "role": m.role,
+                    "content": m.content,
+                    "timestamp": m.timestamp.isoformat()
+                }
+                for m in messages
+            ]
+        })
+    
+    return {"chats": result}
+
+
+@app.post("/api/chat-messages")
+async def add_chat_message(request: ChatMessageCreateRequest, db: Session = Depends(get_db)):
+    """Add a message to a chat"""
+    message = ChatMessage(
+        chat_id=request.chat_id,
+        role=request.role,
+        content=request.content
+    )
+    db.add(message)
+    
+    # Update chat's updated_at
+    chat = db.query(Chat).filter(Chat.id == request.chat_id).first()
+    if chat:
+        chat.updated_at = datetime.utcnow()
+    
+    db.commit()
+    db.refresh(message)
+    
+    return {
+        "id": message.id,
+        "timestamp": message.timestamp.isoformat()
+    }
+
+
+@app.get("/api/dashboard-stats/{user_id}")
+async def get_dashboard_stats(user_id: str, db: Session = Depends(get_db)):
+    """Get dashboard statistics for a user"""
+    uploads = db.query(Upload).filter(Upload.user_id == user_id).all()
+    chats = db.query(Chat).filter(Chat.user_id == user_id).all()
+    
+    healthy_count = sum(1 for u in uploads if u.prediction_class.lower() == "healthy")
+    diseased_count = sum(1 for u in uploads if u.prediction_class.lower() != "healthy")
+    
+    return {
+        "totalUploads": len(uploads),
+        "healthyPlants": healthy_count,
+        "diseasedPlants": diseased_count,
+        "totalChats": len(chats)
+    }
+
+
+@app.get("/api/images/{upload_id}")
+async def get_upload_image(upload_id: str, db: Session = Depends(get_db)):
+    """Serve stored upload image"""
+    upload = db.query(Upload).filter(Upload.id == upload_id).first()
+    
+    if not upload or not upload.image_path:
+        raise HTTPException(status_code=404, detail="Image not found")
+    
+    image_path = Path(upload.image_path)
+    if not image_path.exists():
+        raise HTTPException(status_code=404, detail="Image file not found on disk")
+    
+    return FileResponse(image_path)

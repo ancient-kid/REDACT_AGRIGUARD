@@ -31,6 +31,8 @@ export interface PipelineReport {
 }
 
 export interface PipelineResult {
+  upload_id?: string | null;
+  stored_image_path?: string | null;
   image_path?: string | null;
   pred_class?: string | null;
   prob_healthy?: number | null;

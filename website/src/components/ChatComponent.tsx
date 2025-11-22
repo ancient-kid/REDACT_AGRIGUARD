@@ -50,15 +50,19 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
       setMessages(initialMessages)
 
       // Save chat to dashboard if user is signed in
-      if (user?.id) {
-        const newChatId = `chat_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-        setChatId(newChatId)
-        dashboardStorage.addChat(user.id, {
-          messages: initialMessages.map(msg => ({
-            role: msg.role,
-            content: msg.content
-          }))
-        })
+      if (user?.id && user.emailAddresses?.[0]?.emailAddress) {
+        await dashboardStorage.ensureUser(
+          user.id,
+          user.emailAddresses[0].emailAddress,
+          user.firstName || undefined,
+          user.lastName || undefined
+        )
+        
+        const dbChatId = await dashboardStorage.addChat(user.id, response.session_id)
+        setChatId(dbChatId)
+        
+        // Add initial assistant message
+        await dashboardStorage.addChatMessage(dbChatId, 'assistant', response.initial_message)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to initialize chat')
@@ -97,12 +101,10 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
       const updatedMessages = [...messages, userMsg, assistantMsg]
       setMessages(updatedMessages)
 
-      // Update chat in dashboard if user is signed in
+      // Save messages to database if user is signed in
       if (user?.id && chatId) {
-        dashboardStorage.updateChat(user.id, chatId, updatedMessages.map(msg => ({
-          role: msg.role,
-          content: msg.content
-        })))
+        await dashboardStorage.addChatMessage(chatId, 'user', userMessage)
+        await dashboardStorage.addChatMessage(chatId, 'assistant', response.response)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to send message')

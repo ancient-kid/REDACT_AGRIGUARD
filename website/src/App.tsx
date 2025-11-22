@@ -54,9 +54,17 @@ function NavBar() {
       })
 
       // Save to dashboard if user is signed in
-      if (user?.id && pipeline) {
-        dashboardStorage.addUpload(user.id, {
+      if (user?.id && user?.emailAddresses?.[0]?.emailAddress && pipeline) {
+        await dashboardStorage.ensureUser(
+          user.id,
+          user.emailAddresses[0].emailAddress,
+          user.firstName || undefined,
+          user.lastName || undefined
+        )
+        
+        await dashboardStorage.addUpload(user.id, {
           fileName: file.name,
+          imagePath: pipeline.stored_image_path || null,
           predictionClass: pipeline.pred_class || 'Unknown',
           severity: pipeline.severity || 'Unknown',
           confidence: {

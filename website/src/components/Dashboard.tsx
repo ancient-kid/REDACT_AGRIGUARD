@@ -1,33 +1,7 @@
 import { useUser } from '@clerk/clerk-react'
 import { useState, useEffect } from 'react'
-
-interface UploadHistory {
-  id: string
-  fileName: string
-  timestamp: Date
-  predictionClass: string
-  severity: string
-  confidence: { healthy: number; diseased: number }
-  summary?: string
-}
-
-interface ChatHistory {
-  id: string
-  timestamp: Date
-  messages: Array<{ role: 'user' | 'assistant'; content: string }>
-  relatedUpload?: string
-}
-
-interface DashboardData {
-  uploads: UploadHistory[]
-  chats: ChatHistory[]
-  stats: {
-    totalUploads: number
-    healthyPlants: number
-    diseasedPlants: number
-    totalChats: number
-  }
-}
+import { dashboardStorage } from '../services/dashboardStorage'
+import type { DashboardData, UploadHistory, ChatHistory } from '../services/dashboardStorage'
 
 export const Dashboard = () => {
   const { user, isLoaded } = useUser()
@@ -42,24 +16,29 @@ export const Dashboard = () => {
     }
   })
   const [activeTab, setActiveTab] = useState<'overview' | 'uploads' | 'chats'>('overview')
+  const [isLoading, setIsLoading] = useState(true)
 
-  const loadDashboardData = () => {
-    // Load data from localStorage for this user
-    const userDataKey = `agriguard_user_${user?.id}`
-    const savedData = localStorage.getItem(userDataKey)
+  const loadDashboardData = async () => {
+    if (!user?.id) return
     
-    if (savedData) {
-      const data = JSON.parse(savedData) as DashboardData
-      // Convert timestamp strings back to Date objects
-      data.uploads = data.uploads.map((upload) => ({
-        ...upload,
-        timestamp: new Date(upload.timestamp)
-      }))
-      data.chats = data.chats.map((chat) => ({
-        ...chat,
-        timestamp: new Date(chat.timestamp)
-      }))
+    setIsLoading(true)
+    try {
+      // Ensure user exists in database
+      if (user.emailAddresses?.[0]?.emailAddress) {
+        await dashboardStorage.ensureUser(
+          user.id,
+          user.emailAddresses[0].emailAddress,
+          user.firstName || undefined,
+          user.lastName || undefined
+        )
+      }
+      
+      const data = await dashboardStorage.getUserData(user.id)
       setDashboardData(data)
+    } catch (error) {
+      console.error('Failed to load dashboard data:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -70,7 +49,7 @@ export const Dashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded, user])
 
-  if (!isLoaded || !user) {
+  if (!isLoaded || !user || isLoading) {
     return (
       <div className="dashboard-loading">
         <div className="spinner"></div>
@@ -167,10 +146,15 @@ export const Dashboard = () => {
               ) : (
                 <div className="activity-timeline">
                   {[...dashboardData.uploads, ...dashboardData.chats]
-                    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+                    .sort((a, b) => {
+                      const dateA = 'timestamp' in a ? a.timestamp : a.createdAt
+                      const dateB = 'timestamp' in b ? b.timestamp : b.createdAt
+                      return new Date(dateB).getTime() - new Date(dateA).getTime()
+                    })
                     .slice(0, 5)
                     .map((item) => {
                       const isUpload = 'fileName' in item
+                      const itemDate = 'timestamp' in item ? item.timestamp : item.createdAt
                       return (
                         <div key={item.id} className="activity-item">
                           <div className="activity-icon">
@@ -182,7 +166,7 @@ export const Dashboard = () => {
                                 ? `Scanned ${(item as UploadHistory).fileName}` 
                                 : 'Chat Session'}
                             </h4>
-                            <p>{formatDate(item.timestamp)}</p>
+                            <p>{formatDate(itemDate)}</p>
                             {isUpload && (
                               <span className={`status-badge ${(item as UploadHistory).predictionClass.toLowerCase()}`}>
                                 {(item as UploadHistory).predictionClass}
@@ -211,6 +195,17 @@ export const Dashboard = () => {
               <div className="uploads-grid">
                 {dashboardData.uploads.map((upload) => (
                   <div key={upload.id} className="upload-card">
+                    {upload.imageUrl && (
+                      <div className="upload-image-preview">
+                        <img 
+                          src={`http://localhost:8000${upload.imageUrl}`} 
+                          alt={upload.fileName}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = 'none'
+                          }}
+                        />
+                      </div>
+                    )}
                     <div className="upload-header">
                       <h4>{upload.fileName}</h4>
                       <span className={`prediction-badge ${upload.predictionClass.toLowerCase()}`}>
@@ -274,7 +269,7 @@ export const Dashboard = () => {
                   <div key={chat.id} className="chat-card">
                     <div className="chat-header">
                       <h4>💬 Chat Session</h4>
-                      <p className="chat-date">{formatDate(chat.timestamp)}</p>
+                      <p className="chat-date">{formatDate(chat.createdAt)}</p>
                     </div>
                     <div className="chat-preview">
                       {chat.messages.slice(0, 3).map((msg, idx) => (
