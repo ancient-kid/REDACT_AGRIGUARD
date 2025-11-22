@@ -2431,6 +2431,7 @@ html {
   border-radius: 12px;
   padding: 12px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #1f2937;
 }
 
 .chat-message.user .message-content {
@@ -2442,6 +2443,7 @@ html {
   line-height: 1.5;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: inherit;
 }
 
 .message-time {
