@@ -2989,15 +2989,15 @@ html {
 }
 
 .chat-card {
-  background: #f9fafb;
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
   border-radius: 12px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #6d28d9;
   transition: all 0.3s;
 }
 
 .chat-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
   transform: translateY(-2px);
 }
 
@@ -3007,7 +3007,7 @@ html {
   align-items: center;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .chat-header-left {
@@ -3018,20 +3018,20 @@ html {
 
 .chat-header h4 {
   font-size: 1rem;
-  color: #2c5f2d;
+  color: white;
   font-weight: 600;
   margin: 0;
 }
 
 .chat-date {
   font-size: 0.875rem;
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
 }
 
 .message-count {
   font-size: 0.75rem;
-  color: #059669;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
 }
 
