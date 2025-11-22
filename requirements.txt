@@ -1,4 +1,0 @@
-# Project dependencies
-streamlit>=1.28.0
-Pillow>=10.0.0
-hashlib; python_version < '3.0'  # hashlib is built-in for Python 3+

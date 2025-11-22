@@ -1,0 +1,16 @@
+{
+  "image_path": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\temp_upload.jpg",
+  "prediction": "DISEASED",
+  "prob_healthy": 4.010425888947844e-14,
+  "prob_diseased": 0.9999999999999599,
+  "severity": "Severe",
+  "recommendations": [
+    "Isolate affected plants to prevent spread.",
+    "Inspect neighboring plants for similar symptoms.",
+    "Remove severely affected leaves and dispose of them away from the field.",
+    "Apply safe organic treatments (e.g., neem oil) or consult local extension officers for approved pesticides.",
+    "Document symptoms for DISEASED and monitor progression daily."
+  ],
+  "shap_heatmap": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
+  "summary": "Your plant is **diseased** with **severe** symptoms, and the system is 100% confident in this diagnosis. We recommend you immediately **isolate affected plants** to prevent spread and **apply safe organic treatments** like neem oil. The explanation heatmap highlights the specific affected areas on the leaves, so you know exactly what to look for. Please inspect neighboring plants and monitor progression daily."
+}

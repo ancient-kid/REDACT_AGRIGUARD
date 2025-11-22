@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+torch
+torchvision
+pillow
+numpy
+langgraph
+langchain
+python-multipart
