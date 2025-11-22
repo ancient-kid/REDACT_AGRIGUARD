@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+import os
 
 import torch
 from PIL import Image
@@ -11,12 +12,7 @@ from .agri_graph.nodes.evaluate import SimpleCNN, DEVICE, IMG_SIZE
 LOGGER = logging.getLogger(__name__)
 
 # Load the exact checkpoint produced by train_torch_fixed_amp.py
-import os
-from pathlib import Path
-
-# Get the correct base directory
-BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = os.path.join(BASE_DIR, "best_model.pth")
+MODEL_PATH = Path(__file__).parent / os.getenv("MODEL_PATH", "best_model.pth")
 
 # Same normalization as validation set
 transform = T.Compose([

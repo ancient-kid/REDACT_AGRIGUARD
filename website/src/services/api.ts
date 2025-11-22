@@ -31,6 +31,8 @@ export interface PipelineReport {
 }
 
 export interface PipelineResult {
+  upload_id?: string | null;
+  stored_image_path?: string | null;
   image_path?: string | null;
   pred_class?: string | null;
   prob_healthy?: number | null;
@@ -109,10 +111,10 @@ class AgriGuardAPI {
   }
 
   async sendChatMessage(sessionId: string, message: string): Promise<ChatMessageResponse> {
-    const response = await fetch(`${API_BASE_URL}/chat/message`, {
+    const response = await fetch(`${API_BASE_URL}/chat/${sessionId}/message`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ session_id: sessionId, message })
+      body: JSON.stringify({ message })
     });
 
     if (!response.ok) {

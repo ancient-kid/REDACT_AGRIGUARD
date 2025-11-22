@@ -1,16 +1,16 @@
 {
-  "image_path": "C:\\Users\\Anurag\\Desktop\\REDACT_AGRIGUARD\\backend_main\\temp_upload.jpg",
+  "image_path": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\temp_upload.jpg",
   "prediction": "DISEASED",
-  "prob_healthy": 1.733342628540413e-06,
-  "prob_diseased": 0.9999982666573715,
+  "prob_healthy": 1.528257520533316e-10,
+  "prob_diseased": 0.9999999998471742,
   "severity": "Severe",
   "recommendations": [
     "Isolate affected plants to prevent spread.",
     "Inspect neighboring plants for similar symptoms.",
     "Remove severely affected leaves and dispose of them away from the field.",
     "Apply safe organic treatments (e.g., neem oil) or consult local extension officers for approved pesticides.",
-    "Document symptoms for Corn_(maize)___Northern_Leaf_Blight and monitor progression daily."
+    "Document symptoms for Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot and monitor progression daily."
   ],
-  "shap_heatmap": "C:\\Users\\Anurag\\Desktop\\REDACT_AGRIGUARD\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
-  "summary": "Your corn plant is diseased with **Northern Leaf Blight**, identified with 94.4% confidence, and the severity is **Severe**.\n\nPlease immediately **isolate affected plants** and **inspect neighboring plants** for similar symptoms to prevent spread. Consider applying safe organic treatments like neem oil, or consult your local extension officer for approved pesticides.\n\nOur analysis, backed by the SHAP heatmap, highlighted specific lesions on the leaves that confirm this diagnosis."
+  "shap_heatmap": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
+  "summary": "Your corn plant is **diseased** with a severe case, most likely Cercospora leaf spot/Gray leaf spot (68.4% confidence).\n\nIt's crucial to **isolate** this plant right away to stop the spread and **inspect** your other corn plants.\n\nConsider using safe organic treatments like **neem oil**, and **monitor** the plant's progress daily. The SHAP heatmap also confirms these disease areas."
 }

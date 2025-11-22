@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react'
 import './App.css'
 import { Home } from './components/Home'
 import { HowItWorks } from './components/HowItWorks'
 import { Features } from './components/Features'
 import { About } from './components/About'
+import { Dashboard } from './components/Dashboard'
 import { agriGuardAPI, formatFileSize, getFileType } from './services/api'
 import type { ImageValidationResult, PipelineResult } from './services/api'
 import { ChatPanel } from './components/ChatComponent.tsx'
+import { dashboardStorage } from './services/dashboardStorage'
 
 interface AnalysisState {
   isAnalyzing: boolean;
@@ -21,6 +24,7 @@ function NavBar() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [analysis, setAnalysis] = useState<AnalysisState>({ isAnalyzing: false })
   const location = useLocation()
+  const { isSignedIn, user } = useUser()
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -48,6 +52,28 @@ function NavBar() {
         validation,
         pipeline
       })
+
+      // Save to dashboard if user is signed in
+      if (user?.id && user?.emailAddresses?.[0]?.emailAddress && pipeline) {
+        await dashboardStorage.ensureUser(
+          user.id,
+          user.emailAddresses[0].emailAddress,
+          user.firstName || undefined,
+          user.lastName || undefined
+        )
+        
+        await dashboardStorage.addUpload(user.id, {
+          fileName: file.name,
+          imagePath: pipeline.stored_image_path || null,
+          predictionClass: pipeline.pred_class || 'Unknown',
+          severity: pipeline.severity || 'Unknown',
+          confidence: {
+            healthy: pipeline.prob_healthy ?? 0,
+            diseased: pipeline.prob_diseased ?? 0
+          },
+          summary: pipeline.summary
+        })
+      }
     } catch (error) {
       setAnalysis({
         isAnalyzing: false,
@@ -91,9 +117,35 @@ function NavBar() {
             <Link to="/how-it-works" className={isActive('/how-it-works')}>How It Works</Link>
             <Link to="/features" className={isActive('/features')}>Features</Link>
             <Link to="/about" className={isActive('/about')}>About</Link>
+            {isSignedIn && (
+              <Link to="/dashboard" className={isActive('/dashboard')}>Dashboard</Link>
+            )}
             <button className="nav-upload-btn" onClick={triggerFileUpload}>
               📤 Upload Image
             </button>
+            {!isSignedIn ? (
+              <div className="auth-buttons">
+                <SignInButton 
+                  mode="modal"
+                  signUpForceRedirectUrl="/"
+                  forceRedirectUrl="/"
+                >
+                  <button className="nav-signin-btn">Sign In</button>
+                </SignInButton>
+                <SignUpButton 
+                  mode="modal"
+                  signInForceRedirectUrl="/"
+                  forceRedirectUrl="/"
+                >
+                  <button className="nav-signup-btn">Sign Up</button>
+                </SignUpButton>
+              </div>
+            ) : (
+              <div className="user-section">
+                <span className="welcome-text">Welcome, {user?.firstName || 'User'}!</span>
+                <UserButton afterSignOutUrl="/" />
+              </div>
+            )}
           </div>
         </div>
       </nav>
@@ -293,6 +345,7 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </main>
 

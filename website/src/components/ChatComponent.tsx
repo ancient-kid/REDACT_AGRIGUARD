@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
+import { useUser } from '@clerk/clerk-react'
 import { agriGuardAPI } from '../services/api'
 import type { ChatMessage, PipelineResult } from '../services/api'
+import { dashboardStorage } from '../services/dashboardStorage'
 import '../App.css'
 
 interface ChatPanelProps {
@@ -9,7 +11,9 @@ interface ChatPanelProps {
 }
 
 export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
+  const { user } = useUser()
   const [sessionId, setSessionId] = useState<string | null>(null)
+  const [chatId, setChatId] = useState<string | null>(null)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [inputMessage, setInputMessage] = useState('')
   const [isSending, setIsSending] = useState(false)
@@ -38,11 +42,28 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
     try {
       const response = await agriGuardAPI.initializeChat(analysisContext)
       setSessionId(response.session_id)
-      setMessages([{
-        role: 'assistant',
+      const initialMessages = [{
+        role: 'assistant' as const,
         content: response.initial_message,
         timestamp: new Date().toISOString()
-      }])
+      }]
+      setMessages(initialMessages)
+
+      // Save chat to dashboard if user is signed in
+      if (user?.id && user.emailAddresses?.[0]?.emailAddress) {
+        await dashboardStorage.ensureUser(
+          user.id,
+          user.emailAddresses[0].emailAddress,
+          user.firstName || undefined,
+          user.lastName || undefined
+        )
+        
+        const dbChatId = await dashboardStorage.addChat(user.id, response.session_id)
+        setChatId(dbChatId)
+        
+        // Add initial assistant message
+        await dashboardStorage.addChatMessage(dbChatId, 'assistant', response.initial_message)
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to initialize chat')
     } finally {
@@ -77,7 +98,14 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
         content: response.response,
         timestamp: new Date().toISOString()
       }
-      setMessages(prev => [...prev, assistantMsg])
+      const updatedMessages = [...messages, userMsg, assistantMsg]
+      setMessages(updatedMessages)
+
+      // Save messages to database if user is signed in
+      if (user?.id && chatId) {
+        await dashboardStorage.addChatMessage(chatId, 'user', userMessage)
+        await dashboardStorage.addChatMessage(chatId, 'assistant', response.response)
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to send message')
       // Remove the user message if sending failed
