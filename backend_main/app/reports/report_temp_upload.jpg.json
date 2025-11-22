@@ -1,16 +1,16 @@
 {
-  "image_path": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\temp_upload.jpg",
+  "image_path": "/home/keerthan/Desktop/grandfinale/REDACT_AGRIGUARD/backend_main/temp_upload.jpg",
   "prediction": "DISEASED",
-  "prob_healthy": 1.528257520533316e-10,
-  "prob_diseased": 0.9999999998471742,
+  "prob_healthy": 1.6497374133450649e-07,
+  "prob_diseased": 0.9999998350262587,
   "severity": "Severe",
   "recommendations": [
     "Isolate affected plants to prevent spread.",
     "Inspect neighboring plants for similar symptoms.",
     "Remove severely affected leaves and dispose of them away from the field.",
     "Apply safe organic treatments (e.g., neem oil) or consult local extension officers for approved pesticides.",
-    "Document symptoms for Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot and monitor progression daily."
+    "Document symptoms for Corn_(maize)___Northern_Leaf_Blight and monitor progression daily."
   ],
-  "shap_heatmap": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
-  "summary": "Your corn plant is **diseased** with a severe case, most likely Cercospora leaf spot/Gray leaf spot (68.4% confidence).\n\nIt's crucial to **isolate** this plant right away to stop the spread and **inspect** your other corn plants.\n\nConsider using safe organic treatments like **neem oil**, and **monitor** the plant's progress daily. The SHAP heatmap also confirms these disease areas."
+  "shap_heatmap": "/home/keerthan/Desktop/grandfinale/REDACT_AGRIGUARD/backend_main/app/agri_graph/nodes/shap_explanations/shap_heatmap_temp_upload.jpg.png",
+  "summary": "Your corn plant is **diseased** with **Northern Leaf Blight**, identified with very high confidence (92.2%), and the severity is **Severe**. Our analysis highlights specific affected areas on the leaves. A clear action is to immediately **isolate** the affected plants to prevent spread and consider applying safe organic treatments like **neem oil**. Remember to also inspect neighboring plants and **monitor** the progression daily."
 }

@@ -61,7 +61,7 @@ random.seed(SEED)
 # ----------------------------
 # Device detection
 # ----------------------------
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("cpu")
 print(f"Using device: {DEVICE}")
 print("Torch version:", torch.__version__)
 if DEVICE.type == "cuda":

@@ -8,7 +8,7 @@ import { Features } from './components/Features'
 import { About } from './components/About'
 import { Dashboard } from './components/Dashboard'
 import { agriGuardAPI, formatFileSize, getFileType } from './services/api'
-import type { ImageValidationResult, PipelineResult } from './services/api'
+import type { ImageValidationResult, PipelineResult, GradCAMResult } from './services/api'
 import { ChatPanel } from './components/ChatComponent.tsx'
 import { dashboardStorage } from './services/dashboardStorage'
 
@@ -18,6 +18,7 @@ interface AnalysisState {
   pipeline?: PipelineResult;
   error?: string;
   showChat?: boolean;
+  gradcam?: GradCAMResult;
 }
 
 function NavBar() {
@@ -36,6 +37,7 @@ function NavBar() {
     try {
       // First validate the image
       const validation = await agriGuardAPI.validateImage(file)
+      const gradcam = await agriGuardAPI.analyzeImageWithGradCAM(file)
       
       if (!validation.not_corrupted) {
         setAnalysis({
@@ -50,7 +52,8 @@ function NavBar() {
       setAnalysis({
         isAnalyzing: false,
         validation,
-        pipeline
+        pipeline,
+        gradcam
       })
 
       // Save to dashboard if user is signed in
@@ -274,18 +277,19 @@ function NavBar() {
                         </div>
                       )}
 
-                      {analysis.pipeline.shap_heatmap_base64 && (
-                        <div className="shap-visual">
-                          <h5>🔥 SHAP Heatmap</h5>
-                          <img
-                            src={`data:image/png;base64,${analysis.pipeline.shap_heatmap_base64}`}
-                            alt="SHAP heatmap"
-                          />
-                          {analysis.pipeline.shap_note && (
-                            <p className="shap-note">{analysis.pipeline.shap_note}</p>
-                          )}
-                        </div>
-                      )}
+                      {analysis.gradcam && (
+                          <div className="gradcam-visual">
+                            <h5>🎯 Disease Localization (Grad-CAM)</h5>
+                            <img
+                              src={`data:image/${analysis.gradcam.image_format};base64,${analysis.gradcam.annotated_image_base64}`}
+                              alt="Grad-CAM annotated plant"
+                              style={{ maxWidth: '100%', borderRadius: '12px' }}
+                            />
+                            <p className="gradcam-note">
+                              Red bounding box shows the region most influential for predicting: <strong>{analysis.gradcam.prediction}</strong> (confidence: {(analysis.gradcam.confidence * 100).toFixed(1)}%)
+                            </p>
+                          </div>
+                        )}
 
                       {analysis.pipeline.report && (
                         <div className="report-card">

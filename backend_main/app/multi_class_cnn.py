@@ -1,21 +1,3 @@
-# train_disease_torch_fixed_amp.py
-"""
-Multi-class disease classification training script
-- Same style as train_torch_fixed_amp.py
-- Uses SimpleCNN but with multi-class output
-- Expects folder layout:
-    data/
-      train/
-        Class1/
-        Class2/
-        ...
-      valid/
-        Class1/
-        Class2/
-        ...
-Each folder name is treated as a separate disease class.
-"""
-
 import os
 import time
 import random
@@ -44,7 +26,9 @@ from sklearn.metrics import (
 # ----------------------------
 # User config
 # ----------------------------
-DATA_ROOT = Path("data")
+# Updated paths to be relative to script location
+SCRIPT_DIR = Path(__file__).resolve().parent
+DATA_ROOT = SCRIPT_DIR.parent / "data"  # Assumes data is in backend_main/data
 TRAIN_DIR = DATA_ROOT / "train"
 VAL_DIR = DATA_ROOT / "valid"
 
@@ -55,7 +39,7 @@ EPOCHS = 8
 LR = 1e-3
 WEIGHT_DECAY = 1e-4
 SEED = 42
-SAVE_BEST = Path("best_disease_model.pth")
+SAVE_BEST = SCRIPT_DIR / "best_disease_model.pth"  # Save in app/ directory
 DEBUG = False        # set True for fast iteration
 DEBUG_N = 8000       # number of samples if DEBUG=True
 PRINT_EVERY = 100    # steps
@@ -90,7 +74,7 @@ class MultiClassFolderDataset(Dataset):
     def __init__(self, root_dir: Path, img_size=IMG_SIZE, train=True):
         self.root_dir = Path(root_dir)
         if not self.root_dir.exists():
-            raise FileNotFoundError(f"{root_dir} not found")
+            raise FileNotFoundError(f"{root_dir} not found. Please ensure your data directory exists.")
 
         # discover class folders
         class_names = sorted([d.name for d in self.root_dir.iterdir() if d.is_dir()])
@@ -306,12 +290,29 @@ def evaluate(model, loader, class_names: List[str]):
 # Main
 # ----------------------------
 def main():
+    print(f"Data root: {DATA_ROOT}")
+    print(f"Train dir: {TRAIN_DIR}")
+    print(f"Val dir: {VAL_DIR}")
+    print(f"Save path: {SAVE_BEST}")
+    
+    if not TRAIN_DIR.exists():
+        print(f"ERROR: Train directory {TRAIN_DIR} does not exist!")
+        print("Please ensure your data is organized as:")
+        print("backend_main/data/train/[class_folders]/")
+        print("backend_main/data/valid/[class_folders]/")
+        return
+    
+    if not VAL_DIR.exists():
+        print(f"ERROR: Validation directory {VAL_DIR} does not exist!")
+        return
+    
     train_loader, val_loader, meta = build_loaders(TRAIN_DIR, VAL_DIR, batch_size=BATCH_SIZE, debug=DEBUG)
     class_names = meta["class_names"]
     print("Classes:", class_names)
+    print(f"Number of classes: {len(class_names)}")
 
     model = SimpleCNNMulti(num_classes=len(class_names)).to(DEVICE)
-    print(model)
+    print(f"Model architecture:\n{model}")
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=LR, weight_decay=WEIGHT_DECAY)
@@ -335,7 +336,9 @@ def main():
               f"val_acc={metrics['acc']:.4f} | val_f1_macro={metrics['f1']:.4f}")
 
         # Save predictions CSV per epoch
-        pred_df.to_csv(f"val_disease_predictions_epoch_{epoch+1:02d}.csv", index=False)
+        pred_csv_path = SCRIPT_DIR / f"val_disease_predictions_epoch_{epoch+1:02d}.csv"
+        pred_df.to_csv(pred_csv_path, index=False)
+        print(f"  >> Saved predictions to {pred_csv_path}")
 
         # Save best by macro F1
         if metrics["f1"] > best_f1:
@@ -350,6 +353,7 @@ def main():
             print(f"  >> Saved best disease model (macro F1={best_f1:.4f}) -> {SAVE_BEST}")
 
     print("Training complete. Best val macro F1:", best_f1)
+    print(f"Model saved to: {SAVE_BEST}")
 
 if __name__ == "__main__":
     main()

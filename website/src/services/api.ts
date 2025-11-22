@@ -73,6 +73,108 @@ export interface ChatHistoryResponse {
   history: ChatMessage[];
 }
 
+
+
+export interface PerClassMetric {
+  class_name: string;
+  accuracy: number;
+  avg_confidence: number;
+  support: number;
+}
+
+export interface ConfusionPair {
+  from_class_idx: string;
+  to_class_idx: string;
+  count: number;
+  example_paths: string[];
+}
+
+export interface DashboardStats {
+  binary_model: {
+    name: string;
+    purpose: string;
+    metrics: {
+      f1_score: number;
+      accuracy_estimate: number;
+      precision: number;
+      recall: number;
+    };
+    architecture: {
+      total_parameters: number;
+      trainable_parameters: number;
+      num_layers: number;
+      input_size: string;
+      output_classes: number;
+    };
+    training_info: {
+      last_epoch: number;
+      framework: string;
+      optimizer: string;
+    };
+  };
+  disease_model: {
+    name: string;
+    purpose: string;
+    metrics: {
+      accuracy: number;
+      f1_macro: number;
+      precision_macro: number;
+      recall_macro: number;
+      f1_weighted: number;
+    };
+    architecture: {
+      total_parameters: number;
+      trainable_parameters: number;
+      num_layers: number;
+      input_size: string;
+      output_classes: number;
+    };
+    training_info: {
+      last_epoch: number;
+      framework: string;
+      dataset: string;
+      validation_samples: number;
+      num_classes: number;
+    };
+    supported_diseases: string[];
+    diseases_by_crop: Record<string, string[]>;
+    crop_statistics: Record<string, number>;
+    per_class_metrics: PerClassMetric[];
+    top_confusions: ConfusionPair[];
+    confidence_distribution: {
+      low: number;
+      medium: number;
+      high: number;
+    };
+    diagnostics: string[];
+  };
+  pipeline_info: {
+    total_nodes: number;
+    stages: string[];
+    average_inference_time: string;
+    explainability: string;
+  };
+  system_capabilities: {
+    supported_crops: string[];
+    total_detectable_diseases: number;
+    image_formats: string[];
+    max_image_size: string;
+    deployment: string;
+  };
+  training_metadata: {
+    collected_at: string;
+    analysis_source: string;
+    cache_available: boolean;
+  };
+}
+export interface GradCAMResult {
+  prediction: string;
+  confidence: number;
+  annotated_image_base64: string;
+  image_format: string;
+}
+
+
 class AgriGuardAPI {
   // Validate uploaded image for corruption and security
   async validateImage(file: File): Promise<ImageValidationResult> {
@@ -96,6 +198,23 @@ class AgriGuardAPI {
       throw new Error('Failed to validate image. Please try again.');
     }
   }
+
+  async analyzeImageWithGradCAM(file: File): Promise<GradCAMResult> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch(`${API_BASE_URL}/analyze/gradcam`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Grad-CAM analysis failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
   async initializeChat(analysisContext: PipelineResult): Promise<ChatInitResponse> {
     const response = await fetch(`${API_BASE_URL}/chat/init`, {
       method: 'POST',
@@ -114,7 +233,7 @@ class AgriGuardAPI {
     const response = await fetch(`${API_BASE_URL}/chat/${sessionId}/message`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ message })  // Note: just { message }, not { session_id, message }
     });
 
     if (!response.ok) {

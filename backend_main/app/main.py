@@ -7,6 +7,15 @@ from pathlib import Path
 import shutil
 import uuid
 from typing import Dict
+from . import chat_service
+import cv2
+import io
+
+# Add missing imports for Grad-CAM
+import torch
+import numpy as np
+from PIL import Image, ImageDraw
+import torchvision.transforms as T
 
 from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,6 +26,7 @@ from sqlalchemy.orm import Session
 from .validators import check_image_corruption
 from .database import init_db, get_db, User, Upload, Chat, ChatMessage
 from datetime import datetime
+
 
 # Add project root and nodes folder to path so imports work
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -43,8 +53,138 @@ from .agri_graph.nodes.report_output import run as report_output
 from .agri_graph.nodes.disease_classifiication import run as disease_classification
 
 
+# Import Grad-CAM components - THIS MUST BE BEFORE gradcam_transform
+from .agri_graph.nodes.multi_class_cnn import SimpleCNNMulti, DEVICE, IMG_SIZE
+
+# Pydantic models for chat requests
+class ChatInitRequest(BaseModel):
+    analysis_context: dict
+
+class ChatMessageRequest(BaseModel):
+    session_id: str
+    message: str
+
+class ChatHistoryRequest(BaseModel):
+    session_id: str
+
+
+# NOW IMG_SIZE is defined, so we can use it
+gradcam_transform = T.Compose([
+    T.Resize((IMG_SIZE, IMG_SIZE)),
+    T.ToTensor(),
+    T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+])
+
+# ================================================================
+#                       GRAD-CAM CLASS
+# ================================================================
+class GradCAM:
+    """Grad-CAM for visualization"""
+    def __init__(self, model, target_layer):
+        self.model = model
+        self.target_layer = target_layer
+        self.gradients = None
+        self.features = None
+
+        target_layer.register_forward_hook(self.save_features)
+        target_layer.register_backward_hook(self.save_gradients)
+
+    def save_features(self, m, i, o):
+        self.features = o
+
+    def save_gradients(self, m, gi, go):
+        self.gradients = go[0]
+
+    def __call__(self, x, class_idx):
+        out = self.model(x)
+        self.model.zero_grad()
+
+        one_hot = torch.zeros_like(out)
+        one_hot[0][class_idx] = 1
+        out.backward(gradient=one_hot)
+
+        weights = torch.mean(self.gradients, dim=[2, 3], keepdim=True)
+        cam = torch.sum(weights * self.features, dim=1).squeeze()
+
+        cam = torch.relu(cam).detach().cpu().numpy()
+        cam = (cam - cam.min()) / (cam.max() - cam.min() + 1e-8)
+        return cam
+
+# ================================================================
+#          HELPER: LOAD DISEASE MODEL
+# ================================================================
+_disease_model_cache = None
+_disease_class_names_cache = None
+
+def load_disease_model_for_gradcam():
+    """Load disease model once and cache it"""
+    global _disease_model_cache, _disease_class_names_cache
+    
+    if _disease_model_cache is None:
+        disease_model_path = PROJECT_ROOT / "best_disease_model.pth"
+        ckpt = torch.load(disease_model_path, map_location=DEVICE)
+        _disease_class_names_cache = ckpt["class_names"]
+        _disease_model_cache = SimpleCNNMulti(num_classes=len(_disease_class_names_cache)).to(DEVICE)
+        _disease_model_cache.load_state_dict(ckpt["model_state"])
+        _disease_model_cache.eval()
+        print(f"[GRADCAM] Loaded disease model from {disease_model_path}")
+    
+    return _disease_model_cache, _disease_class_names_cache
+
+# ================================================================
+#          HELPER: GET BBOX FROM CAM
+# ================================================================
+def get_bbox_from_cam(cam):
+    """Extract bounding box from top-5% hottest CAM regions"""
+    H, W = cam.shape
+    cam_norm = (cam - cam.min()) / (cam.max() - cam.min() + 1e-8)
+
+    # Top 5% threshold
+    thr = np.quantile(cam_norm, 0.95)
+    binary = (cam_norm >= thr).astype(np.uint8)
+
+    # Dilation to connect regions
+    kernel = np.ones((15, 15), np.uint8)
+    binary = cv2.dilate(binary, kernel, iterations=2)
+
+    cnts, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if not cnts:
+        return None
+
+    c = max(cnts, key=cv2.contourArea)
+    x, y, w, h = cv2.boundingRect(c)
+
+    # Add padding
+    pad = 0.2
+    pw, ph = int(w * pad), int(h * pad)
+    x1 = max(0, x - pw)
+    y1 = max(0, y - ph)
+    x2 = min(W, x + w + pw)
+    y2 = min(H, y + h + ph)
+
+    return x1, y1, x2, y2
+
+# ================================================================
+#          HELPER: DRAW BBOX
+# ================================================================
+def draw_bbox_on_image(orig_img, cam):
+    """Draw red bounding box on image based on CAM"""
+    cam_up = cv2.resize(cam, (orig_img.width, orig_img.height))
+    bbox = get_bbox_from_cam(cam_up)
+
+    img = orig_img.copy()
+    draw = ImageDraw.Draw(img)
+
+    if bbox is None:
+        print("[GRADCAM] No bbox found, returning image without box")
+        return img
+
+    x1, y1, x2, y2 = bbox
+    draw.rectangle([x1, y1, x2, y2], outline=(255, 0, 0), width=10)
+    return img
+
 # Build the Graph
-state_schema = dict  # for now using simple dict schema
+state_schema = dict
 builder = StateGraph(state_schema)
 
 builder.add_node("ImageInput", image_input)
@@ -56,8 +196,6 @@ builder.add_node("RuleRecommender", recommender)
 builder.add_node("LLMSummarize", llm_summarize)
 builder.add_node("ReportOutput", report_output)
 
-# Define flow edges (per your YAML)
-# ...existing code...
 builder.add_edge(START, "ImageInput")
 builder.add_edge("ImageInput", "Preprocess")
 builder.add_edge("Preprocess", "ModelPredict")
@@ -68,10 +206,8 @@ builder.add_edge("RuleRecommender", "LLMSummarize")
 builder.add_edge("LLMSummarize", "ReportOutput")
 builder.add_edge("ReportOutput", END)
 
-# Compile graph
 compiled_graph = builder.compile()
 
-# Create FastAPI app
 app = FastAPI(title="AgriGuard Pipeline")
 
 app.add_middleware(
@@ -80,6 +216,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Initialize database on startup
 @app.on_event("startup")
@@ -97,14 +234,61 @@ class ChatMessageRequest(BaseModel):
     message: str
 
 
+
 @app.get("/")
 async def root():
     return {"status": "ok", "service": "agri-guard-backend"}
 
-
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
+
+@app.post("/analyze/gradcam")
+async def analyze_image_gradcam(file: UploadFile = File(...)):
+    """
+    Analyze uploaded image with Grad-CAM and return annotated image with bounding box.
+    """
+    try:
+        if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            raise HTTPException(status_code=400, detail="Only PNG, JPG, JPEG files are supported")
+        
+        contents = await file.read()
+        orig_img = Image.open(io.BytesIO(contents)).convert("RGB")
+        
+        model, class_names = load_disease_model_for_gradcam()
+        
+        img_tensor = gradcam_transform(orig_img).unsqueeze(0).to(DEVICE)
+        
+        with torch.no_grad():
+            out = model(img_tensor)
+            probs = torch.softmax(out, dim=1)
+            cls_idx = torch.argmax(probs).item()
+            cls_name = class_names[cls_idx]
+            conf = probs[0][cls_idx].item()
+        
+        print(f"[GRADCAM] Predicted: {cls_name} (confidence: {conf:.3f})")
+        
+        target_layer = model.features[-2]
+        grad_cam = GradCAM(model, target_layer)
+        cam = grad_cam(img_tensor, cls_idx)
+        
+        annotated_img = draw_bbox_on_image(orig_img, cam)
+        
+        buffer = io.BytesIO()
+        annotated_img.save(buffer, format="PNG")
+        img_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+        
+        return {
+            "prediction": cls_name,
+            "confidence": round(conf, 4),
+            "annotated_image_base64": img_base64,
+            "image_format": "png"
+        }
+        
+    except Exception as e:
+        import traceback
+        print(f"[GRADCAM ERROR] {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"Grad-CAM analysis failed: {str(e)}")
 
 @app.post("/analyze")
 async def analyze_image(file: UploadFile = File(...)):
@@ -115,14 +299,15 @@ async def analyze_image(file: UploadFile = File(...)):
     stored_path = UPLOADS_DIR / stored_filename
     
     # Save uploaded image temporarily for processing
+
     tmp_path = PROJECT_ROOT / "temp_upload.jpg"
     with open(tmp_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-
     # Also save a permanent copy
     shutil.copy(tmp_path, stored_path)
 
     # Run graph pipeline
+
     initial_state = {
         "image_path": str(tmp_path),
         "original_filename": file.filename,
@@ -135,7 +320,7 @@ async def analyze_image(file: UploadFile = File(...)):
         with open(shap_path, "rb") as shp:
             shap_base64 = base64.b64encode(shp.read()).decode("utf-8")
 
-    # Cleanup temp file
+
     try:
         os.remove(tmp_path)
     except Exception:
@@ -163,9 +348,78 @@ async def analyze_image(file: UploadFile = File(...)):
 
     return {"result": payload}
 
+
+@app.get("/dashboard/stats")
+async def get_dashboard_statistics():
+    from .dashboard_service import get_dashboard_stats
+    try:
+        stats = get_dashboard_stats()
+        return stats
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to retrieve dashboard stats: {str(e)}")
+
+@app.post("/chat/init")
+async def initialize_chat(request: ChatInitRequest, db: Session = Depends(get_db)):
+    """Initialize a new chat session"""
+    try:
+        # Use chat_service to initialize
+        session_id = str(uuid.uuid4())
+        session_data = chat_service.initialize_session(session_id, request.analysis_context)
+        
+        # Optionally: Store in database if user is authenticated
+        # For now, just return the session
+        
+        return {
+            "session_id": session_id,
+            "initial_message": session_data["history"][0]["content"],
+            "status": "initialized"
+        }
+    except Exception as e:
+        print(f"[CHAT INIT ERROR] {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to initialize chat: {str(e)}")
+
+
+@app.get("/chat/{session_id}/history")
+async def get_chat_history(session_id: str, db: Session = Depends(get_db)):
+    """Get chat history for a session"""
+    history = chat_service.get_chat_history(session_id)
+    
+    if history is None:
+        raise HTTPException(status_code=404, detail="Session not found or expired")
+    
+    return {
+        "session_id": session_id,
+        "history": history
+    }
+
+
+@app.post("/chat/history")
+async def get_chat_history(request: ChatHistoryRequest):
+    history = chat_service.get_chat_history(request.session_id)  # ❌ chat_service doesn't exist
+    
+    if history is None:
+        raise HTTPException(status_code=404, detail="Session not found or expired")
+    
+    return {
+        "session_id": request.session_id,
+        "history": history
+    }
+
+@app.delete("/chat/{session_id}")
+async def clear_chat_session(session_id: str, db: Session = Depends(get_db)):
+    """Clear a chat session"""
+    success = chat_service.clear_session(session_id)
+    
+    if not success:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    return {
+        "session_id": session_id,
+        "status": "cleared"
+    }
+
 @app.post("/validate-image")
 async def validate_image(file: UploadFile = File(...)):
-    
     file_bytes = await file.read()
     val_result = check_image_corruption(file_bytes)
     return val_result
@@ -203,69 +457,31 @@ async def initialize_chat(request: ChatInitRequest):
     }
 
 @app.post("/chat/{session_id}/message")
-async def send_chat_message(session_id: str, request: ChatMessageRequest):
-    """Send a message in an existing chat session"""
-    if session_id not in chat_sessions:
-        raise HTTPException(status_code=404, detail="Chat session not found")
-    
-    session = chat_sessions[session_id]
-    user_message = request.message
-    
-    # Add user message to history
-    session["messages"].append({"role": "user", "content": user_message})
-    
-    # Generate response using Gemini
+async def send_chat_message(session_id: str, request: ChatMessageRequest, db: Session = Depends(get_db)):
+    """Send a message in existing chat session"""
     try:
-        from google import genai
+        if not request.message.strip():
+            raise HTTPException(status_code=400, detail="Message cannot be empty")
         
-        api_key = os.getenv("GEMINI_API_KEY")
-        if not api_key:
-            raise ValueError("GEMINI_API_KEY not configured")
+        # Use chat_service to handle the message
+        result = chat_service.send_message(session_id, request.message)
         
-        client = genai.Client(api_key=api_key)
+        if "error" in result:
+            if result.get("session_expired"):
+                raise HTTPException(status_code=404, detail=result["error"])
+            
+            print(result)
+            raise HTTPException(status_code=500, detail=result["error"])
         
-        # Build conversation context
-        analysis_context = session["analysis_context"]
-        context_prompt = f"""You are AgriGuard Assistant, an expert agricultural AI helping farmers with plant health.
-
-Analysis Context:
-- Prediction: {analysis_context.get('pred_class', 'Unknown')}
-- Severity: {analysis_context.get('severity', 'Unknown')}
-- Recommendations: {', '.join(analysis_context.get('recommendations', []))}
-- Summary: {analysis_context.get('summary', '')}
-
-Conversation History:
-"""
-        for msg in session["messages"][:-1]:  # Exclude the last user message we just added
-            context_prompt += f"{msg['role'].title()}: {msg['content']}\n"
+        # Optionally: Store messages in database here if needed
         
-        context_prompt += f"\nUser: {user_message}\n\nProvide a helpful, concise response (2-3 sentences) about plant care, treatments, or the analysis."
+        return result
         
-        response = client.models.generate_content(
-            model="gemini-2.0-flash-exp",
-            contents=context_prompt
-        )
-        
-        assistant_message = response.text
-        
-        # Add assistant response to history
-        session["messages"].append({"role": "assistant", "content": assistant_message})
-        
-        return {
-            "response": assistant_message,
-            "session_id": session_id
-        }
-        
+    except HTTPException:
+        raise
     except Exception as e:
-        # Fallback response if Gemini fails
-        fallback_response = "I apologize, but I'm having trouble generating a response right now. Please try rephrasing your question or contact support if the issue persists."
-        session["messages"].append({"role": "assistant", "content": fallback_response})
-        
-        return {
-            "response": fallback_response,
-            "session_id": session_id,
-            "error": str(e)
-        }
+        print(f"[CHAT MESSAGE ERROR] {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to send message: {str(e)}")
 
 
 # ========== Dashboard API Endpoints ==========
@@ -461,3 +677,4 @@ async def get_upload_image(upload_id: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Image file not found on disk")
     
     return FileResponse(image_path)
+
