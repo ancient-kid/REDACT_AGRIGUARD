@@ -3008,15 +3008,141 @@ html {
   border-bottom: 1px solid #e5e7eb;
 }
 
+.chat-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .chat-header h4 {
   font-size: 1rem;
   color: #2c5f2d;
   font-weight: 600;
+  margin: 0;
 }
 
 .chat-date {
   font-size: 0.875rem;
   color: #666;
+  margin: 0;
+}
+
+.message-count {
+  font-size: 0.75rem;
+  color: #059669;
+  font-weight: 500;
+}
+
+.expand-btn {
+  background: #2c5f2d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.expand-btn:hover {
+  background: #1e4620;
+  transform: scale(1.05);
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.chat-messages.collapsed {
+  max-height: 300px;
+}
+
+.chat-messages.expanded {
+  max-height: none;
+}
+
+.message-full {
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-full.user {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border-left: 4px solid #0284c7;
+  margin-left: 20px;
+}
+
+.message-full.assistant {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  border-left: 4px solid #9333ea;
+  margin-right: 20px;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.message-header strong {
+  color: #2c5f2d;
+  font-size: 0.9rem;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.message-content {
+  color: #333;
+  line-height: 1.6;
+}
+
+.message-content p {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.show-more-btn {
+  width: 100%;
+  background: #f3f4f6;
+  border: 2px dashed #d1d5db;
+  color: #2c5f2d;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+
+.show-more-btn:hover {
+  background: #e5e7eb;
+  border-color: #2c5f2d;
 }
 
 .chat-preview {

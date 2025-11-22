@@ -1,7 +1,7 @@
 import { useUser } from '@clerk/clerk-react'
 import { useState, useEffect } from 'react'
 import { dashboardStorage } from '../services/dashboardStorage'
-import type { DashboardData, UploadHistory, ChatHistory } from '../services/dashboardStorage'
+import type { DashboardData, UploadHistory } from '../services/dashboardStorage'
 
 export const Dashboard = () => {
   const { user, isLoaded } = useUser()
@@ -17,6 +17,7 @@ export const Dashboard = () => {
   })
   const [activeTab, setActiveTab] = useState<'overview' | 'uploads' | 'chats'>('overview')
   const [isLoading, setIsLoading] = useState(true)
+  const [expandedChatId, setExpandedChatId] = useState<string | null>(null)
 
   const loadDashboardData = async () => {
     if (!user?.id) return
@@ -265,27 +266,47 @@ export const Dashboard = () => {
               </div>
             ) : (
               <div className="chats-list">
-                {dashboardData.chats.map((chat) => (
-                  <div key={chat.id} className="chat-card">
-                    <div className="chat-header">
-                      <h4>💬 Chat Session</h4>
-                      <p className="chat-date">{formatDate(chat.createdAt)}</p>
-                    </div>
-                    <div className="chat-preview">
-                      {chat.messages.slice(0, 3).map((msg, idx) => (
-                        <div key={idx} className={`message-preview ${msg.role}`}>
-                          <strong>{msg.role === 'user' ? 'You' : 'Assistant'}:</strong>
-                          <p>{msg.content.substring(0, 100)}{msg.content.length > 100 ? '...' : ''}</p>
+                {dashboardData.chats.map((chat) => {
+                  const isExpanded = expandedChatId === chat.id
+                  return (
+                    <div key={chat.id} className="chat-card">
+                      <div className="chat-header">
+                        <div className="chat-header-left">
+                          <h4>💬 Chat Session</h4>
+                          <p className="chat-date">{formatDate(chat.createdAt)}</p>
+                          <span className="message-count">{chat.messages.length} messages</span>
                         </div>
-                      ))}
-                      {chat.messages.length > 3 && (
-                        <p className="more-messages">
-                          +{chat.messages.length - 3} more messages
-                        </p>
-                      )}
+                        <button 
+                          className="expand-btn"
+                          onClick={() => setExpandedChatId(isExpanded ? null : chat.id)}
+                        >
+                          {isExpanded ? '▲ Collapse' : '▼ Expand'}
+                        </button>
+                      </div>
+                      <div className={`chat-messages ${isExpanded ? 'expanded' : 'collapsed'}`}>
+                        {(isExpanded ? chat.messages : chat.messages.slice(0, 2)).map((msg, idx) => (
+                          <div key={idx} className={`message-full ${msg.role}`}>
+                            <div className="message-header">
+                              <strong>{msg.role === 'user' ? '👤 You' : '🤖 Assistant'}</strong>
+                              <span className="message-time">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+                            </div>
+                            <div className="message-content">
+                              <p>{msg.content}</p>
+                            </div>
+                          </div>
+                        ))}
+                        {!isExpanded && chat.messages.length > 2 && (
+                          <button 
+                            className="show-more-btn"
+                            onClick={() => setExpandedChatId(chat.id)}
+                          >
+                            Show all {chat.messages.length} messages
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             )}
           </div>

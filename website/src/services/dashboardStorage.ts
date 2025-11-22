@@ -60,13 +60,13 @@ export const dashboardStorage = {
       const statsData = await statsRes.json()
 
       return {
-        uploads: uploadsData.uploads.map((u: any) => ({
+        uploads: uploadsData.uploads.map((u: Record<string, unknown>) => ({
           ...u,
-          timestamp: new Date(u.timestamp)
+          timestamp: new Date(u.timestamp as string)
         })),
-        chats: chatsData.chats.map((c: any) => ({
+        chats: chatsData.chats.map((c: Record<string, unknown>) => ({
           ...c,
-          createdAt: new Date(c.createdAt)
+          createdAt: new Date(c.createdAt as string)
         })),
         stats: statsData
       }
