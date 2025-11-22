@@ -29,7 +29,7 @@ from .agri_graph.nodes.model_predict import model_predict as model_predict
 from .agri_graph.nodes.shap_explain import run as shap_explain
 from .agri_graph.nodes.recommender import run as recommender
 from .agri_graph.nodes.report_output import run as report_output
-
+from .agri_graph.nodes.disease_classifiication import run as disease_classification
 
 
 # Build the Graph
@@ -39,6 +39,7 @@ builder = StateGraph(state_schema)
 builder.add_node("ImageInput", image_input)
 builder.add_node("Preprocess", preprocess)
 builder.add_node("ModelPredict", model_predict)
+builder.add_node("DiseaseClassifier", disease_classification)
 builder.add_node("SHAPExplain", shap_explain)
 builder.add_node("RuleRecommender", recommender)
 builder.add_node("LLMSummarize", llm_summarize)
@@ -49,7 +50,8 @@ builder.add_node("ReportOutput", report_output)
 builder.add_edge(START, "ImageInput")
 builder.add_edge("ImageInput", "Preprocess")
 builder.add_edge("Preprocess", "ModelPredict")
-builder.add_edge("ModelPredict", "SHAPExplain")
+builder.add_edge("ModelPredict", "DiseaseClassifier")
+builder.add_edge("DiseaseClassifier", "SHAPExplain")
 builder.add_edge("SHAPExplain", "RuleRecommender")
 builder.add_edge("RuleRecommender", "LLMSummarize")
 builder.add_edge("LLMSummarize", "ReportOutput")
