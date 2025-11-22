@@ -11,7 +11,12 @@ from .agri_graph.nodes.evaluate import SimpleCNN, DEVICE, IMG_SIZE
 LOGGER = logging.getLogger(__name__)
 
 # Load the exact checkpoint produced by train_torch_fixed_amp.py
-MODEL_PATH = Path("C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\app\\best_model.pth")
+import os
+from pathlib import Path
+
+# Get the correct base directory
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = os.path.join(BASE_DIR, "best_model.pth")
 
 # Same normalization as validation set
 transform = T.Compose([
