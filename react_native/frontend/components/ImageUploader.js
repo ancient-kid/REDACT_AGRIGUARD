@@ -10,13 +10,28 @@ import {
   ScrollView,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { uploadImage, sendForPrediction } from '../api';
+import { uploadImage, sendForPrediction, createUpload } from '../api';
 
-export default function ImageUploader() {
+export default function ImageUploader({ route, navigation }) {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [validation, setValidation] = useState(null);
   const [analysis, setAnalysis] = useState(null);
+
+  // If coming from history, load existing data
+  React.useEffect(() => {
+    if (route?.params?.uploadData) {
+      // Load existing upload data (you could fetch the image here)
+      const uploadData = route.params.uploadData;
+      setAnalysis({
+        pred_class: uploadData.predictionClass,
+        prob_healthy: uploadData.confidence.healthy,
+        prob_diseased: uploadData.confidence.diseased,
+        severity: uploadData.severity,
+        summary: uploadData.summary,
+      });
+    }
+  }, [route]);
 
   /** PICK FROM GALLERY (Samsung-safe) */
   const pickImage = async () => {
@@ -52,7 +67,7 @@ export default function ImageUploader() {
     }
   };
 
-  /** FULL PIPELINE → VALIDATION + ANALYSIS */
+  /** FULL PIPELINE → VALIDATION + ANALYSIS + SAVE */
   const runAnalysis = async () => {
     if (!image) return Alert.alert("Pick an image first");
 
@@ -81,7 +96,23 @@ export default function ImageUploader() {
       // STEP 2: AI Pipeline
       const result = await sendForPrediction(image.uri);
       setAnalysis(result);
-      Alert.alert("Success", "Analysis completed!");
+
+      // STEP 3: Save to backend
+      if (global.currentUser) {
+        const filename = image.uri.split('/').pop();
+        await createUpload({
+          user_id: global.currentUser.user_id,
+          file_name: filename,
+          image_path: image.uri, // In production, you'd upload to server first
+          prediction_class: result.pred_class,
+          severity: result.severity || 'Unknown',
+          confidence_healthy: result.prob_healthy,
+          confidence_diseased: result.prob_diseased,
+          summary: result.summary || 'Analysis completed',
+        });
+      }
+
+      Alert.alert("Success", "Analysis completed and saved!");
 
     } catch (err) {
       Alert.alert("Error", String(err));
@@ -92,6 +123,12 @@ export default function ImageUploader() {
 
   return (
     <ScrollView contentContainerStyle={styles.box}>
+
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Plant Disease Analysis</Text>
+        <Text style={styles.subtitle}>Upload or capture a plant image</Text>
+      </View>
 
       {/* Preview */}
       {image ? (
@@ -120,7 +157,7 @@ export default function ImageUploader() {
       {/* SECTION 1 — VALIDATION */}
       {validation && (
         <View style={styles.section}>
-          <Text style={styles.header}>Image Validation</Text>
+          <Text style={styles.headerText}>Image Validation</Text>
           <Text>Not corrupted: {String(validation.not_corrupted)}</Text>
           <Text>Format valid: {String(validation.format_valid)}</Text>
           <Text>Not empty: {String(validation.not_empty)}</Text>
@@ -133,33 +170,41 @@ export default function ImageUploader() {
       {/* SECTION 2 — ANALYSIS RESULTS */}
       {analysis && (
         <View style={styles.section}>
-          <Text style={styles.header}>Prediction</Text>
-          <Text>Class: {analysis.pred_class}</Text>
-          <Text>Healthy: {(analysis.prob_healthy * 100).toFixed(1)}%</Text>
-          <Text>Diseased: {(analysis.prob_diseased * 100).toFixed(1)}%</Text>
+          <Text style={styles.headerText}>Prediction Results</Text>
+          <View style={styles.resultCard}>
+            <Text style={styles.prediction}>
+              {analysis.pred_class === 'HEALTHY' ? '🌱 Healthy Plant' : '⚠️ Diseased Plant'}
+            </Text>
+            <Text style={styles.confidence}>
+              Healthy: {(analysis.prob_healthy * 100).toFixed(1)}%
+            </Text>
+            <Text style={styles.confidence}>
+              Diseased: {(analysis.prob_diseased * 100).toFixed(1)}%
+            </Text>
+          </View>
 
-          <Text style={[styles.header, { marginTop: 10 }]}>Severity</Text>
-          <Text>{analysis.severity}</Text>
+          <Text style={[styles.headerText, { marginTop: 10 }]}>Severity</Text>
+          <Text style={styles.severity}>{analysis.severity}</Text>
 
           {analysis.summary && (
             <>
-              <Text style={[styles.header, { marginTop: 10 }]}>Summary</Text>
-              <Text>{analysis.summary}</Text>
+              <Text style={[styles.headerText, { marginTop: 10 }]}>Summary</Text>
+              <Text style={styles.summary}>{analysis.summary}</Text>
             </>
           )}
 
           {analysis.recommendations?.length > 0 && (
             <>
-              <Text style={[styles.header, { marginTop: 10 }]}>Recommendations</Text>
+              <Text style={[styles.headerText, { marginTop: 10 }]}>Recommendations</Text>
               {analysis.recommendations.map((r, i) => (
-                <Text key={i}>• {r}</Text>
+                <Text key={i} style={styles.recommendation}>• {r}</Text>
               ))}
             </>
           )}
 
           {analysis.shap_heatmap_base64 && (
             <>
-              <Text style={[styles.header, { marginTop: 10 }]}>Explainability Map</Text>
+              <Text style={[styles.headerText, { marginTop: 10 }]}>Explainability Map</Text>
               <Image
                 source={{
                   uri: `data:image/png;base64,${analysis.shap_heatmap_base64}`,
@@ -179,6 +224,21 @@ const styles = StyleSheet.create({
   box: {
     padding: 12,
     alignItems: "center"
+  },
+  header: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#2d5016',
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
   },
   preview: {
     width: 260,
@@ -204,10 +264,44 @@ const styles = StyleSheet.create({
     marginTop: 14,
     elevation: 2,
   },
-  header: {
+  headerText: {
     fontWeight: "bold",
+    fontSize: 18,
+    color: '#2d5016',
+    marginBottom: 8,
+  },
+  resultCard: {
+    backgroundColor: '#f8f9fa',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 12,
+  },
+  prediction: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#2d5016',
+    marginBottom: 8,
+  },
+  confidence: {
     fontSize: 16,
+    color: '#555',
     marginBottom: 4,
+  },
+  severity: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#f57c00',
+  },
+  summary: {
+    fontSize: 16,
+    color: '#333',
+    lineHeight: 22,
+  },
+  recommendation: {
+    fontSize: 14,
+    color: '#555',
+    marginBottom: 4,
+    lineHeight: 20,
   },
   hash: {
     fontSize: 12,
