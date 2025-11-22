@@ -53,22 +53,22 @@ export const Features = () => {
           <div className="feature-detailed">
             <div className="feature-header">
               <div className="feature-icon-large">🧠</div>
-              <h2>Explainable AI</h2>
+              <h2>SHAP Explainability</h2>
             </div>
             <div className="feature-body">
-              <p>Transparent AI decisions with visual explanations using Grad-CAM technology.</p>
+              <p>Transparent AI decisions with SHAP heatmap visualizations showing which leaf regions influenced disease predictions.</p>
               <div className="explainable-features">
                 <div className="explain-item">
-                  <span className="explain-icon">🎯</span>
-                  <span>Highlights affected regions</span>
+                  <span className="explain-icon">🔥</span>
+                  <span>SHAP heatmap overlays</span>
                 </div>
                 <div className="explain-item">
                   <span className="explain-icon">📈</span>
-                  <span>Confidence scoring</span>
+                  <span>Feature importance scoring</span>
                 </div>
                 <div className="explain-item">
-                  <span className="explain-icon">🔬</span>
-                  <span>Decision reasoning</span>
+                  <span className="explain-icon">🎯</span>
+                  <span>Affected region highlighting</span>
                 </div>
               </div>
             </div>
@@ -97,27 +97,55 @@ export const Features = () => {
 
           <div className="feature-detailed">
             <div className="feature-header">
-              <div className="feature-icon-large">📱</div>
-              <h2>Mobile & Edge Ready</h2>
+              <div className="feature-icon-large">💬</div>
+              <h2>AI Chat Assistant</h2>
             </div>
             <div className="feature-body">
-              <p>Optimized for deployment on mobile devices and edge computing environments.</p>
+              <p>Interactive chat powered by Gemini AI with web search integration for personalized agricultural advice and disease management guidance.</p>
+              <div className="explainable-features">
+                <div className="explain-item">
+                  <span className="explain-icon">🤖</span>
+                  <span>Gemini AI responses</span>
+                </div>
+                <div className="explain-item">
+                  <span className="explain-icon">🌐</span>
+                  <span>Real-time web search (SerpAPI)</span>
+                </div>
+                <div className="explain-item">
+                  <span className="explain-icon">🌾</span>
+                  <span>Crop-specific recommendations</span>
+                </div>
+                <div className="explain-item">
+                  <span className="explain-icon">💡</span>
+                  <span>Treatment alternatives</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="feature-detailed">
+            <div className="feature-header">
+              <div className="feature-icon-large">📱</div>
+              <h2>LangGraph Pipeline</h2>
+            </div>
+            <div className="feature-body">
+              <p>Orchestrated multi-stage analysis workflow powered by LangGraph with FastAPI backend and React TypeScript frontend.</p>
               <div className="mobile-specs">
                 <div className="mobile-spec">
-                  <span className="spec-label">Model Size:</span>
-                  <span className="spec-value">&lt; 50MB</span>
+                  <span className="spec-label">Pipeline Stages:</span>
+                  <span className="spec-value">8 nodes</span>
                 </div>
                 <div className="mobile-spec">
-                  <span className="spec-label">Inference Time:</span>
-                  <span className="spec-value">&lt; 2 seconds</span>
+                  <span className="spec-label">Binary Model:</span>
+                  <span className="spec-value">PyTorch CNN</span>
                 </div>
                 <div className="mobile-spec">
-                  <span className="spec-label">Compatibility:</span>
-                  <span className="spec-value">iOS, Android, Web</span>
+                  <span className="spec-label">Disease Model:</span>
+                  <span className="spec-value">Multi-class CNN</span>
                 </div>
                 <div className="mobile-spec">
-                  <span className="spec-label">Offline Mode:</span>
-                  <span className="spec-value">Available</span>
+                  <span className="spec-label">Explainability:</span>
+                  <span className="spec-value">SHAP Integration</span>
                 </div>
               </div>
             </div>

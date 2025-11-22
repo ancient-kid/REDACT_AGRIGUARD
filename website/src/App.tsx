@@ -7,12 +7,14 @@ import { Features } from './components/Features'
 import { About } from './components/About'
 import { agriGuardAPI, formatFileSize, getFileType } from './services/api'
 import type { ImageValidationResult, PipelineResult } from './services/api'
+import { ChatPanel } from './components/ChatComponent.tsx'
 
 interface AnalysisState {
   isAnalyzing: boolean;
   validation?: ImageValidationResult;
   pipeline?: PipelineResult;
   error?: string;
+  showChat?: boolean;
 }
 
 function NavBar() {
@@ -62,6 +64,14 @@ function NavBar() {
   const clearAnalysis = () => {
     setSelectedFile(null)
     setAnalysis({ isAnalyzing: false })
+  }
+
+  const handleStartChat = () => {
+    setAnalysis(prev => ({ ...prev, showChat: true }))
+  }
+
+  const handleCloseChat = () => {
+    setAnalysis(prev => ({ ...prev, showChat: false }))
   }
 
   const isActive = (path: string) => {
@@ -241,6 +251,16 @@ function NavBar() {
                           )}
                         </div>
                       )}
+
+                      {/* Chat Action Button */}
+                      <div className="chat-action">
+                        <button className="start-chat-btn" onClick={handleStartChat}>
+                          💬 Chat with AgriGuard Assistant
+                        </button>
+                        <p className="chat-hint">
+                          Have questions? Ask our AI assistant about treatments, prevention, or plant care!
+                        </p>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -248,6 +268,14 @@ function NavBar() {
             )}
           </div>
         </div>
+      )}
+
+      {/* Chat Panel */}
+      {analysis.showChat && analysis.pipeline && (
+        <ChatPanel 
+          analysisContext={analysis.pipeline}
+          onClose={handleCloseChat}
+        />
       )}
     </>
   )

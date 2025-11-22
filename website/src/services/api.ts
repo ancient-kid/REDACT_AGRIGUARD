@@ -48,6 +48,29 @@ export interface PipelineResult {
   shap_note?: string | null;
 }
 
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+}
+
+export interface ChatInitResponse {
+  session_id: string;
+  initial_message: string;
+  status: string;
+}
+
+export interface ChatMessageResponse {
+  response: string;
+  session_id: string;
+  message_count: number;
+}
+
+export interface ChatHistoryResponse {
+  session_id: string;
+  history: ChatMessage[];
+}
+
 class AgriGuardAPI {
   // Validate uploaded image for corruption and security
   async validateImage(file: File): Promise<ImageValidationResult> {
@@ -69,6 +92,57 @@ class AgriGuardAPI {
     } catch (error) {
       console.error('Error validating image:', error);
       throw new Error('Failed to validate image. Please try again.');
+    }
+  }
+  async initializeChat(analysisContext: PipelineResult): Promise<ChatInitResponse> {
+    const response = await fetch(`${API_BASE_URL}/chat/init`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ analysis_context: analysisContext })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Chat initialization failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  async sendChatMessage(sessionId: string, message: string): Promise<ChatMessageResponse> {
+    const response = await fetch(`${API_BASE_URL}/chat/message`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId, message })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to send message: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  async getChatHistory(sessionId: string): Promise<ChatHistoryResponse> {
+    const response = await fetch(`${API_BASE_URL}/chat/history`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sessionId })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to get chat history: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  async clearChatSession(sessionId: string): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/chat/${sessionId}`, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to clear chat session: ${response.statusText}`);
     }
   }
 

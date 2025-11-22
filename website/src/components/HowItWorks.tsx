@@ -30,24 +30,24 @@ export const HowItWorks = () => {
             <div className="step-number">2</div>
             <div className="step-content">
               <div className="step-icon large">🔬🌱</div>
-              <h3>AI Pathology Analysis</h3>
-              <p>Our specialized plant pathology AI model analyzes crop images using advanced computer vision trained on extensive agricultural datasets including the PlantVillage collection and real-world farm data.</p>
+              <h3>AI Pipeline Analysis</h3>
+              <p>Your image flows through our LangGraph-orchestrated pipeline with PyTorch CNN models for binary classification (healthy/diseased) and multi-class disease identification, followed by SHAP explainability analysis.</p>
               <div className="step-features">
                 <div className="feature-item">
                   <span className="feature-icon">🔍</span>
-                  <span>Disease Pattern Recognition</span>
+                  <span>Binary Health Classification</span>
                 </div>
                 <div className="feature-item">
-                  <span className="feature-icon">📊</span>
-                  <span>Severity Assessment</span>
+                  <span className="feature-icon">🦠</span>
+                  <span>Multi-Class Disease Detection</span>
+                </div>
+                <div className="feature-item">
+                  <span className="feature-icon">🔥</span>
+                  <span>SHAP Heatmap Generation</span>
                 </div>
                 <div className="feature-item">
                   <span className="feature-icon">⚡</span>
-                  <span>Real-time Processing</span>
-                </div>
-                <div className="feature-item">
-                  <span className="feature-icon">🌾</span>
-                  <span>Crop-specific Analysis</span>
+                  <span>Real-time Pipeline Processing</span>
                 </div>
               </div>
             </div>
@@ -59,24 +59,24 @@ export const HowItWorks = () => {
             <div className="step-number">3</div>
             <div className="step-content">
               <div className="step-icon large">🚜💡</div>
-              <h3>Get Agricultural Treatment Plan</h3>
-              <p>Receive comprehensive crop management recommendations including disease identification, severity assessment, and evidence-based treatment protocols from agricultural extension services and plant pathologists.</p>
+              <h3>AI-Powered Insights & Chat</h3>
+              <p>Gemini AI analyzes your results, searches the web for latest treatments using SerpAPI, and provides farmer-friendly summaries. Chat with the AI assistant for personalized advice on disease management and prevention.</p>
               <div className="recommendation-types">
                 <div className="rec-card">
-                  <div className="rec-icon">🌱</div>
-                  <div className="rec-title">Organic Treatment</div>
+                  <div className="rec-icon">🤖</div>
+                  <div className="rec-title">Gemini AI Summary</div>
                 </div>
                 <div className="rec-card">
-                  <div className="rec-icon">⚗️</div>
-                  <div className="rec-title">Chemical Control</div>
+                  <div className="rec-icon">🌐</div>
+                  <div className="rec-title">Web-Sourced Solutions</div>
                 </div>
                 <div className="rec-card">
-                  <div className="rec-icon">🛡️</div>
-                  <div className="rec-title">Prevention Strategy</div>
+                  <div className="rec-icon">💬</div>
+                  <div className="rec-title">Interactive Chat</div>
                 </div>
                 <div className="rec-card">
-                  <div className="rec-icon">📈</div>
-                  <div className="rec-title">Crop Monitoring</div>
+                  <div className="rec-icon">📊</div>
+                  <div className="rec-title">Severity Assessment</div>
                 </div>
               </div>
             </div>
@@ -87,16 +87,20 @@ export const HowItWorks = () => {
           <h2>Our Technology</h2>
           <div className="tech-grid">
             <div className="tech-card">
-              <h4>Deep Learning</h4>
-              <p>Convolutional Neural Networks (CNN) trained on diverse plant disease datasets</p>
+              <h4>LangGraph Pipeline</h4>
+              <p>Orchestrated workflow connecting image preprocessing, binary classification, disease detection, SHAP analysis, and LLM summarization</p>
             </div>
             <div className="tech-card">
-              <h4>Edge Computing</h4>
-              <p>Lightweight model optimized for mobile and edge device deployment</p>
+              <h4>PyTorch CNNs</h4>
+              <p>Custom CNN architectures for binary health classification and multi-class disease identification trained on agricultural datasets</p>
             </div>
             <div className="tech-card">
-              <h4>Explainable AI</h4>
-              <p>Grad-CAM visualizations show which parts of the image influenced the diagnosis</p>
+              <h4>SHAP Explainability</h4>
+              <p>SHAP heatmaps show which leaf regions influenced the disease diagnosis for transparent AI decisions</p>
+            </div>
+            <div className="tech-card">
+              <h4>Gemini AI + Web Search</h4>
+              <p>Gemini AI powered chat assistant with SerpAPI integration for real-time agricultural treatment research</p>
             </div>
           </div>
         </div>

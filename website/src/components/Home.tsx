@@ -6,10 +6,10 @@ export const Home = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              AgriGuard: AI-Powered Early Plant Disease Triage
+              AgriGuard: AI-Powered Plant Disease Detection
             </h1>
             <p className="hero-subtitle">
-              Detect plant diseases early using AI and mobile-ready vision models.
+              LangGraph pipeline with PyTorch CNNs, SHAP explainability, and Gemini AI chat for comprehensive disease diagnosis and treatment guidance.
             </p>
             <div className="hero-buttons">
               <button className="btn btn-primary">Try Demo</button>
@@ -41,20 +41,20 @@ export const Home = () => {
         <div className="container">
           <div className="stats-grid">
             <div className="stat-card">
-              <div className="stat-number">94.2%</div>
-              <div className="stat-label">Disease Detection</div>
+              <div className="stat-number">8</div>
+              <div className="stat-label">Pipeline Nodes</div>
             </div>
             <div className="stat-card">
-              <div className="stat-number">25+</div>
-              <div className="stat-label">Plant Diseases</div>
+              <div className="stat-number">2</div>
+              <div className="stat-label">CNN Models</div>
             </div>
             <div className="stat-card">
-              <div className="stat-number">&lt;3s</div>
-              <div className="stat-label">Analysis Time</div>
+              <div className="stat-number">💬</div>
+              <div className="stat-label">AI Chat Assistant</div>
             </div>
             <div className="stat-card">
-              <div className="stat-number">🌾</div>
-              <div className="stat-label">Farm Ready</div>
+              <div className="stat-number">🔥</div>
+              <div className="stat-label">SHAP Heatmaps</div>
             </div>
           </div>
         </div>

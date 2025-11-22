@@ -75,12 +75,13 @@ export const About = () => {
             <h2>Technology Stack</h2>
             <div className="tech-categories">
               <div className="tech-category">
-                <h4>Machine Learning</h4>
+                <h4>Machine Learning & AI</h4>
                 <div className="tech-tags">
-                  <span className="tech-tag">TensorFlow</span>
                   <span className="tech-tag">PyTorch</span>
-                  <span className="tech-tag">OpenCV</span>
-                  <span className="tech-tag">Grad-CAM</span>
+                  <span className="tech-tag">TensorFlow</span>
+                  <span className="tech-tag">SHAP</span>
+                  <span className="tech-tag">Gemini AI</span>
+                  <span className="tech-tag">SerpAPI</span>
                 </div>
               </div>
               
@@ -90,17 +91,17 @@ export const About = () => {
                   <span className="tech-tag">React</span>
                   <span className="tech-tag">TypeScript</span>
                   <span className="tech-tag">Vite</span>
-                  <span className="tech-tag">CSS3</span>
+                  <span className="tech-tag">React Router</span>
                 </div>
               </div>
               
               <div className="tech-category">
-                <h4>Backend & Deployment</h4>
+                <h4>Backend & Orchestration</h4>
                 <div className="tech-tags">
-                  <span className="tech-tag">Python</span>
                   <span className="tech-tag">FastAPI</span>
-                  <span className="tech-tag">Docker</span>
-                  <span className="tech-tag">AWS</span>
+                  <span className="tech-tag">LangGraph</span>
+                  <span className="tech-tag">Python</span>
+                  <span className="tech-tag">Uvicorn</span>
                 </div>
               </div>
             </div>
