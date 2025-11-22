@@ -1,12 +1,12 @@
 {
   "image_path": "D:\\REDACT_AGRIGUARD\\backend_main\\temp_upload.jpg",
   "prediction": "HEALTHY",
-  "prob_healthy": 0.9996893405914307,
-  "prob_diseased": 0.00031065940856933594,
+  "prob_healthy": 0.9996849298477173,
+  "prob_diseased": 0.00031507015228271484,
   "severity": "None",
   "recommendations": [
     "Plant appears healthy. Maintain regular monitoring, balanced irrigation, and proper nutrient supply."
   ],
   "shap_heatmap": "D:\\REDACT_AGRIGUARD\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
-  "summary": "Good news! Your plant is healthy, with our analysis showing 100% confidence in this assessment. We recommend you continue to monitor it regularly, maintaining balanced irrigation and proper nutrient supply. A SHAP heatmap is available for a visual explanation of the model's decision, if you wish to review it."
+  "summary": "Good news! Your plant is looking very healthy. The analysis confirms this with 100% confidence. Please continue to monitor your plant regularly, ensuring consistent care and nutrients. A visual explanation (SHAP heatmap) is available for you to review, showing which areas of the plant contributed most to this healthy assessment."
 }

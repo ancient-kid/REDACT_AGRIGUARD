@@ -3085,15 +3085,17 @@ html {
 }
 
 .message-full.user {
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-  border-left: 4px solid #0284c7;
+  background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+  border-left: 4px solid #0369a1;
   margin-left: 20px;
+  color: white;
 }
 
 .message-full.assistant {
-  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
-  border-left: 4px solid #9333ea;
+  background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+  border-left: 4px solid #7e22ce;
   margin-right: 20px;
+  color: white;
 }
 
 .message-header {
@@ -3102,21 +3104,22 @@ html {
   align-items: center;
   margin-bottom: 8px;
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .message-header strong {
-  color: #2c5f2d;
+  color: white;
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .message-time {
   font-size: 0.75rem;
-  color: #666;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .message-content {
-  color: #333;
+  color: white;
   line-height: 1.6;
 }
 
