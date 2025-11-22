@@ -109,10 +109,10 @@ class AgriGuardAPI {
   }
 
   async sendChatMessage(sessionId: string, message: string): Promise<ChatMessageResponse> {
-    const response = await fetch(`${API_BASE_URL}/chat/message`, {
+    const response = await fetch(`${API_BASE_URL}/chat/${sessionId}/message`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ session_id: sessionId, message })
+      body: JSON.stringify({ message })
     });
 
     if (!response.ok) {

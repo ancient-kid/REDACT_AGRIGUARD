@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
+import { useUser } from '@clerk/clerk-react'
 import { agriGuardAPI } from '../services/api'
 import type { ChatMessage, PipelineResult } from '../services/api'
+import { dashboardStorage } from '../services/dashboardStorage'
 import '../App.css'
 
 interface ChatPanelProps {
@@ -9,7 +11,9 @@ interface ChatPanelProps {
 }
 
 export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
+  const { user } = useUser()
   const [sessionId, setSessionId] = useState<string | null>(null)
+  const [chatId, setChatId] = useState<string | null>(null)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [inputMessage, setInputMessage] = useState('')
   const [isSending, setIsSending] = useState(false)
@@ -38,11 +42,24 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
     try {
       const response = await agriGuardAPI.initializeChat(analysisContext)
       setSessionId(response.session_id)
-      setMessages([{
-        role: 'assistant',
+      const initialMessages = [{
+        role: 'assistant' as const,
         content: response.initial_message,
         timestamp: new Date().toISOString()
-      }])
+      }]
+      setMessages(initialMessages)
+
+      // Save chat to dashboard if user is signed in
+      if (user?.id) {
+        const newChatId = `chat_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+        setChatId(newChatId)
+        dashboardStorage.addChat(user.id, {
+          messages: initialMessages.map(msg => ({
+            role: msg.role,
+            content: msg.content
+          }))
+        })
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to initialize chat')
     } finally {
@@ -77,7 +94,16 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
         content: response.response,
         timestamp: new Date().toISOString()
       }
-      setMessages(prev => [...prev, assistantMsg])
+      const updatedMessages = [...messages, userMsg, assistantMsg]
+      setMessages(updatedMessages)
+
+      // Update chat in dashboard if user is signed in
+      if (user?.id && chatId) {
+        dashboardStorage.updateChat(user.id, chatId, updatedMessages.map(msg => ({
+          role: msg.role,
+          content: msg.content
+        })))
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to send message')
       // Remove the user message if sending failed

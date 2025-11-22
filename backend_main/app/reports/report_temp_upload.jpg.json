@@ -1,16 +1,12 @@
 {
-  "image_path": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\temp_upload.jpg",
-  "prediction": "DISEASED",
-  "prob_healthy": 1.528257520533316e-10,
-  "prob_diseased": 0.9999999998471742,
-  "severity": "Severe",
+  "image_path": "D:\\REDACT_AGRIGUARD\\backend_main\\temp_upload.jpg",
+  "prediction": "HEALTHY",
+  "prob_healthy": 0.8661789298057556,
+  "prob_diseased": 0.13382107019424438,
+  "severity": "None",
   "recommendations": [
-    "Isolate affected plants to prevent spread.",
-    "Inspect neighboring plants for similar symptoms.",
-    "Remove severely affected leaves and dispose of them away from the field.",
-    "Apply safe organic treatments (e.g., neem oil) or consult local extension officers for approved pesticides.",
-    "Document symptoms for Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot and monitor progression daily."
+    "Plant appears healthy. Maintain regular monitoring, balanced irrigation, and proper nutrient supply."
   ],
-  "shap_heatmap": "C:\\Users\\Anurag\\Desktop\\redact_aiml_tsec\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
-  "summary": "Your corn plant is **diseased** with a severe case, most likely Cercospora leaf spot/Gray leaf spot (68.4% confidence).\n\nIt's crucial to **isolate** this plant right away to stop the spread and **inspect** your other corn plants.\n\nConsider using safe organic treatments like **neem oil**, and **monitor** the plant's progress daily. The SHAP heatmap also confirms these disease areas."
+  "shap_heatmap": "D:\\REDACT_AGRIGUARD\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
+  "summary": "Here's a summary for your plant:\n\nGood news! Your plant is healthy with a high confidence of 86.6%.\nWe recommend you continue to monitor it regularly to maintain its excellent condition.\nOur analysis tool confirmed its health, and a heatmap was used to highlight key areas supporting this positive assessment. Just ensure balanced irrigation and proper nutrient supply."
 }

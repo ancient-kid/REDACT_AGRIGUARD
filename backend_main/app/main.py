@@ -5,9 +5,12 @@ import os
 import base64
 from pathlib import Path
 import shutil
+import uuid
+from typing import Dict
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from dotenv import load_dotenv
 from .validators import check_image_corruption
 
@@ -69,6 +72,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# In-memory storage for chat sessions
+chat_sessions: Dict[str, Dict] = {}
+
+# Pydantic models for chat
+class ChatInitRequest(BaseModel):
+    analysis_context: dict
+
+class ChatMessageRequest(BaseModel):
+    message: str
 
 
 @app.get("/")
@@ -132,3 +145,100 @@ async def validate_image(file: UploadFile = File(...)):
     file_bytes = await file.read()
     val_result = check_image_corruption(file_bytes)
     return val_result
+
+@app.post("/chat/init")
+async def initialize_chat(request: ChatInitRequest):
+    """Initialize a new chat session with analysis context"""
+    session_id = str(uuid.uuid4())
+    
+    # Extract relevant information from analysis context
+    analysis = request.analysis_context
+    pred_class = analysis.get("pred_class", "Unknown")
+    severity = analysis.get("severity", "Unknown")
+    recommendations = analysis.get("recommendations", [])
+    summary = analysis.get("summary", "")
+    
+    # Create initial message based on analysis
+    if pred_class.lower() == "healthy":
+        initial_message = f"Great news! Your plant appears to be healthy. {summary if summary else 'I can help answer any questions about plant care and prevention.'}"
+    else:
+        initial_message = f"I've analyzed your plant and detected {pred_class} with {severity} severity. {summary if summary else ''}\n\nRecommendations:\n" + "\n".join(f"• {rec}" for rec in recommendations[:3])
+        initial_message += "\n\nFeel free to ask me about treatments, prevention, or any specific concerns!"
+    
+    # Store session
+    chat_sessions[session_id] = {
+        "analysis_context": analysis,
+        "messages": [
+            {"role": "assistant", "content": initial_message}
+        ]
+    }
+    
+    return {
+        "session_id": session_id,
+        "initial_message": initial_message
+    }
+
+@app.post("/chat/{session_id}/message")
+async def send_chat_message(session_id: str, request: ChatMessageRequest):
+    """Send a message in an existing chat session"""
+    if session_id not in chat_sessions:
+        raise HTTPException(status_code=404, detail="Chat session not found")
+    
+    session = chat_sessions[session_id]
+    user_message = request.message
+    
+    # Add user message to history
+    session["messages"].append({"role": "user", "content": user_message})
+    
+    # Generate response using Gemini
+    try:
+        from google import genai
+        
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("GEMINI_API_KEY not configured")
+        
+        client = genai.Client(api_key=api_key)
+        
+        # Build conversation context
+        analysis_context = session["analysis_context"]
+        context_prompt = f"""You are AgriGuard Assistant, an expert agricultural AI helping farmers with plant health.
+
+Analysis Context:
+- Prediction: {analysis_context.get('pred_class', 'Unknown')}
+- Severity: {analysis_context.get('severity', 'Unknown')}
+- Recommendations: {', '.join(analysis_context.get('recommendations', []))}
+- Summary: {analysis_context.get('summary', '')}
+
+Conversation History:
+"""
+        for msg in session["messages"][:-1]:  # Exclude the last user message we just added
+            context_prompt += f"{msg['role'].title()}: {msg['content']}\n"
+        
+        context_prompt += f"\nUser: {user_message}\n\nProvide a helpful, concise response (2-3 sentences) about plant care, treatments, or the analysis."
+        
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-exp",
+            contents=context_prompt
+        )
+        
+        assistant_message = response.text
+        
+        # Add assistant response to history
+        session["messages"].append({"role": "assistant", "content": assistant_message})
+        
+        return {
+            "response": assistant_message,
+            "session_id": session_id
+        }
+        
+    except Exception as e:
+        # Fallback response if Gemini fails
+        fallback_response = "I apologize, but I'm having trouble generating a response right now. Please try rephrasing your question or contact support if the issue persists."
+        session["messages"].append({"role": "assistant", "content": fallback_response})
+        
+        return {
+            "response": fallback_response,
+            "session_id": session_id,
+            "error": str(e)
+        }
