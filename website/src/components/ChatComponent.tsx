@@ -19,7 +19,9 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
   const [isSending, setIsSending] = useState(false)
   const [isInitializing, setIsInitializing] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
 
   // Initialize chat session
   useEffect(() => {
@@ -29,10 +31,34 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
   // Auto-scroll to bottom when messages change
   useEffect(() => {
     scrollToBottom()
+    updateScrollProgress()
   }, [messages])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const updateScrollProgress = () => {
+    const container = messagesContainerRef.current
+    if (!container) return
+
+    const scrollHeight = container.scrollHeight - container.clientHeight
+    if (scrollHeight <= 0) {
+      setScrollProgress(100)
+      return
+    }
+
+    const progress = (container.scrollTop / scrollHeight) * 100
+    setScrollProgress(Math.round(progress))
+  }
+
+  const handleSliderChange = (value: number) => {
+    const container = messagesContainerRef.current
+    if (!container) return
+
+    const scrollHeight = container.scrollHeight - container.clientHeight
+    container.scrollTop = (value / 100) * scrollHeight
+    setScrollProgress(value)
   }
 
   const initializeChat = async () => {
@@ -137,7 +163,11 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
           <button className="chat-close-btn" onClick={onClose}>✕</button>
         </div>
 
-        <div className="chat-messages">
+        <div
+          className="chat-messages"
+          ref={messagesContainerRef}
+          onScroll={updateScrollProgress}
+        >
           {isInitializing && (
             <div className="chat-loading">
               <div className="spinner"></div>
@@ -182,6 +212,18 @@ export function ChatPanel({ analysisContext, onClose }: ChatPanelProps) {
           )}
 
           <div ref={messagesEndRef} />
+        </div>
+
+        <div className="chat-slider">
+          <label htmlFor="chat-slider-input">Conversation Slider</label>
+          <input
+            id="chat-slider-input"
+            type="range"
+            min={0}
+            max={100}
+            value={scrollProgress}
+            onChange={(e) => handleSliderChange(Number(e.target.value))}
+          />
         </div>
 
         <form className="chat-input-form" onSubmit={handleSendMessage}>
