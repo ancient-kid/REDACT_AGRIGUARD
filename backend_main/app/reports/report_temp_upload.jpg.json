@@ -1,8 +1,8 @@
 {
   "image_path": "C:\\Users\\Anurag\\Desktop\\REDACT_AGRIGUARD\\backend_main\\temp_upload.jpg",
   "prediction": "DISEASED",
-  "prob_healthy": 1.733342628540413e-06,
-  "prob_diseased": 0.9999982666573715,
+  "prob_healthy": 1.6497358501510462e-07,
+  "prob_diseased": 0.999999835026415,
   "severity": "Severe",
   "recommendations": [
     "Isolate affected plants to prevent spread.",
@@ -12,5 +12,5 @@
     "Document symptoms for Corn_(maize)___Northern_Leaf_Blight and monitor progression daily."
   ],
   "shap_heatmap": "C:\\Users\\Anurag\\Desktop\\REDACT_AGRIGUARD\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png",
-  "summary": "Your corn plant is showing signs of disease, specifically Northern Leaf Blight, with a very high confidence of 94.4%. We recommend you immediately isolate affected plants and inspect neighboring ones for similar symptoms. Consider applying safe organic treatments like neem oil, or consult your local extension officer for approved pesticides. Our analysis, supported by the SHAP heatmap, focused on specific diseased spots and lesions on the leaves as key indicators."
+  "summary": "Your corn plant is **diseased** with **Northern Leaf Blight**, showing severe symptoms. We highly recommend immediately isolating affected plants and applying safe organic treatments like neem oil. The AI is very confident (92.2%) in this diagnosis, and the SHAP heatmap helps show which specific areas on the leaf contributed most to this finding."
 }
