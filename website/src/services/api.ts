@@ -290,6 +290,14 @@ class AgriGuardAPI {
     }
   }
 
+  async getDashboardStats(): Promise<DashboardStats> {
+    const response = await fetch(`${API_BASE_URL}/dashboard/stats`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch dashboard stats: ${response.status}`);
+    }
+    return response.json();
+  }
+
   // Check if backend is available
   async healthCheck(): Promise<boolean> {
     try {

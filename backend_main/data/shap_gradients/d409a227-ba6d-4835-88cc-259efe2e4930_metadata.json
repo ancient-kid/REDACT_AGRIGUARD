@@ -1,0 +1,7 @@
+{
+  "upload_id": "d409a227-ba6d-4835-88cc-259efe2e4930",
+  "pred_class": "DISEASED",
+  "shap_method": "shap_gradient",
+  "stored_at": "2025-11-23T00:09:34.358850Z",
+  "source_path": "C:\\Users\\Anurag\\Desktop\\REDACT_AGRIGUARD\\backend_main\\app\\agri_graph\\nodes\\shap_explanations\\shap_heatmap_temp_upload.jpg.png"
+}

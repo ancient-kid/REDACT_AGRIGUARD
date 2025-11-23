@@ -11,6 +11,7 @@ import { agriGuardAPI, formatFileSize, getFileType } from './services/api'
 import type { ImageValidationResult, PipelineResult, GradCAMResult } from './services/api'
 import { ChatPanel } from './components/ChatComponent.tsx'
 import { dashboardStorage } from './services/dashboardStorage'
+import { DashboardSystem } from './components/DashboardSystem.tsx'
 
 interface AnalysisState {
   isAnalyzing: boolean;
@@ -120,6 +121,8 @@ function NavBar() {
             <Link to="/how-it-works" className={isActive('/how-it-works')}>How It Works</Link>
             <Link to="/features" className={isActive('/features')}>Features</Link>
             <Link to="/about" className={isActive('/about')}>About</Link>
+            
+            <Link to = "dashboard-system" className={isActive('dashboard-system')}>Dashboard System</Link>
             {isSignedIn && (
               <Link to="/dashboard" className={isActive('/dashboard')}>Dashboard</Link>
             )}
@@ -349,6 +352,8 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
+            
+            <Route path="/dashboard-system" element={<DashboardSystem />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </main>

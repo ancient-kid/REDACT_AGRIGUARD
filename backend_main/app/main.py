@@ -6,7 +6,7 @@ import base64
 from pathlib import Path
 import shutil
 import uuid
-from typing import Dict
+from typing import Any, Dict
 from . import chat_service
 import cv2
 import io
@@ -26,6 +26,7 @@ from sqlalchemy.orm import Session
 from .validators import check_image_corruption
 from .database import init_db, get_db, User, Upload, Chat, ChatMessage
 from datetime import datetime
+from shap_storage import store_shap_gradient
 
 
 # Add project root and nodes folder to path so imports work
@@ -223,9 +224,6 @@ app.add_middleware(
 async def startup_event():
     init_db()
 
-# In-memory storage for chat sessions
-chat_sessions: Dict[str, Dict] = {}
-
 # Pydantic models for chat
 class ChatInitRequest(BaseModel):
     analysis_context: dict
@@ -346,7 +344,38 @@ async def analyze_image(file: UploadFile = File(...)):
         "shap_note": result_state.get("shap_note"),
     }
 
+    archive_context = {
+        "pred_class": result_state.get("pred_class"),
+        "shap_method": result_state.get("shap_method"),
+    }
+    archive_path = store_shap_gradient(upload_id, shap_path, context=archive_context)
+    if archive_path:
+        print(f"[SHAP STORAGE] Archived gradient for {upload_id} -> {archive_path}")
+
+    payload.update(initialize_chat_session_for_analysis(result_state))
+
     return {"result": payload}
+
+
+def _build_chat_context_from_state(state: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        "pred_class": state.get("pred_class", "Unknown"),
+        "severity": state.get("severity", "Unknown"),
+        "recommendations": state.get("recommendations", []),
+        "summary": state.get("summary", ""),
+    }
+
+
+def initialize_chat_session_for_analysis(state: Dict[str, Any]) -> Dict[str, Any]:
+    context = _build_chat_context_from_state(state)
+    session_id = str(uuid.uuid4())
+    session = chat_service.initialize_session(session_id, context)
+    history = session.get("history", [])
+    initial_message = history[0]["content"] if history else ""
+    return {
+        "chat_session_id": session_id,
+        "chat_initial_message": initial_message
+    }
 
 
 @app.get("/dashboard/stats")
@@ -423,38 +452,6 @@ async def validate_image(file: UploadFile = File(...)):
     file_bytes = await file.read()
     val_result = check_image_corruption(file_bytes)
     return val_result
-
-@app.post("/chat/init")
-async def initialize_chat(request: ChatInitRequest):
-    """Initialize a new chat session with analysis context"""
-    session_id = str(uuid.uuid4())
-    
-    # Extract relevant information from analysis context
-    analysis = request.analysis_context
-    pred_class = analysis.get("pred_class", "Unknown")
-    severity = analysis.get("severity", "Unknown")
-    recommendations = analysis.get("recommendations", [])
-    summary = analysis.get("summary", "")
-    
-    # Create initial message based on analysis
-    if pred_class.lower() == "healthy":
-        initial_message = f"Great news! Your plant appears to be healthy. {summary if summary else 'I can help answer any questions about plant care and prevention.'}"
-    else:
-        initial_message = f"I've analyzed your plant and detected {pred_class} with {severity} severity. {summary if summary else ''}\n\nRecommendations:\n" + "\n".join(f"• {rec}" for rec in recommendations[:3])
-        initial_message += "\n\nFeel free to ask me about treatments, prevention, or any specific concerns!"
-    
-    # Store session
-    chat_sessions[session_id] = {
-        "analysis_context": analysis,
-        "messages": [
-            {"role": "assistant", "content": initial_message}
-        ]
-    }
-    
-    return {
-        "session_id": session_id,
-        "initial_message": initial_message
-    }
 
 @app.post("/chat/{session_id}/message")
 async def send_chat_message(session_id: str, request: ChatMessageRequest, db: Session = Depends(get_db)):

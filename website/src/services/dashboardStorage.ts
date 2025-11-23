@@ -1,7 +1,34 @@
-// Dashboard API client using SQLite backend
-
 const API_BASE_URL = 'http://localhost:8000'
 
+// ✅ ADD THESE TYPES (they were missing)
+export interface UserUpload {
+  id: string
+  fileName: string
+  imageUrl?: string | null
+  predictionClass: string
+  severity: string
+  confidence: {
+    healthy: number
+    diseased: number
+  }
+  summary?: string
+  createdAt: string  // Changed from timestamp
+}
+
+export interface ChatMessage {
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: string
+}
+
+export interface UserChat {
+  id: string
+  sessionId: string
+  createdAt: string
+  messages: ChatMessage[]
+}
+
+// Keep existing interfaces
 export interface UploadHistory {
   id: string
   fileName: string
@@ -44,6 +71,48 @@ export const dashboardStorage = {
         last_name: lastName
       })
     })
+  },
+
+  // ✅ ADD THIS METHOD (was missing)
+  async getUserUploads(userId: string): Promise<UserUpload[]> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/uploads/${userId}`)
+      if (!response.ok) throw new Error('Failed to fetch uploads')
+      
+      const data = await response.json()
+      return data.uploads.map((u: any) => ({
+        id: u.id,
+        fileName: u.fileName,
+        imageUrl: u.imageUrl,
+        predictionClass: u.predictionClass,
+        severity: u.severity,
+        confidence: u.confidence,
+        summary: u.summary,
+        createdAt: u.timestamp
+      }))
+    } catch (error) {
+      console.error('Error fetching user uploads:', error)
+      return []
+    }
+  },
+
+  // ✅ ADD THIS METHOD (was missing)
+  async getUserChats(userId: string): Promise<UserChat[]> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/chats/${userId}`)
+      if (!response.ok) throw new Error('Failed to fetch chats')
+      
+      const data = await response.json()
+      return data.chats.map((c: any) => ({
+        id: c.id,
+        sessionId: c.sessionId,
+        createdAt: c.createdAt,
+        messages: c.messages || []
+      }))
+    } catch (error) {
+      console.error('Error fetching user chats:', error)
+      return []
+    }
   },
 
   // Get user's dashboard data

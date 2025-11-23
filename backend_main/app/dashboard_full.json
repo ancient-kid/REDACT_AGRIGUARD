@@ -1,0 +1,4606 @@
+{
+  "meta": {
+    "generated_from": "D:\\redact-aiml\\redact-aiml\\analysis_results",
+    "collected_at": "2025-11-23T02:03:21.669756"
+  },
+  "diagnostics": [
+    "Large confusions found: top pair Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot -> Corn_(maize)___Northern_Leaf_Blight (count=64). Inspect saved examples in analysis_results\\examples.",
+    "No very small classes detected (support >= 50 for all).",
+    "Per-class avg confidence for correct predictions looks healthy (>=0.6).",
+    "Macro F1 between 0.90 and 0.95: good. Consider targeted fixes for top confusion pairs described above."
+  ],
+  "files_present": {
+    "predictions_with_meta.csv": true,
+    "per_class_confidence.csv": true,
+    "classification_report.csv": true,
+    "summary.csv": true,
+    "dashboard.json": false,
+    "shap_summary.json": false,
+    "examples_dir": true
+  },
+  "summary": {
+    "accuracy": 0.9474122843570296,
+    "precision_macro": 0.9481965100127826,
+    "recall_macro": 0.9467996550346836,
+    "f1_macro": 0.9466107649587036,
+    "n_val": 11999,
+    "n_classes": 26
+  },
+  "classification_report": {
+    "precision": {
+      "Apple___Apple_scab": 0.9870689655172412,
+      "Apple___Black_rot": 0.9395085066162572,
+      "Apple___Cedar_apple_rust": 0.954248366013072,
+      "Cherry_(including_sour)___Powdery_mildew": 0.9574468085106383,
+      "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": 0.9647058823529412,
+      "Corn_(maize)___Common_rust_": 0.967479674796748,
+      "Corn_(maize)___Northern_Leaf_Blight": 0.8745318352059925,
+      "Grape___Black_rot": 0.9317180616740088,
+      "Grape___Esca_(Black_Measles)": 0.956967213114754,
+      "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": 0.9815242494226328,
+      "Orange___Haunglongbing_(Citrus_greening)": 0.9634615384615384,
+      "Peach___Bacterial_spot": 0.9662162162162162,
+      "Pepper,_bell___Bacterial_spot": 0.9788583509513742,
+      "Potato___Early_blight": 0.9639278557114228,
+      "Potato___Late_blight": 0.9395833333333332,
+      "Squash___Powdery_mildew": 1.0,
+      "Strawberry___Leaf_scorch": 0.9887133182844244,
+      "Tomato___Bacterial_spot": 0.8779956427015251,
+      "Tomato___Early_blight": 0.8610526315789474,
+      "Tomato___Late_blight": 0.9529702970297028,
+      "Tomato___Leaf_Mold": 0.9151873767258384,
+      "Tomato___Septoria_leaf_spot": 0.923809523809524,
+      "Tomato___Spider_mites Two-spotted_spider_mite": 0.9448275862068966,
+      "Tomato___Target_Spot": 0.9241379310344828,
+      "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 0.9696356275303644,
+      "Tomato___Tomato_mosaic_virus": 0.9675324675324676,
+      "accuracy": 0.9474122843570296,
+      "macro avg": 0.9481965100127826,
+      "weighted avg": 0.9481173421344584
+    },
+    "recall": {
+      "Apple___Apple_scab": 0.9087301587301588,
+      "Apple___Black_rot": 1.0,
+      "Apple___Cedar_apple_rust": 0.9954545454545456,
+      "Cherry_(including_sour)___Powdery_mildew": 0.9642857142857144,
+      "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": 0.8,
+      "Corn_(maize)___Common_rust_": 0.9979035639412998,
+      "Corn_(maize)___Northern_Leaf_Blight": 0.979035639412998,
+      "Grape___Black_rot": 0.8961864406779662,
+      "Grape___Esca_(Black_Measles)": 0.9729166666666668,
+      "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": 0.9883720930232558,
+      "Orange___Haunglongbing_(Citrus_greening)": 0.9960238568588468,
+      "Peach___Bacterial_spot": 0.934640522875817,
+      "Pepper,_bell___Bacterial_spot": 0.9686192468619248,
+      "Potato___Early_blight": 0.9917525773195875,
+      "Potato___Late_blight": 0.9298969072164948,
+      "Squash___Powdery_mildew": 0.9976958525345622,
+      "Strawberry___Leaf_scorch": 0.9864864864864864,
+      "Tomato___Bacterial_spot": 0.9482352941176472,
+      "Tomato___Early_blight": 0.8520833333333333,
+      "Tomato___Late_blight": 0.8315334773218143,
+      "Tomato___Leaf_Mold": 0.9872340425531916,
+      "Tomato___Septoria_leaf_spot": 0.8899082568807339,
+      "Tomato___Spider_mites Two-spotted_spider_mite": 0.9448275862068966,
+      "Tomato___Target_Spot": 0.8796498905908097,
+      "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 0.9775510204081632,
+      "Tomato___Tomato_mosaic_virus": 0.9977678571428572,
+      "accuracy": 0.9474122843570296,
+      "macro avg": 0.9467996550346836,
+      "weighted avg": 0.9474122843570296
+    },
+    "f1-score": {
+      "Apple___Apple_scab": 0.9462809917355371,
+      "Apple___Black_rot": 0.9688109161793372,
+      "Apple___Cedar_apple_rust": 0.9744160177975528,
+      "Cherry_(including_sour)___Powdery_mildew": 0.9608540925266904,
+      "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": 0.8746666666666667,
+      "Corn_(maize)___Common_rust_": 0.9824561403508772,
+      "Corn_(maize)___Northern_Leaf_Blight": 0.923837784371909,
+      "Grape___Black_rot": 0.9136069114470844,
+      "Grape___Esca_(Black_Measles)": 0.9648760330578512,
+      "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": 0.984936268829664,
+      "Orange___Haunglongbing_(Citrus_greening)": 0.9794721407624634,
+      "Peach___Bacterial_spot": 0.9501661129568106,
+      "Pepper,_bell___Bacterial_spot": 0.9737118822292324,
+      "Potato___Early_blight": 0.9776422764227642,
+      "Potato___Late_blight": 0.9347150259067356,
+      "Squash___Powdery_mildew": 0.9988465974625144,
+      "Strawberry___Leaf_scorch": 0.9875986471251408,
+      "Tomato___Bacterial_spot": 0.9117647058823528,
+      "Tomato___Early_blight": 0.856544502617801,
+      "Tomato___Late_blight": 0.8881199538638985,
+      "Tomato___Leaf_Mold": 0.9498464687819856,
+      "Tomato___Septoria_leaf_spot": 0.9065420560747663,
+      "Tomato___Spider_mites Two-spotted_spider_mite": 0.9448275862068966,
+      "Tomato___Target_Spot": 0.9013452914798208,
+      "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 0.9735772357723578,
+      "Tomato___Tomato_mosaic_virus": 0.9824175824175824,
+      "accuracy": 0.9474122843570296,
+      "macro avg": 0.9466107649587036,
+      "weighted avg": 0.9469006437952716
+    },
+    "support": {
+      "Apple___Apple_scab": 504.0,
+      "Apple___Black_rot": 497.0,
+      "Apple___Cedar_apple_rust": 440.0,
+      "Cherry_(including_sour)___Powdery_mildew": 420.0,
+      "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": 410.0,
+      "Corn_(maize)___Common_rust_": 477.0,
+      "Corn_(maize)___Northern_Leaf_Blight": 477.0,
+      "Grape___Black_rot": 472.0,
+      "Grape___Esca_(Black_Measles)": 480.0,
+      "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": 430.0,
+      "Orange___Haunglongbing_(Citrus_greening)": 503.0,
+      "Peach___Bacterial_spot": 459.0,
+      "Pepper,_bell___Bacterial_spot": 478.0,
+      "Potato___Early_blight": 485.0,
+      "Potato___Late_blight": 485.0,
+      "Squash___Powdery_mildew": 434.0,
+      "Strawberry___Leaf_scorch": 444.0,
+      "Tomato___Bacterial_spot": 425.0,
+      "Tomato___Early_blight": 480.0,
+      "Tomato___Late_blight": 463.0,
+      "Tomato___Leaf_Mold": 470.0,
+      "Tomato___Septoria_leaf_spot": 436.0,
+      "Tomato___Spider_mites Two-spotted_spider_mite": 435.0,
+      "Tomato___Target_Spot": 457.0,
+      "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 490.0,
+      "Tomato___Tomato_mosaic_virus": 448.0,
+      "accuracy": 0.9474122843570296,
+      "macro avg": 11999.0,
+      "weighted avg": 11999.0
+    }
+  },
+  "per_class_confidence": [
+    {
+      "class_idx": 0,
+      "class_name": "Apple___Apple_scab",
+      "support": 504,
+      "acc": 0.9087301587301588,
+      "avg_conf_correct": 0.9078693389892578,
+      "avg_conf_incorrect": 0.6128886938095093,
+      "frac_correct": 0.9087301587301588
+    },
+    {
+      "class_idx": 1,
+      "class_name": "Apple___Black_rot",
+      "support": 497,
+      "acc": 1.0,
+      "avg_conf_correct": 0.9769366979599,
+      "avg_conf_incorrect": 0.0,
+      "frac_correct": 1.0
+    },
+    {
+      "class_idx": 2,
+      "class_name": "Apple___Cedar_apple_rust",
+      "support": 440,
+      "acc": 0.9954545454545456,
+      "avg_conf_correct": 0.9804304838180542,
+      "avg_conf_incorrect": 0.5621250867843628,
+      "frac_correct": 0.9954545454545456
+    },
+    {
+      "class_idx": 3,
+      "class_name": "Cherry_(including_sour)___Powdery_mildew",
+      "support": 420,
+      "acc": 0.9642857142857144,
+      "avg_conf_correct": 0.9841540455818176,
+      "avg_conf_incorrect": 0.5433779358863831,
+      "frac_correct": 0.9642857142857144
+    },
+    {
+      "class_idx": 4,
+      "class_name": "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
+      "support": 410,
+      "acc": 0.8,
+      "avg_conf_correct": 0.9213024377822876,
+      "avg_conf_incorrect": 0.709739625453949,
+      "frac_correct": 0.8
+    },
+    {
+      "class_idx": 5,
+      "class_name": "Corn_(maize)___Common_rust_",
+      "support": 477,
+      "acc": 0.9979035639412998,
+      "avg_conf_correct": 0.9934218525886536,
+      "avg_conf_incorrect": 0.7510383129119873,
+      "frac_correct": 0.9979035639412998
+    },
+    {
+      "class_idx": 6,
+      "class_name": "Corn_(maize)___Northern_Leaf_Blight",
+      "support": 477,
+      "acc": 0.979035639412998,
+      "avg_conf_correct": 0.9242016673088074,
+      "avg_conf_incorrect": 0.7007367014884949,
+      "frac_correct": 0.979035639412998
+    },
+    {
+      "class_idx": 7,
+      "class_name": "Grape___Black_rot",
+      "support": 472,
+      "acc": 0.8961864406779662,
+      "avg_conf_correct": 0.8791970014572144,
+      "avg_conf_incorrect": 0.6838099360466003,
+      "frac_correct": 0.8961864406779662
+    },
+    {
+      "class_idx": 8,
+      "class_name": "Grape___Esca_(Black_Measles)",
+      "support": 480,
+      "acc": 0.9729166666666668,
+      "avg_conf_correct": 0.945587694644928,
+      "avg_conf_incorrect": 0.6802303791046143,
+      "frac_correct": 0.9729166666666668
+    },
+    {
+      "class_idx": 9,
+      "class_name": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+      "support": 430,
+      "acc": 0.9883720930232558,
+      "avg_conf_correct": 0.9729868173599244,
+      "avg_conf_incorrect": 0.6728403568267822,
+      "frac_correct": 0.9883720930232558
+    },
+    {
+      "class_idx": 10,
+      "class_name": "Orange___Haunglongbing_(Citrus_greening)",
+      "support": 503,
+      "acc": 0.9960238568588468,
+      "avg_conf_correct": 0.9811148047447203,
+      "avg_conf_incorrect": 0.570644736289978,
+      "frac_correct": 0.9960238568588468
+    },
+    {
+      "class_idx": 11,
+      "class_name": "Peach___Bacterial_spot",
+      "support": 459,
+      "acc": 0.934640522875817,
+      "avg_conf_correct": 0.897322952747345,
+      "avg_conf_incorrect": 0.5605668425559998,
+      "frac_correct": 0.934640522875817
+    },
+    {
+      "class_idx": 12,
+      "class_name": "Pepper,_bell___Bacterial_spot",
+      "support": 478,
+      "acc": 0.9686192468619248,
+      "avg_conf_correct": 0.9434539079666138,
+      "avg_conf_incorrect": 0.5813855528831482,
+      "frac_correct": 0.9686192468619248
+    },
+    {
+      "class_idx": 13,
+      "class_name": "Potato___Early_blight",
+      "support": 485,
+      "acc": 0.9917525773195875,
+      "avg_conf_correct": 0.9643889665603638,
+      "avg_conf_incorrect": 0.4530966877937317,
+      "frac_correct": 0.9917525773195875
+    },
+    {
+      "class_idx": 14,
+      "class_name": "Potato___Late_blight",
+      "support": 485,
+      "acc": 0.9298969072164948,
+      "avg_conf_correct": 0.8887202143669128,
+      "avg_conf_incorrect": 0.5784081816673279,
+      "frac_correct": 0.9298969072164948
+    },
+    {
+      "class_idx": 15,
+      "class_name": "Squash___Powdery_mildew",
+      "support": 434,
+      "acc": 0.9976958525345622,
+      "avg_conf_correct": 0.9948521852493286,
+      "avg_conf_incorrect": 0.44380983710289,
+      "frac_correct": 0.9976958525345622
+    },
+    {
+      "class_idx": 16,
+      "class_name": "Strawberry___Leaf_scorch",
+      "support": 444,
+      "acc": 0.9864864864864864,
+      "avg_conf_correct": 0.9835336208343506,
+      "avg_conf_incorrect": 0.7283504605293274,
+      "frac_correct": 0.9864864864864864
+    },
+    {
+      "class_idx": 17,
+      "class_name": "Tomato___Bacterial_spot",
+      "support": 425,
+      "acc": 0.9482352941176472,
+      "avg_conf_correct": 0.9125234484672546,
+      "avg_conf_incorrect": 0.629352331161499,
+      "frac_correct": 0.9482352941176472
+    },
+    {
+      "class_idx": 18,
+      "class_name": "Tomato___Early_blight",
+      "support": 480,
+      "acc": 0.8520833333333333,
+      "avg_conf_correct": 0.8583655953407288,
+      "avg_conf_incorrect": 0.560973048210144,
+      "frac_correct": 0.8520833333333333
+    },
+    {
+      "class_idx": 19,
+      "class_name": "Tomato___Late_blight",
+      "support": 463,
+      "acc": 0.8315334773218143,
+      "avg_conf_correct": 0.866360604763031,
+      "avg_conf_incorrect": 0.6128120422363281,
+      "frac_correct": 0.8315334773218143
+    },
+    {
+      "class_idx": 20,
+      "class_name": "Tomato___Leaf_Mold",
+      "support": 470,
+      "acc": 0.9872340425531916,
+      "avg_conf_correct": 0.9515974521636964,
+      "avg_conf_incorrect": 0.7951748371124268,
+      "frac_correct": 0.9872340425531916
+    },
+    {
+      "class_idx": 21,
+      "class_name": "Tomato___Septoria_leaf_spot",
+      "support": 436,
+      "acc": 0.8899082568807339,
+      "avg_conf_correct": 0.8528279066085815,
+      "avg_conf_incorrect": 0.658610999584198,
+      "frac_correct": 0.8899082568807339
+    },
+    {
+      "class_idx": 22,
+      "class_name": "Tomato___Spider_mites Two-spotted_spider_mite",
+      "support": 435,
+      "acc": 0.9448275862068966,
+      "avg_conf_correct": 0.878913402557373,
+      "avg_conf_incorrect": 0.5428780913352966,
+      "frac_correct": 0.9448275862068966
+    },
+    {
+      "class_idx": 23,
+      "class_name": "Tomato___Target_Spot",
+      "support": 457,
+      "acc": 0.8796498905908097,
+      "avg_conf_correct": 0.8371495604515076,
+      "avg_conf_incorrect": 0.5316296815872192,
+      "frac_correct": 0.8796498905908097
+    },
+    {
+      "class_idx": 24,
+      "class_name": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+      "support": 490,
+      "acc": 0.9775510204081632,
+      "avg_conf_correct": 0.961089015007019,
+      "avg_conf_incorrect": 0.5943348407745361,
+      "frac_correct": 0.9775510204081632
+    },
+    {
+      "class_idx": 25,
+      "class_name": "Tomato___Tomato_mosaic_virus",
+      "support": 448,
+      "acc": 0.9977678571428572,
+      "avg_conf_correct": 0.9799091815948486,
+      "avg_conf_incorrect": 0.57625412940979,
+      "frac_correct": 0.9977678571428572
+    }
+  ],
+  "sample_predictions": [
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\00075aa8-d81a-4184-8541-b692b78d398a___FREC_Scab 3335_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99268955
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\00075aa8-d81a-4184-8541-b692b78d398a___FREC_Scab 3335_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9945263
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\00075aa8-d81a-4184-8541-b692b78d398a___FREC_Scab 3335_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97657806
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\01f3deaa-6143-4b6c-9c22-620a46d8be04___FREC_Scab 3112_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9842837
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0208f4eb-45a4-4399-904e-989ac2c6257c___FREC_Scab 3037_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.58089155
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\023123cb-7b69-4c9f-a521-766d7c8543bb___FREC_Scab 3487.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9865921
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\023123cb-7b69-4c9f-a521-766d7c8543bb___FREC_Scab 3487_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96734536
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0261a6e4-21f8-481a-8827-b674e6955644___FREC_Scab 3055.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9974898
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0261a6e4-21f8-481a-8827-b674e6955644___FREC_Scab 3055_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98999864
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\03354abb-aa1c-4f9d-a1ef-9f40505cd539___FREC_Scab 3355.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.47749123
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0340dc35-5215-48ab-8db7-06af99fcb358___FREC_Scab 2966_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93608296
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0395b847-2c73-4674-826f-33a6afb5b4fe___FREC_Scab 3287_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8519965
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0537ad56-3d24-4e97-a947-65b9b37f8988___FREC_Scab 3079.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98043734
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\058d5e64-2c57-45ba-94cb-ac83fd1885a0___FREC_Scab 3181_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.5573214
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\06cf74b6-d895-4a09-b3b1-bc63579f8c33___FREC_Scab 3128_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.47663525
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\06cf74b6-d895-4a09-b3b1-bc63579f8c33___FREC_Scab 3128_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.461481
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\073b509f-c1ea-4e61-881b-2e874c5f4199___FREC_Scab 3286.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97040814
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\073b509f-c1ea-4e61-881b-2e874c5f4199___FREC_Scab 3286_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99176204
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0812e1e4-6d1b-4264-8f23-6519354fc5a6___FREC_Scab 3293.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9940692
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0896ecbc-1af2-4868-8279-ed302acb29bc___FREC_Scab 3339.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97845125
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0896ecbc-1af2-4868-8279-ed302acb29bc___FREC_Scab 3339_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97497195
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\08c42d78-aa7b-4106-b0c1-b260f898dcba___FREC_Scab 3151_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9970886
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\09ba6ad9-aa8d-4493-b1bf-818a4b30c4aa___FREC_Scab 2981_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.62792176
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\09e40e4f-f8bc-4537-b20d-0b244760dbf4___FREC_Scab 3216_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.8065292
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0a6812de-7416-4ffe-aba9-307599a02c84___FREC_Scab 2973_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9956519
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0a769a71-052a-4f19-a4d8-b0f0cb75541c___FREC_Scab 3165_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9257727
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0a769a71-052a-4f19-a4d8-b0f0cb75541c___FREC_Scab 3165_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.88015145
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0b1e31fa-cbc0-41ed-9139-c794e6855e82___FREC_Scab 3089.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9964348
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0b1e31fa-cbc0-41ed-9139-c794e6855e82___FREC_Scab 3089_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9955395
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0b1e31fa-cbc0-41ed-9139-c794e6855e82___FREC_Scab 3089_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9948315
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0c620ec5-11cf-4120-94ab-1311e99df147___FREC_Scab 3131_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97464514
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\0d8d5b80-962d-4381-8d3b-9eca3f2f1bb0___FREC_Scab 3449_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98851657
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\11f5b020-3dfd-400c-9819-7d229bc5f929___FREC_Scab 2945_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7192752
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\11f5b020-3dfd-400c-9819-7d229bc5f929___FREC_Scab 2945_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.76525694
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\13b16e68-c82c-4de8-ab34-877ff352e821___FREC_Scab 3180_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.68547064
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\14c623e5-051c-42f6-9e4f-f7a93e6a723c___FREC_Scab 2965_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.921888
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\14c623e5-051c-42f6-9e4f-f7a93e6a723c___FREC_Scab 2965_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9417021
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1547f817-6a4d-4cbc-8ce0-7dff293562ee___FREC_Scab 3194_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9839454
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\154842bb-6ee3-4176-9007-cf7a43cfe140___FREC_Scab 3434_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7778304
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\15bfa086-7d4a-43c0-800d-2fe8255ba50c___FREC_Scab 3150.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.95967394
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\15bfa086-7d4a-43c0-800d-2fe8255ba50c___FREC_Scab 3150_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9658396
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\15bfa086-7d4a-43c0-800d-2fe8255ba50c___FREC_Scab 3150_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.92161024
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1a21aabb-6f74-4644-8d9e-a517568b7e9c___FREC_Scab 3095_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.994692
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1a304331-98b5-473f-bbb1-c33b8441052a___FREC_Scab 3296_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9711157
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1a4047d7-23d6-4bba-ba10-b6e7005ea01b___FREC_Scab 3193.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9966028
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1a41bab0-45e0-4dda-a798-9bf4a998f1b6___FREC_Scab 3450_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9255045
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1b1004c8-99e9-4c85-8fe5-b1c11d558cf8___FREC_Scab 3300_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9795632
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1c10ab31-02b9-4008-b66f-9b44d8a9d323___FREC_Scab 3084_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99937195
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1cb869ea-0a4c-47d7-9def-a88c16b72ddc___FREC_Scab 3350_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9823715
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1ceeeee0-40bd-4ac9-8a57-59385bf5df8a___FREC_Scab 3001_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8659362
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1ceeeee0-40bd-4ac9-8a57-59385bf5df8a___FREC_Scab 3001_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8876766
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1d81b4c1-072d-4cf7-b1ca-ce43f59822d8___FREC_Scab 3406_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97587436
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1d9d67e2-5603-4710-ae2b-6cb0b922ae61___FREC_Scab 3122_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.78285724
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1d9d67e2-5603-4710-ae2b-6cb0b922ae61___FREC_Scab 3122_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98491645
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1f6abf22-93fa-48f0-a509-cc3e210f75f0___FREC_Scab 3172_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9917748
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\1f98b949-4df2-45cf-8572-3b4a753be21a___FREC_Scab 2907_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 19,
+      "pred_label": "Tomato___Late_blight",
+      "pred_conf_max": 0.44363663
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\201d8b27-5a38-43e5-8065-f7fe039ad781___FREC_Scab 3058_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8594392
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\20f4f8d1-7527-420b-a90d-e17b9e45549a___FREC_Scab 2997.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.87260294
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\22c12d6a-3c17-45be-b53b-f17f1b3f5168___FREC_Scab 3206_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9839161
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\23466313-6a2c-46e7-ad89-1f95dd2d3b40___FREC_Scab 3517.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.766064
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\23466313-6a2c-46e7-ad89-1f95dd2d3b40___FREC_Scab 3517_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7123107
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\23576562-df0c-46bb-8c50-1bf03412097f___FREC_Scab 3086_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9986358
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\23f31e0d-3330-4752-9f83-8aba28c90ccb___FREC_Scab 3178_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9163479
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\246c33b0-fac8-4cca-ae8b-17947338b8b2___FREC_Scab 3091_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9930696
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\246c33b0-fac8-4cca-ae8b-17947338b8b2___FREC_Scab 3091_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9926016
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\24d43ad3-24e6-4236-8ef7-59b268520ca3___FREC_Scab 3533.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.35671034
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\24d43ad3-24e6-4236-8ef7-59b268520ca3___FREC_Scab 3533_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.40243813
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\24d43ad3-24e6-4236-8ef7-59b268520ca3___FREC_Scab 3533_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.6080075
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\252087d7-57c9-4ebe-b6c4-840d6c5dfcb1___FREC_Scab 3329_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9902778
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\258ce9eb-2b67-475b-b09c-0bc83b0987f1___FREC_Scab 3033_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98889893
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\25aeb397-bc36-4fe5-affe-6b8195d4f282___FREC_Scab 3494_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9968629
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\270dd6be-95f4-4fd1-8423-b698663b3f72___FREC_Scab 2954_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99858654
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\27338275-3c75-4bbf-8d74-7b90e9d224d3___FREC_Scab 3269.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97783613
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\276ed34e-9987-4b38-b83b-8626504fc204___FREC_Scab 3050_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9958824
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2a800c84-902e-4aa8-af13-4e020d6f17dd___FREC_Scab 3124.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.89928925
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2a97b29d-8a63-47ab-bd5b-c14832a586c8___FREC_Scab 3242_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99849033
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2bc018ba-3c49-4cf4-9411-a93b7b196f45___FREC_Scab 3326.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9510417
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2bc50b52-0d7d-41a3-be8a-8d070341d87f___FREC_Scab 3476_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9931797
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2bfd8ee0-af6b-42fd-ae61-fc5e92ec1b67___FREC_Scab 2988.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99564254
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2c648fcd-d637-4559-beaa-9dd6079646fb___FREC_Scab 3213_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9682064
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2c648fcd-d637-4559-beaa-9dd6079646fb___FREC_Scab 3213_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93214214
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2c7ca7c8-1a6c-4811-b9b0-b054c11a5397___FREC_Scab 3260_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8173526
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2c89ceaf-748c-4371-80d0-d01855f04a92___FREC_Scab 2962_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.916328
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2d329823-7ad5-4189-89b7-4bdf24f9c393___FREC_Scab 3507_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8410768
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2d5265d2-be99-4e9f-a085-d309cc01b751___FREC_Scab 3023.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.972615
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2dd8b8f8-46b0-4bc6-b817-ea7163f4b28b___FREC_Scab 3473.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9610816
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2f1e68c0-c059-46fd-bbf3-f160817abdc3___FREC_Scab 3535_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99066263
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2f1e68c0-c059-46fd-bbf3-f160817abdc3___FREC_Scab 3535_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9896644
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2f668a95-80ab-40ac-98ef-657bd85b668b___FREC_Scab 3247_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 13,
+      "pred_label": "Potato___Early_blight",
+      "pred_conf_max": 0.41977802
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\2f668a95-80ab-40ac-98ef-657bd85b668b___FREC_Scab 3247_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 13,
+      "pred_label": "Potato___Early_blight",
+      "pred_conf_max": 0.808557
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\320dff9e-6d59-4bec-9e7c-930444343e3b___FREC_Scab 3398_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.53362364
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\321c7135-853f-444d-9952-a893e660d966___FREC_Scab 2958_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9944013
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\32454154-edbf-464f-8097-e99a3d9a15af___FREC_Scab 2936_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.95516425
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\32550bbb-cdf1-4805-8167-27dc5a8e87d2___FREC_Scab 3195_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9665286
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\334f8e1a-5989-476e-88f4-8a45c304e12c___FREC_Scab 3035.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99830085
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\33ebf0dd-f971-4f11-aa93-45df7d55a9ea___FREC_Scab 3182_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9235472
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\34c2823b-d1c5-4bd8-a5a7-74bdef959e10___FREC_Scab 3484.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9946201
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\34c37353-8429-499e-bd38-ac7501f79e90___FREC_Scab 3501_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.52983314
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3523d2d8-0da9-4b83-b09d-21bd96860a3d___FREC_Scab 3499_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.945884
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3523d2d8-0da9-4b83-b09d-21bd96860a3d___FREC_Scab 3499_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.94201183
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\352a5659-3552-4e94-8333-c3715d38cc27___FREC_Scab 3049_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97622687
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\35694cb9-efe9-441a-a810-13e065de7925___FREC_Scab 3320_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9978817
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3636b2d7-b888-437b-b4e3-a8af4bb62763___FREC_Scab 3148.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.94957155
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3652fd23-ba4c-4958-8db8-3aff8f614dfd___FREC_Scab 3377_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9356916
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3652fd23-ba4c-4958-8db8-3aff8f614dfd___FREC_Scab 3377_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8843935
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\376aaef3-8649-43aa-89f8-166bd349a3d3___FREC_Scab 3064_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6651548
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\38e76f0a-63cb-460a-b0fa-f20e561dc2c0___FREC_Scab 3481.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97838336
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3c27bbd7-b305-4ab0-8a85-5061363cf632___FREC_Scab 3183_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.91611207
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3dd3d59c-be2a-4f29-8fa1-d4f37d7fb894___FREC_Scab 3412_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.89943117
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\3f65aa69-06c9-423f-ac7a-e2ab6edf63ca___FREC_Scab 3360.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.4642682
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4098b029-fcda-4d2f-9703-c16e6e5fae49___FREC_Scab 3455_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9684079
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\40a5e87c-ee32-4d67-9b28-926e94638a1d___FREC_Scab 3251_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9981634
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\40a5e87c-ee32-4d67-9b28-926e94638a1d___FREC_Scab 3251_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9962948
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\40d60cf0-1311-40c7-9e7e-579e74c92027___FREC_Scab 3136_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.88569206
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4147e694-ce1f-47ea-b641-899e60ef3f3a___FREC_Scab 3278_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9974253
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4151028c-c8bc-4394-b4a7-aff414864c15___FREC_Scab 3418_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9828587
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\419c16b2-13aa-485b-8342-3760707e21f9___FREC_Scab 3285_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9978005
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\41c2bb79-44fb-48f4-864f-eec35e3442f5___FREC_Scab 2931_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8930341
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\41c30a63-9e26-4ced-8110-038a2e36b095___FREC_Scab 3298_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9543576
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\43712608-0fa2-4be2-91a0-242aca469cb4___FREC_Scab 2985.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7915575
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\43712608-0fa2-4be2-91a0-242aca469cb4___FREC_Scab 2985_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.86505824
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\43712608-0fa2-4be2-91a0-242aca469cb4___FREC_Scab 2985_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8317321
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4442b558-4db4-4de3-82c3-7524b59bb315___FREC_Scab 2961.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9928583
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4495850d-4478-4680-a657-c082a8ea69ed___FREC_Scab 3534_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99208695
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4495850d-4478-4680-a657-c082a8ea69ed___FREC_Scab 3534_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.985578
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\44b52928-c5dd-48f4-b2c8-b128032c49dd___FREC_Scab 3518.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96766686
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\44b52928-c5dd-48f4-b2c8-b128032c49dd___FREC_Scab 3518_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.988453
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\44b52928-c5dd-48f4-b2c8-b128032c49dd___FREC_Scab 3518_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9938532
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\44dbb7a4-4c41-4d4c-9e34-9e665a35926c___FREC_Scab 3438_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9470178
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\453b09e4-6469-47f9-8599-f87e1d6eddf3___FREC_Scab 3048_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9879709
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4555c009-6c33-4913-accc-fd1a8355646b___FREC_Scab 2929_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.95959985
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\45a699f2-a02d-4f1f-b628-6d445c58a595___FREC_Scab 3291_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97437257
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\45e34a1f-1d46-42e8-921d-c82f2c9e7cd1___FREC_Scab 3228_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9604169
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\45ee8aaa-1a08-46ed-8ac8-bba8e40c61d6___FREC_Scab 2986_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9917686
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\45ee8aaa-1a08-46ed-8ac8-bba8e40c61d6___FREC_Scab 2986_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99306595
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\461eeeb9-5bf1-4c0a-a7dd-6967917b4537___FREC_Scab 3098_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9990676
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\462f0ef8-5460-4f5c-8935-62a204d3fc08___FREC_Scab 2924_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.63449436
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\462f0ef8-5460-4f5c-8935-62a204d3fc08___FREC_Scab 2924_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9717174
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\470bece4-7eb2-4ec1-917a-278559afe463___FREC_Scab 3250_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99823284
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\47ebb7a4-a8e0-4a57-95e5-dd8e9d1235a2___FREC_Scab 3147.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9888293
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4940cd87-695e-4f4d-8a45-5490812447cc___FREC_Scab 3044_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9701119
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4940cd87-695e-4f4d-8a45-5490812447cc___FREC_Scab 3044_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93518454
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\495816a8-4d85-47a5-9aca-a09f3f30a068___FREC_Scab 3443_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9862386
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4a50158d-dcd0-4a1f-885e-2d9b16a4e344___FREC_Scab 3205_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.93586385
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4a50158d-dcd0-4a1f-885e-2d9b16a4e344___FREC_Scab 3205_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.92136157
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4a7f12ff-a785-4d12-8943-f1644789a21b___FREC_Scab 2916_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98973185
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4abca5eb-2376-4551-be42-25bbb5400fc7___FREC_Scab 3268_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99917597
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4abca5eb-2376-4551-be42-25bbb5400fc7___FREC_Scab 3268_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9993975
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4b4b59d5-3c6d-4ce5-b349-616fecb850ff___FREC_Scab 3447_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.996225
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4b7c40cd-b145-4945-b649-3576a1d898dc___FREC_Scab 3343.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.4974967
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4bb38e05-1d5a-40c6-8638-10db134db682___FREC_Scab 3390_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9495357
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4be9d1d9-2170-4856-a81e-e53e7aa5dbf7___FREC_Scab 3082.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9938612
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4e2c27a7-4be1-4c86-a07b-bc2a64c1bff9___FREC_Scab 3018.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9536902
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4e2c27a7-4be1-4c86-a07b-bc2a64c1bff9___FREC_Scab 3018_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9702077
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4e2c27a7-4be1-4c86-a07b-bc2a64c1bff9___FREC_Scab 3018_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9583997
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\4e770559-e332-470e-aae3-c7ad0399dd20___FREC_Scab 3513_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9559705
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\517d0958-b10e-4260-a736-7a4bbb9706c0___FREC_Scab 3497.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.5287637
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\517d0958-b10e-4260-a736-7a4bbb9706c0___FREC_Scab 3497_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6600727
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\51929389-451f-4c78-a66b-b644e82a33b6___FREC_Scab 3528_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.7496276
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\52d5723a-b498-4759-89a1-a7d815689716___FREC_Scab 3034.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9969009
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\52d5723a-b498-4759-89a1-a7d815689716___FREC_Scab 3034_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9953629
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\536ce9e9-6c98-42c6-9447-f38073b3e9da___FREC_Scab 3222_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 14,
+      "pred_label": "Potato___Late_blight",
+      "pred_conf_max": 0.36969513
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\53fe6519-da0a-4183-80d6-a18828a33223___FREC_Scab 3283_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.974064
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\53fe6519-da0a-4183-80d6-a18828a33223___FREC_Scab 3283_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9831162
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5581f206-7305-4430-be5f-8de62689fb70___FREC_Scab 2918_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9366143
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\55cd6283-a5b1-47e9-b061-c7692c8ba781___FREC_Scab 3460.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8445575
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5893bd90-486f-42cf-9fcd-a4dc1e208246___FREC_Scab 3236_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7245128
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\59c9641b-c84e-4595-8f2c-13b5f914aa4a___FREC_Scab 3060.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9908455
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\59c9641b-c84e-4595-8f2c-13b5f914aa4a___FREC_Scab 3060_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9916642
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5b74fa7a-008d-42b2-b8c0-07bd4642153a___FREC_Scab 3162.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.73380864
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5c0af4dd-f185-4fc9-ae2c-a697a235d660___FREC_Scab 2955.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9985832
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5cd3df15-31a2-4076-9d1a-8735fa1dccdf___FREC_Scab 3410_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8623688
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5d398d0d-256d-4de5-8dcd-f3b455da2b76___FREC_Scab 3522.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.87999773
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5d398d0d-256d-4de5-8dcd-f3b455da2b76___FREC_Scab 3522_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9079241
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5d398d0d-256d-4de5-8dcd-f3b455da2b76___FREC_Scab 3522_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93638396
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5dbcba87-93fa-4c21-8abd-bc20c93b359f___FREC_Scab 3258.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9722082
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5dbcba87-93fa-4c21-8abd-bc20c93b359f___FREC_Scab 3258_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99131995
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\5fcb921d-3329-443c-a708-37c3943f5493___FREC_Scab 2987_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97221607
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\60226bd7-db11-4d7e-ba29-a5136f6bebe0___FREC_Scab 3470.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.78498274
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\60226bd7-db11-4d7e-ba29-a5136f6bebe0___FREC_Scab 3470_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.89076996
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\60226bd7-db11-4d7e-ba29-a5136f6bebe0___FREC_Scab 3470_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.89535385
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\60f3ba82-caf1-4cf7-998c-b0005458fa38___FREC_Scab 3226.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9783741
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\60f3ba82-caf1-4cf7-998c-b0005458fa38___FREC_Scab 3226_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9805212
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6105e3bd-339c-47bd-9764-4ba9b7059a6b___FREC_Scab 3096.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9972356
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\61373045-a7a5-4213-94fb-7d81638d5561___FREC_Scab 3430_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.998898
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6171eecd-e385-4010-b9cd-5982f4674fee___FREC_Scab 2911.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.90294343
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6344cfa8-2c26-4498-b366-817d56285212___FREC_Scab 2964_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.70764065
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\63a29431-0e93-4e5d-b28d-3956edd10d01___FREC_Scab 3197.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9619221
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\63a29431-0e93-4e5d-b28d-3956edd10d01___FREC_Scab 3197_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97351426
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\63a29431-0e93-4e5d-b28d-3956edd10d01___FREC_Scab 3197_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9981902
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\63cf5c0e-0a65-4261-9034-ba75466ee918___FREC_Scab 3385.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9718356
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\64e20068-6685-4a30-a812-fd817117d628___FREC_Scab 3485.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9910706
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\64e20068-6685-4a30-a812-fd817117d628___FREC_Scab 3485_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98759544
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\650f4395-7428-404a-b65c-8fd36f204dd6___FREC_Scab 3111_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9963188
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\656265b3-9f9a-4a20-83f5-e5d6be938dcd___FREC_Scab 3454_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9964167
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\656265b3-9f9a-4a20-83f5-e5d6be938dcd___FREC_Scab 3454_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9962586
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\659a6491-b20d-4ff6-a3be-243266b4df0c___FREC_Scab 3155_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9618705
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\663ad178-6346-4b89-8074-6655f1be1578___FREC_Scab 3500_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96767217
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\66fab3e4-d6e3-4a6d-aff0-4fe011ef8eb3___FREC_Scab 3153.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.947361
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\675f0b56-9d0b-45b3-8c8e-820efae75274___FREC_Scab 3006.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9934267
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\675f0b56-9d0b-45b3-8c8e-820efae75274___FREC_Scab 3006_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99089056
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\67c7e9f9-19ca-4fb5-a2b1-8efdeed7b9e2___FREC_Scab 3397_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.62721205
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\67f122a8-fb8f-4b8c-bd45-3cf11db238b8___FREC_Scab 3140_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9973285
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6823f5d3-b27b-4a34-a417-5fc5bd99f9d7___FREC_Scab 2975_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9981086
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6823f5d3-b27b-4a34-a417-5fc5bd99f9d7___FREC_Scab 2975_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99921465
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\68a57535-547d-4287-89cc-6d8acc265372___FREC_Scab 3351_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9655672
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\69a10285-eacb-4c83-b410-18e62bf33ef9___FREC_Scab 2908_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.63836086
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6a006aa9-a9f2-4269-9fd9-7a879f01faf1___FREC_Scab 3117_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7618512
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6a2c0f48-b0f7-4bd9-b7b8-7410c1ef4048___FREC_Scab 2999.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6520175
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6a61688a-c972-4f8f-b3b7-46fd00264240___FREC_Scab 3271.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9771209
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6a61688a-c972-4f8f-b3b7-46fd00264240___FREC_Scab 3271_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97544676
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6b5e1187-9b7b-4b4c-912f-b2175619f35f___FREC_Scab 3121.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7676522
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6b5e1187-9b7b-4b4c-912f-b2175619f35f___FREC_Scab 3121_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.871501
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6b6b2140-bb67-4342-adad-8cba97a5ecbe___FREC_Scab 3388.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9645463
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6b784953-7e31-4cec-a3d5-82f3b6bbdd00___FREC_Scab 3352_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9416312
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6b9ef56b-3338-4d2b-a5e4-a1547234e6d6___FREC_Scab 3474.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98914576
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6b9ef56b-3338-4d2b-a5e4-a1547234e6d6___FREC_Scab 3474_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9931463
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6e17c808-c071-4eae-befd-bf7e2ed0d9e1___FREC_Scab 3256.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9878591
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\6e17c808-c071-4eae-befd-bf7e2ed0d9e1___FREC_Scab 3256_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.976388
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\70fa2c8f-5657-444f-b57b-3ad6755acc74___FREC_Scab 3275_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9850323
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\716a13b6-1747-40d8-96d7-5ec1c183b3b5___FREC_Scab 3004_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9989349
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\71c26585-883f-41e9-939c-5f1683cdf4ed___FREC_Scab 3302.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9942035
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\72d9363f-1e23-4154-92bd-5f34a149d444___FREC_Scab 2980_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97941774
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\72d9363f-1e23-4154-92bd-5f34a149d444___FREC_Scab 2980_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9754092
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7308b9c4-3408-48ff-bd4a-b07350421e60___FREC_Scab 3508_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7133225
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\730f20de-a19f-4320-89bf-027dceeff9b5___FREC_Scab 3185.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9740993
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\745cfcfa-5b39-46ad-8c40-96086e71f6ee___FREC_Scab 3448_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9961642
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\74813834-38bc-4301-93ff-39b208eb52bc___FREC_Scab 3315_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.988576
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\748e82aa-02b1-4ca7-9fd3-e0184f20644f___FREC_Scab 3354.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7383278
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\75eca8b6-4446-4bf4-9d10-7d38ed44199a___FREC_Scab 3475_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9959942
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\76e50482-74b2-468f-8556-7669e1682f1e___FREC_Scab 3323.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9166495
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\76e50482-74b2-468f-8556-7669e1682f1e___FREC_Scab 3323_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9153584
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\76e50482-74b2-468f-8556-7669e1682f1e___FREC_Scab 3323_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9495295
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\774fb249-80b5-4575-ab5a-5459a9c14ef6___FREC_Scab 3024.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.78266656
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7897b5dc-7aa6-48b2-8c18-a30fcd6cae94___FREC_Scab 3203_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9653122
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\792c3972-8724-45b6-8ba0-eec0f675bc50___FREC_Scab 3120_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 6,
+      "pred_label": "Corn_(maize)___Northern_Leaf_Blight",
+      "pred_conf_max": 0.39757633
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\795c112f-bd6c-4d70-8986-b1c2fb62cbf2___FREC_Scab 3384.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.88452137
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7b7c32e3-68f8-4280-acda-4c6e67f4725f___FREC_Scab 3340_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9808139
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7bc2b2d5-b2b6-4ac2-9bbe-322ce8d7d9bb___FREC_Scab 2944.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9766268
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7be1e0a3-01d0-40c3-9628-f69952550267___FREC_Scab 3263_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99706644
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7bf25c0a-6594-4777-9a67-49a6487bb203___FREC_Scab 2993_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97956616
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7c0710e7-2ad4-44c4-a6f6-ffeb5573f8e7___FREC_Scab 3208_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96865886
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7c66bda4-301c-4987-85b8-fd8230c5a2f2___FREC_Scab 3324_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9700445
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7c83792f-d375-42fb-a5a0-1bc2cb3a8eff___FREC_Scab 2914_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.47994834
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7c83792f-d375-42fb-a5a0-1bc2cb3a8eff___FREC_Scab 2914_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.59493077
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7ceb532d-1a58-4a25-bbff-8dd04a117744___FREC_Scab 3422_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.42332858
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7dbdcba3-395b-413e-bc22-cd0d0e11a1c9___FREC_Scab 3363_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.51054984
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7e4bbd7a-b494-426f-9f08-755ce4a399e7___FREC_Scab 3331_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93168503
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7ead14ac-9bdd-42a9-bde9-b70d8b6694b7___FREC_Scab 3356.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.50794685
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7ead14ac-9bdd-42a9-bde9-b70d8b6694b7___FREC_Scab 3356_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.49493292
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7ed79254-3e04-4e08-9c80-088cd9d7d8c9___FREC_Scab 3310_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9811535
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\7f4d7ebc-7d2b-454f-8f61-b5dc469a16b7___FREC_Scab 3010_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.66149694
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\808207df-2000-4050-a720-bd23997710b8___FREC_Scab 3270.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99461454
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\808207df-2000-4050-a720-bd23997710b8___FREC_Scab 3270_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99437404
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\80870a3d-e028-47c6-9548-cef00d68be2c___FREC_Scab 3469_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8749466
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\815d2612-ee00-407a-8a0d-d0d94c7e0a9f___FREC_Scab 3461.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7409366
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\815d2612-ee00-407a-8a0d-d0d94c7e0a9f___FREC_Scab 3461_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.45093212
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\81c34d6d-e734-4ee7-9645-0f8f80c809c7___FREC_Scab 3276_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99266475
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\82488f15-ffb8-495f-b09f-3810e447681a___FREC_Scab 3007_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99677557
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\82f4f2fc-b28e-4834-95b8-3d7b144f8b15___FREC_Scab 3063_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8930461
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\83b1935d-f1fc-4b9f-876e-c0dbbb2fcb03___FREC_Scab 3486_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99907124
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\83dc6270-1c10-4c76-a1a2-6b562fcb4e4c___FREC_Scab 3478.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9183787
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\83dc6270-1c10-4c76-a1a2-6b562fcb4e4c___FREC_Scab 3478_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8823958
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\84ba6fe9-427e-415b-8bfe-a1f8670e1537___FREC_Scab 3530_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.5905029
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\84ba6fe9-427e-415b-8bfe-a1f8670e1537___FREC_Scab 3530_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.60768455
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\84ba6fe9-427e-415b-8bfe-a1f8670e1537___FREC_Scab 3530_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.85544497
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\84ca9b3d-80c2-476a-a3ae-c085ea721548___FREC_Scab 3132_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.88272214
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\84e61e7e-f106-442c-a954-63dc3a57d5d5___FREC_Scab 3057.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.934233
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\84e61e7e-f106-442c-a954-63dc3a57d5d5___FREC_Scab 3057_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.90532625
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\85aad925-f1e2-463e-840b-266d49a56d1f___FREC_Scab 3100.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9316473
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\85aad925-f1e2-463e-840b-266d49a56d1f___FREC_Scab 3100_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8604229
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\86054e9e-26b4-42b5-b192-58ddee7b0c34___FREC_Scab 3011_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.65376043
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\88079400-60e9-4317-b917-0bee6c8c16f5___FREC_Scab 3411_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8594174
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\895252c3-5047-4e87-8e13-2cdd765f3e0a___FREC_Scab 3056_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9451541
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\895252c3-5047-4e87-8e13-2cdd765f3e0a___FREC_Scab 3056_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.92638093
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\89888e39-a951-4507-a9c4-193aead90f64___FREC_Scab 3160_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99936813
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\89937e2f-6ec2-483d-9ba4-1c7c61859cb0___FREC_Scab 3394_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9255819
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8a212787-77fb-40dc-a028-92d5ff2d6c7c___FREC_Scab 3043_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98479086
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8a8f8dd2-a938-4288-a8ec-56ef0aaa2d4f___FREC_Scab 2947_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6180859
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8b28fdba-2f54-45dc-a671-a2743f127c45___FREC_Scab 3346.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9812262
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8c71b810-5fe3-415e-863b-6bb0b1fb1455___FREC_Scab 3221.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.63059914
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8c71b810-5fe3-415e-863b-6bb0b1fb1455___FREC_Scab 3221_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.68957764
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8c72c236-8f13-4087-8d1d-f365211563f0___FREC_Scab 3196_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.92250884
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8c72c236-8f13-4087-8d1d-f365211563f0___FREC_Scab 3196_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8984556
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8c916434-af92-4360-9833-0422aa510f7e___FREC_Scab 3245_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98442614
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8d2bd2f9-2c65-43f7-95f7-22f7f404ba13___FREC_Scab 3232.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8538372
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8df36a92-b562-4bff-975b-ff08d8da40f6___FREC_Scab 3119_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.4800135
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8e04135b-2279-43a7-af41-147d96395478___FREC_Scab 3143.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9860728
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8e04135b-2279-43a7-af41-147d96395478___FREC_Scab 3143_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9884036
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8eaf0422-c84e-4521-8628-85cf2fc91e7c___FREC_Scab 2989_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.969923
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8edca1d5-7ab9-47b6-bdd0-b61e4a11621e___FREC_Scab 3512.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.8515668
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8edca1d5-7ab9-47b6-bdd0-b61e4a11621e___FREC_Scab 3512_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.7616986
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\8edca1d5-7ab9-47b6-bdd0-b61e4a11621e___FREC_Scab 3512_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 20,
+      "pred_label": "Tomato___Leaf_Mold",
+      "pred_conf_max": 0.7366289
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9082fc1b-6621-48be-9953-50d3de9a6661___FREC_Scab 3065.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9771525
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9082fc1b-6621-48be-9953-50d3de9a6661___FREC_Scab 3065_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9722754
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9100bed7-65dd-4425-840b-503f9db78ef8___FREC_Scab 3076_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6203824
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\91decba3-10b0-4d3e-974c-bcc7729e867d___FREC_Scab 3527_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.82775754
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\91decba3-10b0-4d3e-974c-bcc7729e867d___FREC_Scab 3527_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.8629521
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\91decba3-10b0-4d3e-974c-bcc7729e867d___FREC_Scab 3527_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.80105174
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\925b4276-9d62-4a3d-9dfd-1613ed40685a___FREC_Scab 2994_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9483386
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9431682d-6de3-4b1f-bdde-11b706fe2e85___FREC_Scab 3029.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9992582
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9431682d-6de3-4b1f-bdde-11b706fe2e85___FREC_Scab 3029_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9988273
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9431682d-6de3-4b1f-bdde-11b706fe2e85___FREC_Scab 3029_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9977958
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9474d631-06bc-45e0-bdcc-2aff28b34856___FREC_Scab 3358_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.72317314
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9474d631-06bc-45e0-bdcc-2aff28b34856___FREC_Scab 3358_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.78626966
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\95c2cc04-5581-48ca-8001-9644bb488b12___FREC_Scab 3163_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98546255
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\95c2cc04-5581-48ca-8001-9644bb488b12___FREC_Scab 3163_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99145657
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\97294a06-04ae-440f-b130-ddff2817c727___FREC_Scab 3372_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.82799584
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\97294a06-04ae-440f-b130-ddff2817c727___FREC_Scab 3372_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7653472
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\975c76b5-0c9f-4179-bc48-20b37d3113e6___FREC_Scab 3463.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.852008
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\97cd53cf-e95a-4d40-b77c-15ccf9bbb8f3___FREC_Scab 3134_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93788755
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\97d9b70c-15fc-4463-a7cd-129e7bccef1c___FREC_Scab 2910.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8845657
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\97d9b70c-15fc-4463-a7cd-129e7bccef1c___FREC_Scab 2910_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.85664594
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\98e6e72f-092d-41dc-93e1-22bfc1ea2abd___FREC_Scab 2953_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98909676
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\98f72edf-a354-43de-8734-a697d8cdd3f5___FREC_Scab 3400.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 14,
+      "pred_label": "Potato___Late_blight",
+      "pred_conf_max": 0.4330711
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\98f72edf-a354-43de-8734-a697d8cdd3f5___FREC_Scab 3400_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 14,
+      "pred_label": "Potato___Late_blight",
+      "pred_conf_max": 0.37757862
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\99a971b6-cd13-4ed2-8fc5-0d6769945578___FREC_Scab 3130.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9018966
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\99e03a3c-c68f-4648-af09-877c57d6b115___FREC_Scab 3054.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.87587035
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\99f409b1-0e19-43e6-bbc5-95c5368f86be___FREC_Scab 3051_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9582545
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\99f409b1-0e19-43e6-bbc5-95c5368f86be___FREC_Scab 3051_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9770672
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9a82c830-7854-4f7f-84c5-f7414cd238b0___FREC_Scab 3069_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9587489
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9dac36c9-3c32-44be-8752-0f03666cbb76___FREC_Scab 3365.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9681999
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9e399a72-a81f-4a43-8542-ebc4e96ba346___FREC_Scab 2930_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99521196
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9e4d949f-0d9b-4b61-8ce9-574664176efc___FREC_Scab 3022.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 21,
+      "pred_label": "Tomato___Septoria_leaf_spot",
+      "pred_conf_max": 0.61776084
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9e4d949f-0d9b-4b61-8ce9-574664176efc___FREC_Scab 3022_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 21,
+      "pred_label": "Tomato___Septoria_leaf_spot",
+      "pred_conf_max": 0.5767948
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9f815013-3c21-403b-80ca-c69cd82d6251___FREC_Scab 2963.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9085529
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\9fd8d7c3-3321-49fc-a7dc-165ccc353c78___FREC_Scab 3177_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7725022
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a0fb83fc-d5a2-4ddf-9a04-c2bf96e5027f___FREC_Scab 3175_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6059988
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a15c8e33-6b90-489e-800d-99b3056235c2___FREC_Scab 3466_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9234655
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a2d4e28d-efb1-4b5c-8f39-de90392f007a___FREC_Scab 3139_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97215015
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a2d623ff-8e4d-40e3-a6c5-3d61e7355f92___FREC_Scab 2949.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99260193
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a2d74032-fd6c-469b-897a-054705e03dec___FREC_Scab 3028_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9904193
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a31b7944-c213-4b83-a586-004d0522e355___FREC_Scab 3341_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.65754193
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a3824376-87d9-464c-b78e-e35d029d43f2___FREC_Scab 3249_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9979692
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a3824376-87d9-464c-b78e-e35d029d43f2___FREC_Scab 3249_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99950314
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a5ed05d8-9815-41b7-b481-332e48cfde56___FREC_Scab 3415_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.95813787
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a72a9033-d2b9-4c64-93bc-7e5a1a0ea4ae___FREC_Scab 3284.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9094598
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a7609a35-fd75-4ec3-868a-eb97b9ffd096___FREC_Scab 3032_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9925527
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a8037811-6ce4-4611-ace1-1b6492374135___FREC_Scab 3126_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.854634
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a88d758c-0c4f-4214-b91d-e5645aa97113___FREC_Scab 3424_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9413319
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\a93dc267-cd94-49fd-9766-8afe67ba747a___FREC_Scab 3125_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.83760023
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\aba69098-9c79-46cc-ba1f-6f88a456b56f___FREC_Scab 3039_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.79277724
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\aba69098-9c79-46cc-ba1f-6f88a456b56f___FREC_Scab 3039_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93144864
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\abcd.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.49830034
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\abcde.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 3,
+      "pred_label": "Cherry_(including_sour)___Powdery_mildew",
+      "pred_conf_max": 0.39465272
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\abd8b296-db97-40c0-af5b-39e03f4dec16___FREC_Scab 3041_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98944235
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\abfd8972-51b1-4715-a358-54e8e2afa071___FREC_Scab 3267.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.87607425
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ac3ae45a-aaff-44c0-979d-6a2a8ba50ccf___FREC_Scab 3520_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8358945
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ac3ae45a-aaff-44c0-979d-6a2a8ba50ccf___FREC_Scab 3520_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.84034115
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ac61c972-546d-4977-ac4a-085f98bbf206___FREC_Scab 3308_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8491939
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ac8466c6-8a4f-4757-bb4d-d63f4b6a6928___FREC_Scab 3436.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9789625
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\add9ce00-e304-4632-82f2-ddc86a6be5f6___FREC_Scab 3472_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96916705
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ae02ce53-61ad-41d0-870a-a5a8b2fb3e93___FREC_Scab 3359_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96342635
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ae035eb1-0214-4964-b018-14fca52713fc___FREC_Scab 3166.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93967664
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ae035eb1-0214-4964-b018-14fca52713fc___FREC_Scab 3166_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.87669575
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\af82e889-9ec0-437c-85b8-7a6a5caf73a1___FREC_Scab 3338_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9921929
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\afab688d-242c-4e62-abef-ba277df5a76d___FREC_Scab 3188_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.990712
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\afab688d-242c-4e62-abef-ba277df5a76d___FREC_Scab 3188_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.990448
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\afab688d-242c-4e62-abef-ba277df5a76d___FREC_Scab 3188_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9988343
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\afc6c0d9-46a0-4275-a2f5-bb241017dbe4___FREC_Scab 3020_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98197997
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\afc6c0d9-46a0-4275-a2f5-bb241017dbe4___FREC_Scab 3020_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9138672
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\affb666c-6915-48e6-ba8a-92385af75826___FREC_Scab 3395_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9524276
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b10dceaa-a764-46b4-bd61-bc9fb13579ca___FREC_Scab 3141.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9927067
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b18d07ee-d2e2-4cc2-876c-e03e3839f3b6___FREC_Scab 3427.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.36718833
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b1efda88-84a3-4d96-b3bf-48d7e12155e9___FREC_Scab 3009_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7826274
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b3b884bb-55ff-42dd-81d6-d8260acd4ad5___FREC_Scab 3281_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9386157
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b4162101-daaa-4e98-bd83-e00f38cf5946___FREC_Scab 2968_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9776564
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b4162101-daaa-4e98-bd83-e00f38cf5946___FREC_Scab 2968_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.95388687
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b4b9c80a-f741-416d-a7e6-6d9566ea731e___FREC_Scab 3399.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.90457845
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b4b9c80a-f741-416d-a7e6-6d9566ea731e___FREC_Scab 3399_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8740217
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b4dd08e1-926f-41e0-b266-c2f37cea3203___FREC_Scab 3030_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9808899
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b7740d56-4540-44f5-82c4-3916da0cba20___FREC_Scab 3229_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9836442
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b8199a66-9ef5-498c-b55d-9a05d67433a5___FREC_Scab 2920.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 14,
+      "pred_label": "Potato___Late_blight",
+      "pred_conf_max": 0.50448954
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b8199a66-9ef5-498c-b55d-9a05d67433a5___FREC_Scab 2920_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9094886
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b84c8919-1f8c-4751-a759-e0ec84839020___FREC_Scab 3264_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9945334
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\b963d384-123e-48e5-ac66-a1e87f33ba0b___FREC_Scab 3021_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97253823
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ba325c11-e91c-4f5e-9ae0-76f8f0bb24df___FREC_Scab 3523_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.72884005
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ba94f188-df0b-41fd-94e3-f0ed4924e23e___FREC_Scab 3102_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9109057
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bb495423-1617-447c-95cd-52ebabee1a59___FREC_Scab 3199_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9396638
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bbcecb36-bad4-4aa5-812b-00a402427943___FREC_Scab 3279_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6529693
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bc2ce052-84b8-4de9-bd9d-7528869b62dc___FREC_Scab 3309_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9904963
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bc7769cc-805e-42ef-bbcf-0c134ff03276___FREC_Scab 2909_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96865463
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bc93b0fd-568f-4969-9d2d-c94d5f340e7e___FREC_Scab 3357.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.5446607
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bca5ef0a-0555-4f76-9f9c-c01bee56b816___FREC_Scab 3200_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99122745
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bce3ba0b-a142-4b28-8cb3-eb6bb6a3b8a2___FREC_Scab 3142_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9717469
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bdaae6b2-8ff5-4a4c-9286-a2393063cdaf___FREC_Scab 3491_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9679298
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bdaae6b2-8ff5-4a4c-9286-a2393063cdaf___FREC_Scab 3491_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9957203
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\be076652-b1bd-430c-a752-db525c1dfcfd___FREC_Scab 3367_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.552308
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\be076652-b1bd-430c-a752-db525c1dfcfd___FREC_Scab 3367_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9318506
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\be0ae8eb-76ea-4aba-bc29-175812af0f8d___FREC_Scab 3421_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9224148
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\be23de1a-2db8-4d7f-8b5f-cee56829d49c___FREC_Scab 2991_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.998998
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\be23de1a-2db8-4d7f-8b5f-cee56829d49c___FREC_Scab 2991_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99872166
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\be517ff5-5e63-4f6a-9f55-1522c9ec972b___FREC_Scab 3123_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9497943
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bf9a1cb3-baa2-42f6-881b-c77864b3019c___FREC_Scab 3189.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9918343
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\bf9a1cb3-baa2-42f6-881b-c77864b3019c___FREC_Scab 3189_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99162525
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c0bfed2f-ace7-44dd-9410-440b5eea4d89___FREC_Scab 3266_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.57096815
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c270319e-61d4-4376-a3e8-b159ff712dd4___FREC_Scab 3401.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6921754
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c270319e-61d4-4376-a3e8-b159ff712dd4___FREC_Scab 3401_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.71144825
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c27b45af-c362-4d37-ab5b-ee197a3670de___FREC_Scab 3521_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8508757
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c4175126-9e07-4465-9574-0229bb5b1f41___FREC_Scab 3304_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9695836
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c54db2df-2fe4-44e0-8a54-aee97e74acf5___FREC_Scab 3318.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9925289
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c563cf1c-da17-4c03-b3e8-b306334e0270___FREC_Scab 2933.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99678695
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c563cf1c-da17-4c03-b3e8-b306334e0270___FREC_Scab 2933_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99549377
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c665dad4-adfc-40a3-b1cc-a29aed48d93c___FREC_Scab 3246_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99759954
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c745cec0-6c89-4bee-b0c2-a71a925b7f1b___FREC_Scab 3227.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96914184
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c745cec0-6c89-4bee-b0c2-a71a925b7f1b___FREC_Scab 3227_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97299033
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c7dc7cfa-559a-4950-ba71-90d11dfe0b56___FREC_Scab 3381_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 2,
+      "pred_label": "Apple___Cedar_apple_rust",
+      "pred_conf_max": 0.49222335
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\c9535536-7e19-474d-9ea2-734d4576e6b7___FREC_Scab 2977.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.5770305
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ca37bd3e-47ec-415d-8012-81e4efcc6be5___FREC_Scab 2917.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.5914605
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cad140d1-bf93-4d65-bae8-c2e332f1346f___FREC_Scab 3426_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.41486514
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cb36375a-3a30-4d01-8764-358eb6300f16___FREC_Scab 3378.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.85153615
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cb36375a-3a30-4d01-8764-358eb6300f16___FREC_Scab 3378_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.86381114
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cb36375a-3a30-4d01-8764-358eb6300f16___FREC_Scab 3378_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8710286
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cbbdd77b-93f5-4f45-b35d-2b05ab1c8eb4___FREC_Scab 3465.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.67534286
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cd7234b0-3c97-4763-9d16-5a97c87140f7___FREC_Scab 3207_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98452824
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ce7338f4-ed12-4014-8d2f-4b674b672357___FREC_Scab 3532_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.8908276
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ce7338f4-ed12-4014-8d2f-4b674b672357___FREC_Scab 3532_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.8638516
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ced72cdb-0358-420c-abdd-1c94ba303435___FREC_Scab 3217_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6705254
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\cff69c82-7901-400a-b45c-6343624edfc3___FREC_Scab 3192_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98585343
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d01086a5-c14e-424a-8825-47343752c0a0___FREC_Scab 3170_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.90667295
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d08d117d-d394-4e24-83c2-cd7fd96894ce___FREC_Scab 3093_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9910042
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d1745979-75a6-4b00-a544-cf5ba043e7e0___FREC_Scab 3330.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9916469
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d1938082-a2de-49ad-8ca2-4b1947a7e107___FREC_Scab 3212.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.86609805
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d1938082-a2de-49ad-8ca2-4b1947a7e107___FREC_Scab 3212_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93153304
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d480dbfb-ce18-40cf-a183-9bc52ec9195d___FREC_Scab 3303.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9945045
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d48c6280-ceec-4b35-bc04-bbbf56995203___FREC_Scab 3262_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9578679
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d608ac35-eaf8-43e2-b429-f9b433126023___FREC_Scab 3386_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9921069
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d652b023-0ade-4f34-a490-206a87489e5e___FREC_Scab 3066_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8589473
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d66bf6da-1199-4f2b-9776-8cbc4529b268___FREC_Scab 3157_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9587502
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d66bf6da-1199-4f2b-9776-8cbc4529b268___FREC_Scab 3157_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99712974
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d72cdbbd-7982-4198-8bf7-a053ed69bba1___FREC_Scab 3529_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6212296
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d730c2c9-ac5f-4c4e-b568-2f3e8b43b1a9___FREC_Scab 3074.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7924738
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d7bdef33-fa84-4240-a931-8a568d62cee7___FREC_Scab 2946_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.888271
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d8b8a834-08df-43d9-8a1a-4bc8e508a1e3___FREC_Scab 3280.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99652904
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d8b8a834-08df-43d9-8a1a-4bc8e508a1e3___FREC_Scab 3280_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.995378
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d94dd9a8-f2ad-45c4-bf45-3a361f5e2efa___FREC_Scab 3442_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98310953
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\d9a98a38-faa1-47dc-9710-28a86f024a29___FREC_Scab 3490_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9569036
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\da09f1db-51a0-4142-855a-7783a3f92114___FREC_Scab 2978_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.62614894
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\daf6db9e-a600-449c-8b66-482ab50ea431___FREC_Scab 3237_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99948776
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\db71d62d-b06f-4aa2-a512-d3e5956fcffe___FREC_Scab 3444_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99625236
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\dbf66e2f-cf58-418c-9dcd-14254af3ddb1___FREC_Scab 2934_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99667114
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\dc12e2fd-e41b-43b5-9874-09661913316e___FREC_Scab 3073.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.5637671
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\dc12e2fd-e41b-43b5-9874-09661913316e___FREC_Scab 3073_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.5291717
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\dc12e2fd-e41b-43b5-9874-09661913316e___FREC_Scab 3073_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 1,
+      "pred_label": "Apple___Black_rot",
+      "pred_conf_max": 0.64762956
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\dce5b716-54ad-420c-911c-476b838c4be9___FREC_Scab 3045_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9412112
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\de341ebf-f335-4120-be2e-2640de5bde93___FREC_Scab 3375_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9982114
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\de6e3dd8-b2b8-4bce-aa4f-83cc514f2007___FREC_Scab 3511_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7345419
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\debd9885-73c5-4ba8-9a95-f820846cec77___FREC_Scab 3433_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99782664
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\debd9885-73c5-4ba8-9a95-f820846cec77___FREC_Scab 3433_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9969984
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\dfa24368-8ba9-4c02-9c3e-9e9a62a8d479___FREC_Scab 3215_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8741974
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e0bf6219-02d8-4255-88e2-a99afb1ad355___FREC_Scab 3515_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96500534
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e181fe6a-6865-4ae7-8b3e-0ce6f70ac63b___FREC_Scab 3223_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9932963
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e3891103-ded4-418f-bae1-91c282a30dcb___FREC_Scab 3159.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8668994
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e3891103-ded4-418f-bae1-91c282a30dcb___FREC_Scab 3159_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.986291
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e5d9029b-ba16-44c2-be95-66199f1a8a96___FREC_Scab 3317.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.991302
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e7115dcb-8124-42c9-bf6b-40740173d2ba___FREC_Scab 3353.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.99136305
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e893d964-8a40-46f5-b8ae-0a0f0cd79296___FREC_Scab 3333_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9985721
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e8f5c962-6f40-443e-9913-5a43b5f2ef07___FREC_Scab 3191_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8344854
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\e8fc927f-fac2-4386-be3c-0a8ad0ddd83d___FREC_Scab 3292.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98895663
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ea693d65-bcc9-4e76-9d64-cba561b520cc___FREC_Scab 3345_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.977823
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ed1d17cd-a5c2-4b10-996f-53f316df30b7___FREC_Scab 3456_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9594942
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ed33dbe0-edc4-4ad8-85c2-0495f384e3fe___FREC_Scab 3467.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.84588087
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ed3fa713-5de5-4298-96c1-9cf5bb830078___FREC_Scab 3105.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.996942
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\eda0a3b5-fe6e-4646-acc6-7db5179e3e96___FREC_Scab 3380.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9070827
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\eda0a3b5-fe6e-4646-acc6-7db5179e3e96___FREC_Scab 3380_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9191756
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ef359032-085f-44ba-a63d-493a1724eca4___FREC_Scab 3202_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8291071
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\ef359032-085f-44ba-a63d-493a1724eca4___FREC_Scab 3202_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9928605
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f0b1c450-fdbd-402f-9309-e7d5d06bc0e7___FREC_Scab 3210.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9822535
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f0b1c450-fdbd-402f-9309-e7d5d06bc0e7___FREC_Scab 3210_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97780335
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f0bbc28f-b6d6-4db3-b924-984a1e988510___FREC_Scab 3204.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.83105266
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f0bbc28f-b6d6-4db3-b924-984a1e988510___FREC_Scab 3204_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.98964345
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f105cc0d-1cc5-4726-b46d-f5bd9c9aacc1___FREC_Scab 3321_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.97224224
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f141c7f9-66b7-4052-b5c7-db3df1a894f2___FREC_Scab 3261_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9260926
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f18c0441-917e-4f34-b26e-a1a71d0adec2___FREC_Scab 3429.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8418153
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f27fd3ff-a3b7-486a-883c-f91488883555___FREC_Scab 3158_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.6620458
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f3303560-12ce-4e37-b62c-bfb5aad8aa0d___FREC_Scab 3332.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9781134
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f33a08e5-03bb-4b97-991c-a1332866043d___FREC_Scab 2923_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.37759274
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f33a08e5-03bb-4b97-991c-a1332866043d___FREC_Scab 2923_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.853895
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f3b61d33-8875-46a0-be57-ad3bda4cb5c6___FREC_Scab 3243_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 13,
+      "pred_label": "Potato___Early_blight",
+      "pred_conf_max": 0.4941812
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f6144504-015b-426e-a967-0712cf7621e4___FREC_Scab 3420.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.68435895
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f6144504-015b-426e-a967-0712cf7621e4___FREC_Scab 3420_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.8112707
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f6144504-015b-426e-a967-0712cf7621e4___FREC_Scab 3420_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9052399
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f684504f-ca6d-4f06-bb0e-2b296e3829b8___FREC_Scab 3314.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.96856546
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f684504f-ca6d-4f06-bb0e-2b296e3829b8___FREC_Scab 3314_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9941637
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f6946261-1a18-4306-ba87-ca25344d9bd2___FREC_Scab 3525.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.66867393
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f79134e9-f8b2-4855-96bd-6b3ce814b32a___FREC_Scab 3116.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.87623125
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f79c50ef-d89d-4371-b581-810b37eb2ac9___FREC_Scab 3255_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9470273
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f8ef99d9-9d01-4aeb-9248-e8c312c9a981___FREC_Scab 3129_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.94057906
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f957b91b-878a-4f53-b8b5-a8bf7fa2c773___FREC_Scab 2970_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.95345956
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f96cb3b3-172a-44d8-9720-d6a3ed87ced9___FREC_Scab 3036_270deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.7988194
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f9e4b1bc-36b0-40df-bb48-4e6ed48ec8b5___FREC_Scab 3514.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.94661576
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\f9e4b1bc-36b0-40df-bb48-4e6ed48ec8b5___FREC_Scab 3514_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9599258
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fb911d9c-0445-4d0f-886e-50458b82d6c2___FREC_Scab 2972_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9961655
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fb942296-ba33-40e5-ada0-6700365cf71d___FREC_Scab 2919.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 14,
+      "pred_label": "Potato___Late_blight",
+      "pred_conf_max": 0.49133584
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fb942296-ba33-40e5-ada0-6700365cf71d___FREC_Scab 2919_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.3863514
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fc9c12dc-1bdb-402d-ada8-dc1b33c84d5b___FREC_Scab 2932_new30degFlipLR.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9948671
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fcb1ce1e-f60c-4a65-bfa4-157009760dad___FREC_Scab 3052.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.994206
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fcb1ce1e-f60c-4a65-bfa4-157009760dad___FREC_Scab 3052_90deg.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.991222
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fcd4d0fd-30c9-4b05-b0ea-ca74fd3cad72___FREC_Scab 3510.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.93844104
+    },
+    {
+      "path": "data\\valid\\Apple___Apple_scab\\fcee4ece-01ce-45aa-a0f1-f20aa2ec8efb___FREC_Scab 3325.JPG",
+      "true_idx": 0,
+      "true_label": "Apple___Apple_scab",
+      "pred_idx": 0,
+      "pred_label": "Apple___Apple_scab",
+      "pred_conf_max": 0.9887877
+    }
+  ],
+  "top_confusion_pairs": [],
+  "examples_map": {
+    "00_01": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_1_09ba6ad9-aa8d-4493-b1bf-818a4b30c4aa___FREC_Scab 2981_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_2_09e40e4f-f8bc-4537-b20d-0b244760dbf4___FREC_Scab 3216_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_3_24d43ad3-24e6-4236-8ef7-59b268520ca3___FREC_Scab 3533_90deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_4_24d43ad3-24e6-4236-8ef7-59b268520ca3___FREC_Scab 3533_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_5_51929389-451f-4c78-a66b-b644e82a33b6___FREC_Scab 3528_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_6_84ba6fe9-427e-415b-8bfe-a1f8670e1537___FREC_Scab 3530_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_7_84ba6fe9-427e-415b-8bfe-a1f8670e1537___FREC_Scab 3530_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__01_Apple___Black_rot\\ex_8_91decba3-10b0-4d3e-974c-bcc7729e867d___FREC_Scab 3527_270deg.JPG"
+    ],
+    "00_02": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_1_03354abb-aa1c-4f9d-a1ef-9f40505cd539___FREC_Scab 3355.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_2_0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_2_3f65aa69-06c9-423f-ac7a-e2ab6edf63ca___FREC_Scab 3360.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_3_3f65aa69-06c9-423f-ac7a-e2ab6edf63ca___FREC_Scab 3360.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_3_67c7e9f9-19ca-4fb5-a2b1-8efdeed7b9e2___FREC_Scab 3397_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_4_67c7e9f9-19ca-4fb5-a2b1-8efdeed7b9e2___FREC_Scab 3397_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_4_7ead14ac-9bdd-42a9-bde9-b70d8b6694b7___FREC_Scab 3356.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_5_7ead14ac-9bdd-42a9-bde9-b70d8b6694b7___FREC_Scab 3356.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_5_7ead14ac-9bdd-42a9-bde9-b70d8b6694b7___FREC_Scab 3356_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_6_7ead14ac-9bdd-42a9-bde9-b70d8b6694b7___FREC_Scab 3356_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_6_abcd.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__02_Apple___Cedar_apple_rust\\ex_7_c7dc7cfa-559a-4950-ba71-90d11dfe0b56___FREC_Scab 3381_new30degFlipLR.JPG"
+    ],
+    "00_20": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_1_06cf74b6-d895-4a09-b3b1-bc63579f8c33___FREC_Scab 3128_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_2_06cf74b6-d895-4a09-b3b1-bc63579f8c33___FREC_Scab 3128_90deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_3_4a50158d-dcd0-4a1f-885e-2d9b16a4e344___FREC_Scab 3205_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_4_4a50158d-dcd0-4a1f-885e-2d9b16a4e344___FREC_Scab 3205_90deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_5_517d0958-b10e-4260-a736-7a4bbb9706c0___FREC_Scab 3497.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_6_8edca1d5-7ab9-47b6-bdd0-b61e4a11621e___FREC_Scab 3512.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_7_8edca1d5-7ab9-47b6-bdd0-b61e4a11621e___FREC_Scab 3512_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\00_Apple___Apple_scab__to__20_Tomato___Leaf_Mold\\ex_8_8edca1d5-7ab9-47b6-bdd0-b61e4a11621e___FREC_Scab 3512_90deg.JPG"
+    ],
+    "04_05": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_1_0a01cc10-3892-4311-9c48-0ac6ab3c7c43___RS_GLSp 9352_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_2_0ce6543f-9694-4b3a-b767-9bc909f54f73___RS_GLSp 4663 copy_new30degFlipLR.jpg",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_3_165f35a9-5e03-4ec8-9167-bd346c863e41___RS_GLSp 4289 copy 3_new30degFlipLR.jpg",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_4_1836cc95-03e5-4430-8cc1-cca482b94a0d___RS_GLSp 4289 copy_new30degFlipLR.jpg",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_5_295e2145-800f-4c3c-9728-e45b1cd8e113___RS_GLSp 4316_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_6_29d60537-2717-45e1-b608-c19270302f67___RS_GLSp 4558_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_7_63762409-379e-4299-a46a-5f6db703687e___RS_GLSp 4333_new30degFlipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__05_Corn__maize____Common_rust_\\ex_8_6f4b40eb-6d14-4f30-9ef8-89f85bd841fd___RS_GLSp 4426_new30degFlipLR.JPG"
+    ],
+    "04_06": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_1_0140764c-6157-4995-9ada-9c10b81af3b8___RS_GLSp 4378.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_2_07f54257-0ec8-4bce-991f-90d46646d4f8___RS_GLSp 4378 copy 2.jpg",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_3_0ba90f90-3702-438a-908b-85871f3a34cb___RS_GLSp 4342.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_4_0dbbcb82-756e-48a6-94f4-3a8f1e1cedda___RS_GLSp 4587.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_5_0e0ed08d-3021-49a7-9098-7c90afeb2fd5___RS_GLSp 4346.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_6_0e0ed08d-3021-49a7-9098-7c90afeb2fd5___RS_GLSp 4346_270deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_7_165f35a9-5e03-4ec8-9167-bd346c863e41___RS_GLSp 4289 copy 3.jpg",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\04_Corn__maize____Cercospora_leaf_spot_Gray_leaf_spot__to__06_Corn__maize____Northern_Leaf_Blight\\ex_8_1836cc95-03e5-4430-8cc1-cca482b94a0d___RS_GLSp 4289 copy.jpg"
+    ],
+    "07_08": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_1_18994b78-1505-4c21-b6b4-459c4e673735___FAM_B.Rot 3269_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_2_1f65cd54-490a-49a4-909c-a648ea5bc8ed___FAM_B.Rot 0498.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_3_1f65cd54-490a-49a4-909c-a648ea5bc8ed___FAM_B.Rot 0498_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_4_2aaa0d89-c8cd-458c-9419-cbe916c1b4da___FAM_B.Rot 0403_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_5_30e108e7-3a95-401f-a815-11397d206839___FAM_B.Rot 0548_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_6_55740c50-995e-4bd4-84a1-d73475041d43___FAM_B.Rot 0522.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_7_55740c50-995e-4bd4-84a1-d73475041d43___FAM_B.Rot 0522_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__08_Grape___Esca__Black_Measles_\\ex_8_66f6bb0c-ff8d-42a4-a3cd-e0a23ab02761___FAM_B.Rot 0405_flipLR.JPG"
+    ],
+    "07_17": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_1_114e772d-4784-4d26-b9a6-c15c56ece3ad___FAM_B.Rot 3515_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_2_208a1a2c-c037-429c-9476-81fc568bde5f___FAM_B.Rot 3049.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_3_226d7916-5a55-4593-b85f-1e53235b04d2___FAM_B.Rot 3099_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_4_2e875c76-45f3-48f9-b678-f2282da11408___FAM_B.Rot 3101.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_5_493fb6d4-ab6e-4e65-b365-d9c37c817e0b___FAM_B.Rot 3516.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_6_4b58bd4b-a23c-4677-b52e-5301a120c981___FAM_B.Rot 3150.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_7_4b58bd4b-a23c-4677-b52e-5301a120c981___FAM_B.Rot 3150_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\07_Grape___Black_rot__to__17_Tomato___Bacterial_spot\\ex_8_690624b3-100d-4a73-b824-9b55886cd6fe___FAM_B.Rot 3104.JPG"
+    ],
+    "08_07": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_1_1c47bebb-90ac-4161-8716-78b3475cddea___FAM_B.Msls 1283.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_2_26796d1d-8d47-48da-93b7-26b4da73ab0a___FAM_B.Msls 3875.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_3_2ffcdbee-105e-4c6e-801f-fd6475e4aaa0___FAM_B.Msls 4358.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_4_43a77ec5-c728-41f0-b780-71c1fd2efdfa___FAM_B.Msls 0821_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_5_49279805-f68c-4525-8b06-78a322eb88cd___FAM_B.Msls 1299.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_6_49279805-f68c-4525-8b06-78a322eb88cd___FAM_B.Msls 1299_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_7_6f4e3e0f-9e84-451e-b3aa-61e665ef49b6___FAM_B.Msls 3951.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\08_Grape___Esca__Black_Measles___to__07_Grape___Black_rot\\ex_8_b51dd9b6-0ab4-411f-ad41-a1549b3ae488___FAM_B.Msls 3839.JPG"
+    ],
+    "12_01": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_1_162a3375-31e6-48f4-9b78-ab35054fb86c___JR_B.Spot 3397.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_2_301b41f3-647f-4bd2-9adb-ef98c8b8c238___JR_B.Spot 3399.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_3_301b41f3-647f-4bd2-9adb-ef98c8b8c238___JR_B.Spot 3399_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_4_30559581-e3ea-4ac4-8e8b-ff8bbc44b014___JR_B.Spot 8832.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_5_6e1e07ba-212d-4494-b8bf-73d12d720c20___JR_B.Spot 3392.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_6_b6d35d21-4812-4e32-ab9a-b6ddda8cbb79___JR_B.Spot 8972.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\12_Pepper__bell___Bacterial_spot__to__01_Apple___Black_rot\\ex_7_fde20c63-cca2-4edb-9e6c-77b3a7f95cbd___JR_B.Spot 3400_flipTB.JPG"
+    ],
+    "14_18": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_1_2af683b8-ad55-450d-9047-630b85a2d128___RS_LB 4614.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_2_2e2bc24d-9900-4b0b-a8ec-abb444350c03___RS_LB 4701.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_3_304b3fa0-f0cb-41b5-b835-9bd13773150a___RS_LB 4696_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_4_3221ccec-f264-4046-8252-77a8a357562b___RS_LB 4637.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_5_3221ccec-f264-4046-8252-77a8a357562b___RS_LB 4637_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_6_3221ccec-f264-4046-8252-77a8a357562b___RS_LB 4637_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_7_32e6ace8-7ca9-4f95-a313-6747d321e8da___RS_LB 4698.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\14_Potato___Late_blight__to__18_Tomato___Early_blight\\ex_8_471fd810-047d-4c87-933b-14c8b46d4b20___RS_LB 5450_flipTB.JPG"
+    ],
+    "18_17": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_1_342d78c9-af97-4325-ad0f-0f12e0a206c2___RS_Erly.B 7406_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_2_47c05777-ef2f-4baf-8f1a-61ab067a4627___RS_Erly.B 7350_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_3_498e5205-4421-4ec6-80b5-e4f79156b1c5___RS_Erly.B 7362_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_4_533debcd-c993-4c11-8515-9ec280cdc023___RS_Erly.B 7389_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_5_533debcd-c993-4c11-8515-9ec280cdc023___RS_Erly.B 7389_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_6_5390d8c0-5781-47cf-8d0a-482e000a01f3___RS_Erly.B 7400.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_7_5390d8c0-5781-47cf-8d0a-482e000a01f3___RS_Erly.B 7400_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__17_Tomato___Bacterial_spot\\ex_8_5390d8c0-5781-47cf-8d0a-482e000a01f3___RS_Erly.B 7400_flipTB.JPG"
+    ],
+    "18_19": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_1_38c6a01b-91c0-431b-8f58-05fa43cf94b7___RS_Erly.B 9408.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_2_4803a0a5-ac23-431f-b792-d60a25a268bd___RS_Erly.B 9508_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_3_5688c1fd-cd1f-4fb5-9e0b-d12c0c095023___RS_Erly.B 9511_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_4_89e7a492-7347-4659-ac0b-2df664ed4c80___RS_Erly.B 8438_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_5_9305f21d-4558-49ae-b831-a7a1a4d399c2___RS_Erly.B 7417.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_5_b24f8f98-4bfe-4605-85f5-738fc09e58fe___RS_Erly.B 6406.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_6_b24f8f98-4bfe-4605-85f5-738fc09e58fe___RS_Erly.B 6406.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_6_b24f8f98-4bfe-4605-85f5-738fc09e58fe___RS_Erly.B 6406_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_7_b24f8f98-4bfe-4605-85f5-738fc09e58fe___RS_Erly.B 6406_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_7_c63ff9c7-0422-4a71-8727-7c2581fdee6e___RS_Erly.B 9406_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_8_c63ff9c7-0422-4a71-8727-7c2581fdee6e___RS_Erly.B 9406_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__19_Tomato___Late_blight\\ex_8_d6ac1972-b67c-422e-b81d-11f2f1d9ec5f___RS_Erly.B 9435.JPG"
+    ],
+    "18_23": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_1_0fc8cb27-a10f-4587-a91d-4dbec9f839c7___RS_Erly.B 7715.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_2_1b4a2ad5-057d-4fac-9188-648edbe49751___RS_Erly.B 7767.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_3_2179421c-3ce3-4581-8b65-17da6fffd3db___RS_Erly.B 7730_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_4_240300f1-a601-4363-84e8-670af8a124a1___RS_Erly.B 7762.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_5_29645def-a571-4442-8f95-d7ebf71befde___RS_Erly.B 7751_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_6_605e0af6-415f-4e25-8f0d-a8f36371732b___RS_Erly.B 7827_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_7_96aa2fd2-d8dc-4650-9b56-7b0f25f27edf___RS_Erly.B 7821_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\18_Tomato___Early_blight__to__23_Tomato___Target_Spot\\ex_8_9d64c577-43dd-4409-b0ed-f5460bc01dc9___RS_Erly.B 7685.JPG"
+    ],
+    "19_03": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_1_0bb05a47-55a2-4c23-9dd2-3a5abf17c9f4___GHLB Leaf 5 Day 1_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_2_3a1a6b9e-2a68-421f-adbe-229baf8a6093___GHLB Leaf 2 Day 13_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_3_56fff1a0-e145-4cf8-a2e0-925d9fae1e24___GHLB Leaf 25 Day 12.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_4_60196a6c-a134-4107-8178-d1bb47450cee___GHLB Leaf 23.1 Day 9.jpg",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_5_75894286-9ce2-448e-8148-0f7fc3442689___GHLB Leaf 2.2 Day 12.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_6_8afb4f4f-cc42-45fb-b3bb-6d6a4b358d8b___GHLB2 Leaf 8574.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_7_94cc1863-a527-4f26-9b08-2f3bc17ff93f___GHLB Leaf 23.3 Day 13.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__03_Cherry__including_sour____Powdery_mildew\\ex_8_a6b94272-9bb5-495e-bce4-2622d2ea34f5___GHLB Leaf 25.2 Day 12.JPG"
+    ],
+    "19_14": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_1_008ebb44-eb77-4843-b621-4b88b5df7d43___RS_Late.B 5188.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_2_021a9808-21f7-464a-8df2-2eda5ed98eda___RS_Late.B 5356.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_3_1546f916-115c-42dc-90c7-ff8d53c4273f___RS_Late.B 4836.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_4_2c2326e9-eb07-45c1-8296-116df4108c03___RS_Late.B 4834.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_5_2ec39ffa-c356-4d31-8153-f2e4bc9a1449___RS_Late.B 5164_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_6_39c5ef21-730a-4e51-9eb0-a7639295c116___RS_Late.B 5157.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_7_44e96c62-48e6-454c-bab5-c34569deb2a5___RS_Late.B 5162.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__14_Potato___Late_blight\\ex_8_7d8cbbfc-89e2-4fe5-9624-89b353d78832___RS_Late.B 5176_flipLR.JPG"
+    ],
+    "19_18": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_1_01a68044-9c5b-4658-a944-6108c6862ce7___GHLB Leaf 2.1 Day 16.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_2_01a68044-9c5b-4658-a944-6108c6862ce7___GHLB Leaf 2.1 Day 16_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_3_03a15d38-e1b5-4586-b763-2bad2d268290___RS_Late.B 5207_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_4_0da53824-7b3b-43a9-9b34-146a7f71ef7e___RS_Late.B 6958_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_5_2164b3f8-102c-481c-9d89-7e2f6087a121___RS_Late.B 5065.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_6_3fcbbb8e-c7dc-4921-b8b6-bc118b877a82___RS_Late.B 5059.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_7_4f12205c-0035-48ed-b6b0-56f347fe2ab0___RS_Late.B 5085_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__18_Tomato___Early_blight\\ex_8_634c3515-80da-4144-8cc8-9b8bb29134ec___RS_Late.B 5481.JPG"
+    ],
+    "19_21": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_1_11b2caf9-a56c-4d3e-bea4-a5d00affd161___RS_Late.B 6140.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_2_288f203e-7996-4290-afa7-f95c0c30506a___RS_Late.B 5562.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_3_5ba6fbc5-a1de-4600-b0aa-9d8b8c222183___RS_Late.B 6181_flipLR.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_4_81425428-d995-492c-80ba-c28564d8f317___RS_Late.B 6265.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_5_e90482fd-1a84-462a-b28d-cb9b6aee18eb___RS_Late.B 6161.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_6_f33028e4-68df-4312-ba25-94d65f03efcf___RS_Late.B 5530.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\19_Tomato___Late_blight__to__21_Tomato___Septoria_leaf_spot\\ex_7_f8176522-163b-48ee-a1a2-ea94c782b4ad___RS_Late.B 6137.JPG"
+    ],
+    "21_13": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_1_181ba21a-dd6f-4f26-b279-6734d3579449___Matt.S_CG 7593.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_2_2e8ffaaa-1ddd-436d-8672-b3274acf0067___Matt.S_CG 7806_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_3_48e9d480-1361-4d4a-96a3-bded85e7559b___Matt.S_CG 7733.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_4_5a821b14-10d8-49ad-9e16-be2eeef81d4f___Matt.S_CG 7434_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_5_5a821b14-10d8-49ad-9e16-be2eeef81d4f___Matt.S_CG 7434_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_6_712e2567-6375-4307-874f-da9b6f3cafcf___Matt.S_CG 7519.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_7_8f5a4a7c-445b-4bb2-aa73-2c736733f82b___Matt.S_CG 7573.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__13_Potato___Early_blight\\ex_8_cdf7e54e-1bc9-4107-a49c-77be805c52be___Matt.S_CG 7730.JPG"
+    ],
+    "21_20": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_1_04c912dc-3e26-43ff-a6e3-69de49a6e529___JR_Sept.L.S 8519_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_2_1eb51af9-a622-4f97-a47b-b7474771d414___JR_Sept.L.S 2455.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_3_9fedd168-0c92-4620-8dd1-28c28ba94844___JR_Sept.L.S 2559.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_4_b642f549-f9f4-4ac4-b8a6-9b060f88b484___JR_Sept.L.S 2597.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_5_e6d9f6dd-1349-4d66-8bae-7be416b48d15___JR_Sept.L.S 8360.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_6_f214d421-d6a3-4152-9e8f-db81ceb32dd1___Matt.S_CG 7811.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\21_Tomato___Septoria_leaf_spot__to__20_Tomato___Leaf_Mold\\ex_7_f8e19e45-a84d-4292-8849-8849518a2d4f___JR_Sept.L.S 8517.JPG"
+    ],
+    "23_22": [
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_1_0df45326-8aa9-49bf-a2fd-e7f454c2dfbf___Com.G_TgS_FL 9718_180deg.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_2_11d94c10-2699-48ee-b3fb-27d4ac60aeaf___Com.G_TgS_FL 9894.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_3_1840e451-4049-49de-a7ee-9f305e85d3c3___Com.G_TgS_FL 9966.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_4_1c980f09-7e37-4e57-96e5-d18783691134___Com.G_TgS_FL 9908.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_5_2761adc9-bf8f-4362-87a6-7619ecf0dbbe___Com.G_TgS_FL 9681.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_6_3919bfe9-902a-439d-b3db-3027ef2f59f2___Com.G_TgS_FL 0849.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_7_4a7b8d1e-ca1e-4b87-a7bc-0a43720f66dd___Com.G_TgS_FL 9929_flipTB.JPG",
+      "D:\\redact-aiml\\redact-aiml\\analysis_results\\examples\\23_Tomato___Target_Spot__to__22_Tomato___Spider_mites_Two-spotted_spider_mite\\ex_8_4acbd8cc-eab9-466d-9d1c-065213652abc___Com.G_TgS_FL 9855_flipTB.JPG"
+    ]
+  },
+  "confusion_matrix": null,
+  "shap_summary": {
+    "shap_available": false
+  },
+  "raw_dashboard_json": null
+}
