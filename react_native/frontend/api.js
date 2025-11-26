@@ -1,6 +1,6 @@
 // api.js
 
-export const BASE_URL = "http://10.10.43.25:8000"; // your backend IP
+export const BASE_URL = "http://10.10.3.54:8000"; // your backend IP
 
 // Build multipart form-data for image
 function buildFormData(uri) {

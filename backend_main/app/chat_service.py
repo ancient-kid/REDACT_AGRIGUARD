@@ -208,7 +208,10 @@ def send_message(session_id: str, user_message: str) -> dict:
         - Consider Indian cropping seasons (Kharif, Rabi, Zaid)
         - Price recommendations in Indian Rupees (₹)
         - Reference Indian agricultural markets and dealers
-
+        -Also dont directly recommend medicines names; just give normal remedies, if we encounter a medicine direct them to nearest krishi kendra
+        -Always answer in English; if the user explicitly asks in Hindi, respond in Hindi.
+        -Also respond harshly to any explicit or implicit requests for illegal or harmful substances.
+        
         Analysis Context:
         - Prediction: {analysis_context.get('pred_class', 'Unknown')}
         - Severity: {analysis_context.get('severity', 'Unknown')}

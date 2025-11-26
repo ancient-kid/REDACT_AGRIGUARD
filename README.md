@@ -37,5 +37,6 @@ AgriGuard is a full-stack farming companion that blends explainable computer vis
 - Hook up real storage for SHAP artifacts (S3, Azure, etc.).
 - Expand the Serper helper to cache search snippets per session to avoid repeated calls.
 - Add E2E tests for the dashboard history and chat slider using Playwright or Detox.
+- Print and persist evaluation metrics: run `python backend_main/app/confusion_matrix.py` after training to generate a confusion matrix PNG/CSV for the validation split.
 
 Let me know if you want badges, installation commands, or a specific template for this README.
